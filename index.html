@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --cream: #FAF8F3;
+    --warm-white: #FFFEF9;
+    --ink: #1C1A17;
+    --ink-soft: #4A4640;
+    --ink-muted: #8A8680;
+    --accent: #C4622A;
+    --accent-soft: #F5EAE2;
+    --border: rgba(28,26,23,0.1);
+    --section-gap: 80px;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--cream); color: var(--ink); font-family: 'DM Sans', sans-serif; font-weight: 400; line-height: 1.6; font-size: 15px; }
+  .serif { font-family: 'Lora', serif; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 40px; height: 56px; display: flex; align-items: center; justify-content: space-between; background: rgba(250,248,243,0.92); backdrop-filter: blur(8px); border-bottom: 0.5px solid var(--border); }
+  .nav-name { font-family: 'Lora', serif; font-size: 15px; color: var(--ink); letter-spacing: 0.01em; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { font-size: 13px; color: var(--ink-soft); text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+  .hero { padding: 140px 40px 80px; max-width: 760px; margin: 0 auto; }
+  .hero-eyebrow { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; font-weight: 500; }
+  .hero h1 { font-family: 'Lora', serif; font-size: clamp(32px, 5vw, 48px); line-height: 1.2; font-weight: 400; color: var(--ink); margin-bottom: 24px; letter-spacing: -0.01em; }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero-sub { font-size: 17px; color: var(--ink-soft); line-height: 1.7; max-width: 580px; margin-bottom: 40px; font-weight: 300; }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
+  .tag { font-size: 12px; padding: 5px 14px; border-radius: 20px; border: 0.5px solid var(--border); color: var(--ink-soft); background: var(--warm-white); letter-spacing: 0.02em; }
+  .hero-stats { display: flex; gap: 40px; padding-top: 32px; border-top: 0.5px solid var(--border); }
+  .stat-num { font-family: 'Lora', serif; font-size: 28px; color: var(--ink); font-weight: 400; display: block; line-height: 1; margin-bottom: 4px; }
+  .stat-label { font-size: 12px; color: var(--ink-muted); letter-spacing: 0.04em; }
+  .divider { max-width: 760px; margin: 0 auto; padding: 0 40px; border-bottom: 0.5px solid var(--border); }
+  section { max-width: 760px; margin: 0 auto; padding: var(--section-gap) 40px; }
+  .section-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 40px; font-weight: 500; }
+  .work-list { display: flex; flex-direction: column; gap: 0; }
+  .work-item { padding: 36px 0; border-bottom: 0.5px solid var(--border); display: grid; grid-template-columns: 1fr 2fr; gap: 32px; align-items: start; }
+  .work-item:first-child { border-top: 0.5px solid var(--border); }
+  .work-meta { padding-top: 3px; }
+  .work-index { font-size: 11px; color: var(--ink-muted); letter-spacing: 0.08em; margin-bottom: 8px; font-weight: 500; }
+  .work-company { font-size: 12px; color: var(--accent); letter-spacing: 0.04em; margin-bottom: 6px; font-weight: 500; }
+  .work-tags { display: flex; flex-direction: column; gap: 3px; }
+  .work-tag { font-size: 11px; color: var(--ink-muted); letter-spacing: 0.03em; }
+  .work-content h3 { font-family: 'Lora', serif; font-size: 19px; font-weight: 400; line-height: 1.35; margin-bottom: 10px; color: var(--ink); }
+  .work-problem { font-size: 13px; color: var(--ink-muted); line-height: 1.65; margin-bottom: 12px; font-style: italic; }
+  .work-outcome { font-size: 14px; color: var(--ink-soft); line-height: 1.7; margin-bottom: 16px; }
+  .work-numbers { display: flex; gap: 20px; flex-wrap: wrap; }
+  .work-num { font-family: 'Lora', serif; font-size: 18px; color: var(--accent); }
+  .work-num span { font-family: 'DM Sans', sans-serif; font-size: 11px; color: var(--ink-muted); display: block; margin-top: 2px; letter-spacing: 0.04em; }
+  .builder-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .builder-card { background: var(--warm-white); border: 0.5px solid var(--border); border-radius: 12px; padding: 24px 20px; }
+  .builder-icon { width: 32px; height: 32px; background: var(--accent-soft); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 16px; }
+  .builder-card h4 { font-size: 14px; font-weight: 500; line-height: 1.4; margin-bottom: 8px; color: var(--ink); }
+  .builder-card p { font-size: 12px; color: var(--ink-muted); line-height: 1.6; margin-bottom: 12px; }
+  .builder-stack { font-size: 11px; color: var(--accent); letter-spacing: 0.04em; font-weight: 500; }
+  .writing-list { display: flex; flex-direction: column; gap: 0; }
+  .writing-item { padding: 24px 0; border-bottom: 0.5px solid var(--border); display: flex; justify-content: space-between; align-items: baseline; gap: 20px; }
+  .writing-item:first-child { border-top: 0.5px solid var(--border); }
+  .writing-title { font-family: 'Lora', serif; font-size: 16px; font-weight: 400; color: var(--ink); line-height: 1.4; margin-bottom: 4px; }
+  .writing-pub { font-size: 12px; color: var(--ink-muted); letter-spacing: 0.04em; }
+  .writing-year { font-size: 12px; color: var(--ink-muted); white-space: nowrap; flex-shrink: 0; }
+  footer { max-width: 760px; margin: 0 auto; padding: 40px 40px 60px; border-top: 0.5px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .footer-name { font-family: 'Lora', serif; font-size: 14px; color: var(--ink-soft); }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { font-size: 13px; color: var(--ink-muted); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--accent); }
+  .fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .fade-in.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-name">Riddhi Bhargava</span>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#builder">Building</a></li>
+    <li><a href="#writing">Writing</a></li>
+    <li><a href="https://linkedin.com/in/riddhik" target="_blank">LinkedIn ↗</a></li>
+  </ul>
+</nav>
+
+<div class="hero fade-in">
+  <p class="hero-eyebrow">Staff Product Manager</p>
+  <h1>Building products that <em>grow platforms.</em><br>Systems that survive scale.</h1>
+  <p class="hero-sub">13+ years owning 0→1 and 1→100 across marketplace, monetization, fintech, and B2B SaaS — end to end, KPIs and all.</p>
+  <div class="hero-tags">
+    <span class="tag">Marketplace</span>
+    <span class="tag">Monetization</span>
+    <span class="tag">Growth</span>
+    <span class="tag">AI/ML</span>
+    <span class="tag">B2B SaaS</span>
+    <span class="tag">Platform infrastructure</span>
+    <span class="tag">Experimentation</span>
+    <span class="tag">0→1</span>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <span class="stat-num">750%+</span>
+      <span class="stat-label">GMV growth, 5 years</span>
+    </div>
+    <div>
+      <span class="stat-num">7×</span>
+      <span class="stat-label">Seller base growth</span>
+    </div>
+    <div>
+      <span class="stat-num">$12M</span>
+      <span class="stat-label">ARR, 0→1 SaaS</span>
+    </div>
+    <div>
+      <span class="stat-num">13+</span>
+      <span class="stat-label">Years in product</span>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<section id="work">
+  <p class="section-label">Work</p>
+  <div class="work-list">
+
+    <!-- PROJECT 01 -->
+    <div class="work-item fade-in">
+      <div class="work-meta">
+        <p class="work-index">01</p>
+        <p class="work-company">Walmart</p>
+        <div class="work-tags">
+          <span class="work-tag">Onboarding · Growth</span>
+          <span class="work-tag">Customer-centric UX</span>
+          <span class="work-tag">Rapid iteration</span>
+          <span class="work-tag">Experimentation</span>
+          <span class="work-tag">0→1 → 100</span>
+        </div>
+      </div>
+      <div class="work-content">
+        <h3>From a 6-week gated application to a 10-minute self-serve experience</h3>
+        <p class="work-problem">Growth and quality were treated as competing goals — leadership wanted to expand the seller base but also wanted to keep onboarding gated. The assumption was that gates protected program quality. Removing them felt like a risk.</p>
+        <p class="work-outcome">Ran controlled experiments to challenge that assumption. Parallelized onboarding tasks to observe how sellers actually moved through them — without any imposed order. Used that behavioral data to design a sequenced, self-serve experience. Then partnered with marketing to embed program enrollment at the moment a seller joins the platform, making WFS fulfillment the natural default choice. The result strengthened WFS's market position and changed the internal conversation from "how do we protect quality" to "how do we scale faster."</p>
+        <div class="work-numbers">
+          <div class="work-num">~53% <span>GMV CAGR over 5 years</span></div>
+          <div class="work-num">7× <span>seller base growth</span></div>
+          <div class="work-num">Stronger <span>WFS market position</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 02 -->
+    <div class="work-item fade-in">
+      <div class="work-meta">
+        <p class="work-index">02</p>
+        <p class="work-company">Walmart</p>
+        <div class="work-tags">
+          <span class="work-tag">Monetization · Incentives</span>
+          <span class="work-tag">1→100</span>
+          <span class="work-tag">Habit-forming products</span>
+        </div>
+      </div>
+      <div class="work-content">
+        <h3>From scattered tools and email approvals to an incentive platform built for scale</h3>
+        <p class="work-problem">Hundreds of millions in annual promotional spend was managed across many disparate systems — no unified view, no ROI visibility, and an approval process fragmented across email threads.</p>
+        <p class="work-outcome">Started with a POC scoped to unblock adoption and test assumptions while business strategy was still taking shape. Once the strategy clarified and the goal became integrating incentives across the org, rebuilt the approach: tied incentives to specific seller actions to nudge performance and program adoption, then designed a self-serve platform where account managers set goals, get AI-suggested audience and incentive mix, and route for finance approval in one workflow. ROI became a first-class metric — every dollar of spend now has a projected and actual return attached.</p>
+        <div class="work-numbers">
+          <div class="work-num">100s of M <span>annual spend, managed</span></div>
+          <div class="work-num">200% <span>promotional ROI increase</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 03 -->
+    <div class="work-item fade-in">
+      <div class="work-meta">
+        <p class="work-index">03</p>
+        <p class="work-company">Walmart</p>
+        <div class="work-tags">
+          <span class="work-tag">Catalog · AI/ML</span>
+          <span class="work-tag">Platform infrastructure</span>
+        </div>
+      </div>
+      <div class="work-content">
+        <h3>From unclear categorization and days-long compliance bottlenecks to listing products with only the necessary information, in minutes — and unlocking consumer product categories that made Walmart Marketplace more competitive</h3>
+        <p class="work-problem">Flat categories made it hard to collect the right information at listing time, and were a blocker to enabling new product types. The result was friction for sellers, compliance gaps, and whole categories that couldn't be sold through the marketplace at all.</p>
+        <p class="work-outcome">Rebuilt the catalog around granular product-type specs so the right fields appeared for the right product — no more guesswork at listing time. Then built search-and-match into the listing workflow, letting sellers reuse prior compliance decisions instantly rather than waiting days for a fresh review. Added ML pre-classification with a live feedback loop to catch what still needed human review. Together, these changes unlocked regulated goods, resale, and big-and-bulky categories that had been effectively invisible on the marketplace.</p>
+        <div class="work-numbers">
+          <div class="work-num">60% <span>faster product listing</span></div>
+          <div class="work-num">New categories <span>unlocked for consumers</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 04 -->
+    <div class="work-item fade-in">
+      <div class="work-meta">
+        <p class="work-index">04</p>
+        <p class="work-company">SAP Ariba</p>
+        <div class="work-tags">
+          <span class="work-tag">B2B SaaS · 0→1</span>
+          <span class="work-tag">Procurement · Risk</span>
+        </div>
+      </div>
+      <div class="work-content">
+        <h3>From a one-time risk assessment to risk intelligence embedded in every sourcing decision</h3>
+        <p class="work-problem">Enterprise customers ran supplier risk assessments once a year, in a tool that sat completely outside their sourcing workflow. Risk was a siloed audit — disconnected from the daily decisions where it would have actually mattered.</p>
+        <p class="work-outcome">Identified a post-launch adoption stall as a product-market fit problem, not a customer success failure. The product was solving for a moment (the annual review) instead of a workflow (ongoing sourcing). Pivoted to continuous monitoring with configurable risk scorecards, then embedded risk scores directly into source-to-pay — filtering supplier search, informing contract terms, triggering automatic reassessment when signals changed. Risk stopped being something teams visited and became something that traveled with every sourcing decision.</p>
+        <div class="work-numbers">
+          <div class="work-num">150% <span>revenue growth</span></div>
+          <div class="work-num">2× <span>customer base</span></div>
+          <div class="work-num">Gartner MQ + Forrester Wave <span>recognized leader in supplier risk management</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="builder">
+  <p class="section-label">Building</p>
+  <div class="builder-grid">
+    <div class="builder-card fade-in">
+      <div class="builder-icon">⚡</div>
+      <h4>Incentive recommendation engine</h4>
+      <p>Input a user segment and growth goal, get an incentive recommendation with projected ROI.</p>
+      <span class="builder-stack">Lovable · Claude API</span>
+    </div>
+    <div class="builder-card fade-in">
+      <div class="builder-icon">🔎</div>
+      <h4>Supplier risk classifier</h4>
+      <p>Input a supplier profile, get a risk score across 4 dimensions and a contract clause suggestion.</p>
+      <span class="builder-stack">Claude Code · Claude API</span>
+    </div>
+    <div class="builder-card fade-in">
+      <div class="builder-icon">🧪</div>
+      <h4>PM experiment designer</h4>
+      <p>Input a hypothesis, get an experiment design, metrics, sample size, and confounders.</p>
+      <span class="builder-stack">n8n · Claude API</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="writing">
+  <p class="section-label">Writing</p>
+  <div class="writing-list">
+    <div class="writing-item fade-in">
+      <div>
+        <p class="writing-title">Human-Centered AI — Designing Intelligent Systems Users Trust</p>
+        <p class="writing-pub">Brainz Magazine</p>
+      </div>
+      <span class="writing-year">2024</span>
+    </div>
+    <div class="writing-item fade-in">
+      <div>
+        <p class="writing-title">Reframing Product Strategy: An Analytical Framework for Outcome-Based Roadmapping</p>
+        <p class="writing-pub">CIO Bulletin</p>
+      </div>
+      <span class="writing-year">2024</span>
+    </div>
+    <div class="writing-item fade-in">
+      <div>
+        <p class="writing-title">Without Authority: Product Managers as Influencers in the Age of AI</p>
+        <p class="writing-pub">HackRead</p>
+      </div>
+      <span class="writing-year">2024</span>
+    </div>
+  </div>
+</section>
+
+<footer class="fade-in">
+  <span class="footer-name">Riddhi Bhargava</span>
+  <div class="footer-links">
+    <a href="mailto:riddhi.k.bhargava@gmail.com">Email</a>
+    <a href="https://linkedin.com/in/riddhik" target="_blank">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach((el, i) => {
+    el.style.transitionDelay = (i * 60) + 'ms';
+    obs.observe(el);
+  });
+</script>
+
+</body>
+</html>
