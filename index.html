@@ -43,10 +43,11 @@
   .work-item:first-child { border-top: 0.5px solid var(--border); }
   .work-meta { padding-top: 3px; }
   .work-index { font-size: 11px; color: var(--ink-muted); letter-spacing: 0.08em; margin-bottom: 8px; font-weight: 500; }
-  .work-company { font-size: 12px; color: var(--accent); letter-spacing: 0.04em; margin-bottom: 6px; font-weight: 500; }
-  .work-tags { display: flex; flex-direction: column; gap: 3px; }
-  .work-tag { font-size: 11px; color: var(--ink-muted); letter-spacing: 0.03em; }
-  .work-content h3 { font-family: 'Lora', serif; font-size: 19px; font-weight: 400; line-height: 1.35; margin-bottom: 10px; color: var(--ink); }
+  .work-company { font-size: 12px; color: var(--accent); letter-spacing: 0.04em; margin-bottom: 10px; font-weight: 500; }
+  .work-tags { display: flex; flex-direction: column; gap: 6px; }
+  .work-tag { display: inline-block; font-size: 11px; padding: 4px 12px; border-radius: 20px; border: 0.5px solid var(--border); color: var(--ink-muted); background: var(--warm-white); letter-spacing: 0.02em; white-space: nowrap; align-self: flex-start; }
+  .work-content h3 { font-family: 'Lora', serif; font-size: 19px; font-weight: 400; line-height: 1.35; margin-bottom: 6px; color: var(--ink); }
+  .work-subhead { font-size: 13px; color: var(--ink-muted); line-height: 1.5; margin-bottom: 10px; font-weight: 500; letter-spacing: 0.01em; }
   .work-problem { font-size: 13px; color: var(--ink-muted); line-height: 1.65; margin-bottom: 12px; font-style: italic; }
   .work-outcome { font-size: 14px; color: var(--ink-soft); line-height: 1.7; margin-bottom: 16px; }
   .work-numbers { display: flex; gap: 20px; flex-wrap: wrap; }
@@ -86,9 +87,9 @@
 </nav>
 
 <div class="hero fade-in">
-  <p class="hero-eyebrow">Staff Product Manager</p>
+  <p class="hero-eyebrow">Product Leader</p>
   <h1>Building products that <em>grow platforms.</em><br>Systems that survive scale.</h1>
-  <p class="hero-sub">13+ years owning 0→1 and 1→100 across marketplace, monetization, fintech, and B2B SaaS — end to end, KPIs and all.</p>
+  <p class="hero-sub">10+ years in product (13+ years in tech) owning 0→1 and 1→N across marketplace, monetization, fintech, and B2B SaaS. End to end, KPIs and all.</p>
   <div class="hero-tags">
     <span class="tag">Marketplace</span>
     <span class="tag">Monetization</span>
@@ -114,7 +115,7 @@
     </div>
     <div>
       <span class="stat-num">13+</span>
-      <span class="stat-label">Years in product</span>
+      <span class="stat-label">Years in tech</span>
     </div>
   </div>
 </div>
@@ -131,17 +132,17 @@
         <p class="work-index">01</p>
         <p class="work-company">Walmart</p>
         <div class="work-tags">
-          <span class="work-tag">Onboarding · Growth</span>
-          <span class="work-tag">Customer-centric UX</span>
-          <span class="work-tag">Rapid iteration</span>
+          <span class="work-tag">Onboarding</span>
+          <span class="work-tag">Growth</span>
           <span class="work-tag">Experimentation</span>
-          <span class="work-tag">0→1 → 100</span>
+          <span class="work-tag">0→1→N</span>
         </div>
       </div>
       <div class="work-content">
-        <h3>From a 6-week gated application to a 10-minute self-serve experience</h3>
-        <p class="work-problem">Growth and quality were treated as competing goals — leadership wanted to expand the seller base but also wanted to keep onboarding gated. The assumption was that gates protected program quality. Removing them felt like a risk.</p>
-        <p class="work-outcome">Ran controlled experiments to challenge that assumption. Parallelized onboarding tasks to observe how sellers actually moved through them — without any imposed order. Used that behavioral data to design a sequenced, self-serve experience. Then partnered with marketing to embed program enrollment at the moment a seller joins the platform, making WFS fulfillment the natural default choice. The result strengthened WFS's market position and changed the internal conversation from "how do we protect quality" to "how do we scale faster."</p>
+        <h3>7,000 sellers to 45,000. One redesign.</h3>
+        <p class="work-subhead">From a 6-week gated application to a 10-minute self-serve experience</p>
+        <p class="work-problem">Growth and quality were treated as competing goals. Leadership wanted to expand the seller base but kept onboarding gated. The assumption was that gates protected program quality. Removing them felt like a risk.</p>
+        <p class="work-outcome">Ran controlled experiments to challenge that assumption. Parallelized onboarding tasks to observe how sellers actually moved through them without any imposed order. Used that behavioral data to design a sequenced, self-serve experience. Partnered with marketing to embed program enrollment at the moment a seller joins the platform, making WFS fulfillment the natural default choice. WFS gives third-party sellers access to faster shipping speeds, making Walmart.com more competitive for consumers who expect fast delivery. The result strengthened WFS's market position and changed the internal conversation from "how do we protect quality" to "how do we scale faster."</p>
         <div class="work-numbers">
           <div class="work-num">~53% <span>GMV CAGR over 5 years</span></div>
           <div class="work-num">7× <span>seller base growth</span></div>
@@ -156,18 +157,19 @@
         <p class="work-index">02</p>
         <p class="work-company">Walmart</p>
         <div class="work-tags">
-          <span class="work-tag">Monetization · Incentives</span>
-          <span class="work-tag">1→100</span>
-          <span class="work-tag">Habit-forming products</span>
+          <span class="work-tag">Monetization</span>
+          <span class="work-tag">Incentives</span>
+          <span class="work-tag">AI/ML</span>
+          <span class="work-tag">1→N</span>
         </div>
       </div>
       <div class="work-content">
         <h3>From scattered tools and email approvals to an incentive platform built for scale</h3>
-        <p class="work-problem">Hundreds of millions in annual promotional spend was managed across many disparate systems — no unified view, no ROI visibility, and an approval process fragmented across email threads.</p>
-        <p class="work-outcome">Started with a POC scoped to unblock adoption and test assumptions while business strategy was still taking shape. Once the strategy clarified and the goal became integrating incentives across the org, rebuilt the approach: tied incentives to specific seller actions to nudge performance and program adoption, then designed a self-serve platform where account managers set goals, get AI-suggested audience and incentive mix, and route for finance approval in one workflow. ROI became a first-class metric — every dollar of spend now has a projected and actual return attached.</p>
+        <p class="work-problem">$x00M in annual promotional spend was managed across disparate systems: no unified view, no ROI visibility, and an approval process fragmented across email threads.</p>
+        <p class="work-outcome">Started with a POC scoped to unblock adoption and test assumptions while business strategy was still taking shape. Once the strategy clarified, rebuilt the approach: tied incentives to specific seller actions to nudge performance and program adoption, then designed a self-serve platform where account managers set goals, get AI-suggested audience and incentive mix, and route for finance approval in one workflow. ROI became a first-class metric. Every dollar of spend now has a projected and actual return attached.</p>
         <div class="work-numbers">
-          <div class="work-num">100s of M <span>annual spend, managed</span></div>
-          <div class="work-num">200% <span>promotional ROI increase</span></div>
+          <div class="work-num">$x00M <span>annual spend managed</span></div>
+          <div class="work-num">48% <span>ROI increase</span></div>
         </div>
       </div>
     </div>
@@ -178,14 +180,17 @@
         <p class="work-index">03</p>
         <p class="work-company">Walmart</p>
         <div class="work-tags">
-          <span class="work-tag">Catalog · AI/ML</span>
+          <span class="work-tag">Catalog</span>
+          <span class="work-tag">AI/ML</span>
           <span class="work-tag">Platform infrastructure</span>
+          <span class="work-tag">Compliance</span>
         </div>
       </div>
       <div class="work-content">
-        <h3>From unclear categorization and days-long compliance bottlenecks to listing products with only the necessary information, in minutes — and unlocking consumer product categories that made Walmart Marketplace more competitive</h3>
-        <p class="work-problem">Flat categories made it hard to collect the right information at listing time, and were a blocker to enabling new product types. The result was friction for sellers, compliance gaps, and whole categories that couldn't be sold through the marketplace at all.</p>
-        <p class="work-outcome">Rebuilt the catalog around granular product-type specs so the right fields appeared for the right product — no more guesswork at listing time. Then built search-and-match into the listing workflow, letting sellers reuse prior compliance decisions instantly rather than waiting days for a fresh review. Added ML pre-classification with a live feedback loop to catch what still needed human review. Together, these changes unlocked regulated goods, resale, and big-and-bulky categories that had been effectively invisible on the marketplace.</p>
+        <h3>More products on the shelf. Better discovery for shoppers.</h3>
+        <p class="work-subhead">From unclear categorization and days-long compliance bottlenecks to listing in minutes and unlocking product categories that made Walmart Marketplace more competitive</p>
+        <p class="work-problem">Flat categories made it hard to collect the right information at listing time and blocked entire product types from the marketplace. The result was friction for sellers, compliance gaps, and categories consumers simply could not find on Walmart.com.</p>
+        <p class="work-outcome">Rebuilt the catalog around granular product-type specs so the right fields appeared for the right product. Built search-and-match into the listing workflow so sellers could reuse prior compliance decisions instantly rather than waiting days for a fresh review. Added ML pre-classification with a live feedback loop to catch what still needed human review. Together, these changes unlocked regulated goods, resale, and big-and-bulky categories that had been effectively invisible on the marketplace. Broader assortment means consumers find more of what they are looking for on Walmart.com. New product categories are a consumer experience outcome, not just a seller metric.</p>
         <div class="work-numbers">
           <div class="work-num">60% <span>faster product listing</span></div>
           <div class="work-num">New categories <span>unlocked for consumers</span></div>
@@ -199,18 +204,20 @@
         <p class="work-index">04</p>
         <p class="work-company">SAP Ariba</p>
         <div class="work-tags">
-          <span class="work-tag">B2B SaaS · 0→1</span>
-          <span class="work-tag">Procurement · Risk</span>
+          <span class="work-tag">B2B SaaS</span>
+          <span class="work-tag">0→1</span>
+          <span class="work-tag">Procurement</span>
+          <span class="work-tag">Risk</span>
         </div>
       </div>
       <div class="work-content">
         <h3>From a one-time risk assessment to risk intelligence embedded in every sourcing decision</h3>
-        <p class="work-problem">Enterprise customers ran supplier risk assessments once a year, in a tool that sat completely outside their sourcing workflow. Risk was a siloed audit — disconnected from the daily decisions where it would have actually mattered.</p>
-        <p class="work-outcome">Identified a post-launch adoption stall as a product-market fit problem, not a customer success failure. The product was solving for a moment (the annual review) instead of a workflow (ongoing sourcing). Pivoted to continuous monitoring with configurable risk scorecards, then embedded risk scores directly into source-to-pay — filtering supplier search, informing contract terms, triggering automatic reassessment when signals changed. Risk stopped being something teams visited and became something that traveled with every sourcing decision.</p>
+        <p class="work-problem">Enterprise customers ran supplier risk assessments once a year in a tool that sat completely outside their sourcing workflow. Risk was a siloed audit, disconnected from the daily decisions where it would have actually mattered.</p>
+        <p class="work-outcome">Identified a post-launch adoption stall as a product-market fit problem, not a customer success failure. The product was solving for a moment (the annual review) instead of a workflow (ongoing sourcing). Pivoted to continuous monitoring with configurable risk scorecards, then embedded risk scores directly into source-to-pay: filtering supplier search, informing contract terms, triggering automatic reassessment when signals changed. Risk stopped being something teams visited and became something that traveled with every sourcing decision.</p>
         <div class="work-numbers">
           <div class="work-num">150% <span>revenue growth</span></div>
           <div class="work-num">2× <span>customer base</span></div>
-          <div class="work-num">Gartner MQ + Forrester Wave <span>recognized leader in supplier risk management</span></div>
+          <div class="work-num">Gartner MQ + Forrester Wave <span>recognized leader</span></div>
         </div>
       </div>
     </div>
