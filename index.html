@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Riddhi Bhargava — Product Leader</title>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -19,12 +20,15 @@
   }
   html { scroll-behavior: smooth; }
   body { background: var(--cream); color: var(--ink); font-family: 'DM Sans', sans-serif; font-weight: 400; line-height: 1.6; font-size: 15px; }
-  .serif { font-family: 'Lora', serif; }
+
+  /* NAV */
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 40px; height: 56px; display: flex; align-items: center; justify-content: space-between; background: rgba(250,248,243,0.92); backdrop-filter: blur(8px); border-bottom: 0.5px solid var(--border); }
   .nav-name { font-family: 'Lora', serif; font-size: 15px; color: var(--ink); letter-spacing: 0.01em; }
   .nav-links { display: flex; gap: 32px; list-style: none; }
   .nav-links a { font-size: 13px; color: var(--ink-soft); text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
   .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
   .hero { padding: 140px 40px 80px; max-width: 760px; margin: 0 auto; }
   .hero-eyebrow { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; font-weight: 500; }
   .hero h1 { font-family: 'Lora', serif; font-size: clamp(32px, 5vw, 48px); line-height: 1.2; font-weight: 400; color: var(--ink); margin-bottom: 24px; letter-spacing: -0.01em; }
@@ -35,41 +39,166 @@
   .hero-stats { display: flex; gap: 40px; padding-top: 32px; border-top: 0.5px solid var(--border); }
   .stat-num { font-family: 'Lora', serif; font-size: 28px; color: var(--ink); font-weight: 400; display: block; line-height: 1; margin-bottom: 4px; }
   .stat-label { font-size: 12px; color: var(--ink-muted); letter-spacing: 0.04em; }
+
+  /* LAYOUT */
   .divider { max-width: 760px; margin: 0 auto; padding: 0 40px; border-bottom: 0.5px solid var(--border); }
   section { max-width: 760px; margin: 0 auto; padding: var(--section-gap) 40px; }
   .section-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 40px; font-weight: 500; }
+
+  /* WORK CARDS — two-column layout */
   .work-list { display: flex; flex-direction: column; gap: 0; }
-  .work-item { padding: 36px 0; border-bottom: 0.5px solid var(--border); display: grid; grid-template-columns: 1fr 2fr; gap: 32px; align-items: start; }
+
+  .work-item {
+    padding: 40px 0;
+    border-bottom: 0.5px solid var(--border);
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 32px;
+    align-items: start;
+  }
   .work-item:first-child { border-top: 0.5px solid var(--border); }
+
+  /* LEFT META COLUMN */
   .work-meta { padding-top: 3px; }
-  .work-index { font-size: 11px; color: var(--ink-muted); letter-spacing: 0.08em; margin-bottom: 8px; font-weight: 500; }
-  .work-company { font-size: 12px; color: var(--accent); letter-spacing: 0.04em; margin-bottom: 10px; font-weight: 500; }
-  .work-tags { display: flex; flex-direction: column; gap: 6px; }
-  .work-tag { display: inline-block; font-size: 11px; padding: 4px 12px; border-radius: 20px; border: 0.5px solid var(--border); color: var(--ink-muted); background: var(--warm-white); letter-spacing: 0.02em; white-space: nowrap; align-self: flex-start; }
-  .work-content h3 { font-family: 'Lora', serif; font-size: 19px; font-weight: 400; line-height: 1.35; margin-bottom: 6px; color: var(--ink); }
-  .work-subhead { font-size: 13px; color: var(--ink-muted); line-height: 1.5; margin-bottom: 10px; font-weight: 500; letter-spacing: 0.01em; }
-  .work-problem { font-size: 13px; color: var(--ink-muted); line-height: 1.65; margin-bottom: 12px; font-style: italic; }
-  .work-outcome { font-size: 14px; color: var(--ink-soft); line-height: 1.7; margin-bottom: 16px; }
-  .work-numbers { display: flex; gap: 20px; flex-wrap: wrap; }
-  .work-num { font-family: 'Lora', serif; font-size: 18px; color: var(--accent); }
-  .work-num span { font-family: 'DM Sans', sans-serif; font-size: 11px; color: var(--ink-muted); display: block; margin-top: 2px; letter-spacing: 0.04em; }
+  .work-index { font-size: 11px; color: var(--ink-muted); letter-spacing: 0.08em; font-weight: 500; margin-bottom: 4px; }
+  .work-company { font-size: 12px; color: var(--accent); letter-spacing: 0.04em; font-weight: 500; margin-bottom: 12px; }
+  .work-pill-row { display: flex; flex-direction: column; gap: 6px; }
+  .work-pill { display: inline-block; font-size: 11px; padding: 4px 11px; border-radius: 20px; border: 0.5px solid var(--border); color: var(--ink-muted); background: var(--warm-white); letter-spacing: 0.02em; align-self: flex-start; }
+
+  /* RIGHT CONTENT COLUMN */
+  .work-content { min-width: 0; }
+  .work-headline { font-family: 'Lora', serif; font-size: 19px; font-weight: 400; line-height: 1.35; color: var(--ink); margin-bottom: 5px; }
+  .work-subhead { font-size: 13px; color: var(--ink-muted); line-height: 1.5; margin-bottom: 18px; font-weight: 400; }
+
+  /* Stats */
+  .work-stats {
+    display: flex;
+    gap: 0;
+    margin-bottom: 18px;
+    border-top: 0.5px solid var(--border);
+    border-bottom: 0.5px solid var(--border);
+    padding: 12px 0;
+  }
+  .work-stat { flex: 1; padding-right: 16px; }
+  .work-stat:not(:last-child) { border-right: 0.5px solid var(--border); margin-right: 16px; }
+  .work-stat-num { font-family: 'Lora', serif; font-size: 18px; color: var(--accent); font-weight: 400; line-height: 1; display: block; margin-bottom: 3px; }
+  .work-stat-label { font-size: 10px; color: var(--ink-muted); letter-spacing: 0.05em; text-transform: uppercase; }
+
+  /* Image placeholders */
+  .work-images {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+  .work-img-placeholder {
+    aspect-ratio: 16/10;
+    background: var(--warm-white);
+    border: 0.5px solid var(--border);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    overflow: hidden;
+    position: relative;
+  }
+  .work-img-placeholder:hover { border-color: var(--accent); }
+  .work-img-placeholder span {
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    text-align: center;
+    padding: 0 6px;
+    line-height: 1.4;
+  }
+  .work-img-placeholder .img-icon {
+    font-size: 16px;
+    opacity: 0.3;
+  }
+
+  /* Toggle + expandable detail */
+  .work-toggle {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    padding: 0;
+    background: none;
+    border: none;
+    margin-bottom: 0;
+  }
+  .work-toggle:hover .toggle-icon { border-color: var(--accent); color: var(--accent); }
+  .toggle-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 0.5px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    line-height: 1;
+    color: var(--ink-muted);
+    transition: border-color 0.2s, color 0.2s;
+    flex-shrink: 0;
+  }
+
+  .work-detail {
+    display: none;
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 0.5px solid var(--border);
+  }
+  .work-detail.open { display: block; }
+
+  .detail-row {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 14px;
+    margin-bottom: 12px;
+    align-items: baseline;
+  }
+  .detail-row:last-child { margin-bottom: 0; }
+  .detail-label {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    font-weight: 500;
+    padding-top: 2px;
+  }
+  .detail-text { font-size: 13px; color: var(--ink-soft); line-height: 1.7; }
+  .detail-text.challenge { font-style: italic; color: var(--ink-muted); }
+
+  /* BUILDER */
   .builder-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
   .builder-card { background: var(--warm-white); border: 0.5px solid var(--border); border-radius: 12px; padding: 24px 20px; }
   .builder-icon { width: 32px; height: 32px; background: var(--accent-soft); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 16px; }
   .builder-card h4 { font-size: 14px; font-weight: 500; line-height: 1.4; margin-bottom: 8px; color: var(--ink); }
   .builder-card p { font-size: 12px; color: var(--ink-muted); line-height: 1.6; margin-bottom: 12px; }
   .builder-stack { font-size: 11px; color: var(--accent); letter-spacing: 0.04em; font-weight: 500; }
+
+  /* WRITING */
   .writing-list { display: flex; flex-direction: column; gap: 0; }
   .writing-item { padding: 24px 0; border-bottom: 0.5px solid var(--border); display: flex; justify-content: space-between; align-items: baseline; gap: 20px; }
   .writing-item:first-child { border-top: 0.5px solid var(--border); }
   .writing-title { font-family: 'Lora', serif; font-size: 16px; font-weight: 400; color: var(--ink); line-height: 1.4; margin-bottom: 4px; }
   .writing-pub { font-size: 12px; color: var(--ink-muted); letter-spacing: 0.04em; }
   .writing-year { font-size: 12px; color: var(--ink-muted); white-space: nowrap; flex-shrink: 0; }
+
+  /* FOOTER */
   footer { max-width: 760px; margin: 0 auto; padding: 40px 40px 60px; border-top: 0.5px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
   .footer-name { font-family: 'Lora', serif; font-size: 14px; color: var(--ink-soft); }
   .footer-links { display: flex; gap: 24px; }
   .footer-links a { font-size: 13px; color: var(--ink-muted); text-decoration: none; transition: color 0.2s; }
   .footer-links a:hover { color: var(--accent); }
+
+  /* ANIMATION */
   .fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
   .fade-in.visible { opacity: 1; transform: none; }
 </style>
@@ -100,24 +229,7 @@
     <span class="tag">Experimentation</span>
     <span class="tag">0→1</span>
   </div>
-  <div class="hero-stats">
-    <div>
-      <span class="stat-num">750%+</span>
-      <span class="stat-label">GMV growth, 5 years</span>
-    </div>
-    <div>
-      <span class="stat-num">7×</span>
-      <span class="stat-label">Seller base growth</span>
-    </div>
-    <div>
-      <span class="stat-num">$12M</span>
-      <span class="stat-label">ARR, 0→1 SaaS</span>
-    </div>
-    <div>
-      <span class="stat-num">13+</span>
-      <span class="stat-label">Years in tech</span>
-    </div>
-  </div>
+
 </div>
 
 <div class="divider"></div>
@@ -126,98 +238,238 @@
   <p class="section-label">Work</p>
   <div class="work-list">
 
-    <!-- PROJECT 01 -->
+    <!-- PROJECT 01 — ONBOARDING -->
     <div class="work-item fade-in">
       <div class="work-meta">
         <p class="work-index">01</p>
-        <p class="work-company">Walmart</p>
-        <div class="work-tags">
-          <span class="work-tag">Onboarding</span>
-          <span class="work-tag">Growth</span>
-          <span class="work-tag">Experimentation</span>
-          <span class="work-tag">0→1→N</span>
+        <p class="work-company">Marketplace</p>
+        <div class="work-pill-row">
+          <span class="work-pill">Onboarding</span>
+          <span class="work-pill">Growth</span>
+          <span class="work-pill">Experimentation</span>
+          <span class="work-pill">0→1→N</span>
         </div>
       </div>
       <div class="work-content">
-        <h3>7,000 sellers to 45,000. One redesign.</h3>
+        <h2 class="work-headline">From niche to mainstream. One redesign.</h2>
         <p class="work-subhead">From a 6-week gated application to a 10-minute self-serve experience</p>
-        <p class="work-problem">Growth and quality were treated as competing goals. Leadership wanted to expand the seller base but kept onboarding gated. The assumption was that gates protected program quality. Removing them felt like a risk.</p>
-        <p class="work-outcome">Ran controlled experiments to challenge that assumption. Parallelized onboarding tasks to observe how sellers actually moved through them without any imposed order. Used that behavioral data to design a sequenced, self-serve experience. Partnered with marketing to embed program enrollment at the moment a seller joins the platform, making WFS fulfillment the natural default choice. WFS gives third-party sellers access to faster shipping speeds, making Walmart.com more competitive for consumers who expect fast delivery. The result strengthened WFS's market position and changed the internal conversation from "how do we protect quality" to "how do we scale faster."</p>
-        <div class="work-numbers">
-          <div class="work-num">~53% <span>GMV CAGR over 5 years</span></div>
-          <div class="work-num">7× <span>seller base growth</span></div>
-          <div class="work-num">Stronger <span>WFS market position</span></div>
+        <div class="work-stats">
+          <div class="work-stat">
+            <span class="work-stat-num">7× growth</span>
+            <span class="work-stat-label">Seller base, 5 years</span>
+          </div>
+          <div class="work-stat">
+            <span class="work-stat-num">Double-digit CAGR</span>
+            <span class="work-stat-label">GMV sustained 5 years</span>
+          </div>
+          <div class="work-stat">
+            <span class="work-stat-num">2 in 3 top sellers</span>
+            <span class="work-stat-label">Now choose Program first</span>
+          </div>
+        </div>
+        <div class="work-images">
+          <div class="work-img-placeholder">
+            <span class="img-icon">🖼</span>
+            <span>Multi-stage checklist, locked steps, weeks between each</span>
+          </div>
+          <div class="work-img-placeholder">
+            <span class="img-icon">🖼</span>
+            <span>All tasks open simultaneously — observing where users went first</span>
+          </div>
+          <div class="work-img-placeholder">
+            <span class="img-icon">🖼</span>
+            <span>Program enrollment at platform join, listing setup done in under 10 minutes</span>
+          </div>
+        </div>
+        <button class="work-toggle" onclick="toggleDetail(this)">
+          <span class="toggle-icon">+</span>
+        </button>
+        <div class="work-detail">
+          <div class="detail-row">
+            <span class="detail-label">Challenge</span>
+            <span class="detail-text challenge">Leadership believed a gated Program was a quality signal. Friction was considered a feature, not a problem.</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Approach</span>
+            <span class="detail-text">Ran experiments to test whether removing the gate would flood the Program — it didn't. Parallelized tasks to observe natural user sequencing, redesigned the experience around what users actually did, and embedded Program enrollment at Marketplace join to make it the default, not a second decision.</span>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- PROJECT 02 -->
+    <!-- PROJECT 02 — CATALOG -->
     <div class="work-item fade-in">
       <div class="work-meta">
         <p class="work-index">02</p>
-        <p class="work-company">Walmart</p>
-        <div class="work-tags">
-          <span class="work-tag">Monetization</span>
-          <span class="work-tag">Incentives</span>
-          <span class="work-tag">AI/ML</span>
-          <span class="work-tag">1→N</span>
+        <p class="work-company">Marketplace</p>
+        <div class="work-pill-row">
+          <span class="work-pill">Catalog</span>
+          <span class="work-pill">AI/ML</span>
+          <span class="work-pill">Platform infrastructure</span>
+          <span class="work-pill">Compliance</span>
         </div>
       </div>
       <div class="work-content">
-        <h3>From scattered tools and email approvals to an incentive platform built for scale</h3>
-        <p class="work-problem">$x00M in annual promotional spend was managed across disparate systems: no unified view, no ROI visibility, and an approval process fragmented across email threads.</p>
-        <p class="work-outcome">Started with a POC scoped to unblock adoption and test assumptions while business strategy was still taking shape. Once the strategy clarified, rebuilt the approach: tied incentives to specific seller actions to nudge performance and program adoption, then designed a self-serve platform where account managers set goals, get AI-suggested audience and incentive mix, and route for finance approval in one workflow. ROI became a first-class metric. Every dollar of spend now has a projected and actual return attached.</p>
-        <div class="work-numbers">
-          <div class="work-num">$x00M <span>annual spend managed</span></div>
-          <div class="work-num">48% <span>ROI increase</span></div>
+        <h2 class="work-headline">More products on the shelf. Better discovery for shoppers.</h2>
+        <p class="work-subhead">From unclear categorization and days-long compliance bottlenecks to listing setup in minutes and unlocking new consumer categories</p>
+        <div class="work-stats">
+          <div class="work-stat">
+            <span class="work-stat-num">New categories</span>
+            <span class="work-stat-label">On the Marketplace</span>
+          </div>
+          <div class="work-stat">
+            <span class="work-stat-num">Near-perfect</span>
+            <span class="work-stat-label">Listing setup success rate</span>
+          </div>
+          <div class="work-stat">
+            <span class="work-stat-num">60% faster</span>
+            <span class="work-stat-label">Time to list</span>
+          </div>
+        </div>
+        <div class="work-images">
+          <div class="work-img-placeholder">
+            <span class="img-icon">🖼</span>
+            <span>Flat category form, generic fields, compliance queue taking days</span>
+          </div>
+          <div class="work-img-placeholder">
+            <span class="img-icon">🖼</span>
+            <span>Product-type specs and ML pre-classification in testing</span>
+          </div>
+          <div class="work-img-placeholder">
+            <span class="img-icon">🖼</span>
+            <span>Modular listing setup, compliance reused instantly, new categories live</span>
+          </div>
+        </div>
+        <button class="work-toggle" onclick="toggleDetail(this)">
+          <span class="toggle-icon">+</span>
+        </button>
+        <div class="work-detail">
+          <div class="detail-row">
+            <span class="detail-label">Challenge</span>
+            <span class="detail-text challenge">Blunt categorization created compliance backlogs and kept entire product types off the platform.</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Approach</span>
+            <span class="detail-text">Rebuilt catalog around granular product-type specs so only relevant fields appeared at listing setup time. Introduced search-and-match to reuse prior compliance decisions instantly, and added ML pre-classification with a live feedback loop to catch edge cases and unlock previously blocked categories.</span>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- PROJECT 03 -->
+    <!-- PROJECT 03 — INCENTIVES -->
     <div class="work-item fade-in">
       <div class="work-meta">
         <p class="work-index">03</p>
-        <p class="work-company">Walmart</p>
-        <div class="work-tags">
-          <span class="work-tag">Catalog</span>
-          <span class="work-tag">AI/ML</span>
-          <span class="work-tag">Platform infrastructure</span>
-          <span class="work-tag">Compliance</span>
+        <p class="work-company">Marketplace</p>
+        <div class="work-pill-row">
+          <span class="work-pill">Monetization</span>
+          <span class="work-pill">Incentives</span>
+          <span class="work-pill">AI/ML</span>
+          <span class="work-pill">1→N</span>
         </div>
       </div>
       <div class="work-content">
-        <h3>More products on the shelf. Better discovery for shoppers.</h3>
-        <p class="work-subhead">From unclear categorization and days-long compliance bottlenecks to listing in minutes and unlocking product categories that made Walmart Marketplace more competitive</p>
-        <p class="work-problem">Flat categories made it hard to collect the right information at listing time and blocked entire product types from the marketplace. The result was friction for sellers, compliance gaps, and categories consumers simply could not find on Walmart.com.</p>
-        <p class="work-outcome">Rebuilt the catalog around granular product-type specs so the right fields appeared for the right product. Built search-and-match into the listing workflow so sellers could reuse prior compliance decisions instantly rather than waiting days for a fresh review. Added ML pre-classification with a live feedback loop to catch what still needed human review. Together, these changes unlocked regulated goods, resale, and big-and-bulky categories that had been effectively invisible on the marketplace. Broader assortment means consumers find more of what they are looking for on Walmart.com. New product categories are a consumer experience outcome, not just a seller metric.</p>
-        <div class="work-numbers">
-          <div class="work-num">60% <span>faster product listing</span></div>
-          <div class="work-num">New categories <span>unlocked for consumers</span></div>
+        <h2 class="work-headline">From scattered tools and email approvals to an incentive platform built for scale</h2>
+        <p class="work-subhead">$x00M in annual promotional spend, now managed in one workflow</p>
+        <div class="work-stats">
+          <div class="work-stat">
+            <span class="work-stat-num">$x00M managed</span>
+            <span class="work-stat-label">Annual promo spend</span>
+          </div>
+          <div class="work-stat">
+            <span class="work-stat-num">Increased ROI</span>
+            <span class="work-stat-label">Per dollar spent</span>
+          </div>
+          <div class="work-stat">
+            <span class="work-stat-num">Proved at $xxM</span>
+            <span class="work-stat-label">Before full launch</span>
+          </div>
+        </div>
+        <div class="work-images">
+          <div class="work-img-placeholder">
+            <span class="img-icon">🖼</span>
+            <span>Rigid Excel uploads, email approval chains, ROI in a separate dashboard</span>
+          </div>
+          <div class="work-img-placeholder">
+            <span class="img-icon">🖼</span>
+            <span>Bulk processing unblocked, same interface, 10x throughput, $xxM validated</span>
+          </div>
+          <div class="work-img-placeholder">
+            <span class="img-icon">🖼</span>
+            <span>Self-serve platform, AI-suggested audience, embedded approval, live ROI</span>
+          </div>
+        </div>
+        <button class="work-toggle" onclick="toggleDetail(this)">
+          <span class="toggle-icon">+</span>
+        </button>
+        <div class="work-detail">
+          <div class="detail-row">
+            <span class="detail-label">Challenge</span>
+            <span class="detail-text challenge">Hundreds of millions in spend, managed across Excel and email — no unified view, no ROI signal.</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Approach</span>
+            <span class="detail-text">Validated assumptions at $xxM POC before committing to a full rebuild. Replaced manual workflows with a self-serve platform: filter-driven audience targeting, AI-suggested incentive mix, and finance approval embedded in the same workflow — with ROI attached to every dollar spent.</span>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- PROJECT 04 -->
+    <!-- PROJECT 04 — ENTERPRISE SAAS -->
     <div class="work-item fade-in">
       <div class="work-meta">
         <p class="work-index">04</p>
-        <p class="work-company">SAP Ariba</p>
-        <div class="work-tags">
-          <span class="work-tag">B2B SaaS</span>
-          <span class="work-tag">0→1</span>
-          <span class="work-tag">Procurement</span>
-          <span class="work-tag">Risk</span>
+        <p class="work-company">Enterprise SaaS</p>
+        <div class="work-pill-row">
+          <span class="work-pill">B2B SaaS</span>
+          <span class="work-pill">0→1</span>
+          <span class="work-pill">Procurement</span>
+          <span class="work-pill">Risk</span>
         </div>
       </div>
       <div class="work-content">
-        <h3>From a one-time risk assessment to risk intelligence embedded in every sourcing decision</h3>
-        <p class="work-problem">Enterprise customers ran supplier risk assessments once a year in a tool that sat completely outside their sourcing workflow. Risk was a siloed audit, disconnected from the daily decisions where it would have actually mattered.</p>
-        <p class="work-outcome">Identified a post-launch adoption stall as a product-market fit problem, not a customer success failure. The product was solving for a moment (the annual review) instead of a workflow (ongoing sourcing). Pivoted to continuous monitoring with configurable risk scorecards, then embedded risk scores directly into source-to-pay: filtering supplier search, informing contract terms, triggering automatic reassessment when signals changed. Risk stopped being something teams visited and became something that traveled with every sourcing decision.</p>
-        <div class="work-numbers">
-          <div class="work-num">150% <span>revenue growth</span></div>
-          <div class="work-num">2× <span>customer base</span></div>
-          <div class="work-num">Gartner MQ + Forrester Wave <span>recognized leader</span></div>
+        <h2 class="work-headline">From a one-time risk assessment to intelligence embedded in every sourcing decision</h2>
+        <p class="work-subhead">Built and scaled a supplier risk platform from zero to Gartner Magic Quadrant recognition</p>
+        <div class="work-stats">
+          <div class="work-stat">
+            <span class="work-stat-num">Gartner MQ</span>
+            <span class="work-stat-label">Forrester Wave</span>
+          </div>
+          <div class="work-stat">
+            <span class="work-stat-num">150% revenue growth</span>
+            <span class="work-stat-label">In two years</span>
+          </div>
+          <div class="work-stat">
+            <span class="work-stat-num">2× customers</span>
+            <span class="work-stat-label">In two years</span>
+          </div>
+        </div>
+        <div class="work-images">
+          <div class="work-img-placeholder">
+            <span class="img-icon">🖼</span>
+            <span>Annual risk assessment triggered manually, results outside the sourcing workflow</span>
+          </div>
+          <div class="work-img-placeholder">
+            <span class="img-icon">🖼</span>
+            <span>Continuous monitoring live for anchor customers, scorecards configurable by policy</span>
+          </div>
+          <div class="work-img-placeholder">
+            <span class="img-icon">🖼</span>
+            <span>Risk scores in supplier search, contract recommendations, and auto-reassessment</span>
+          </div>
+        </div>
+        <button class="work-toggle" onclick="toggleDetail(this)">
+          <span class="toggle-icon">+</span>
+        </button>
+        <div class="work-detail">
+          <div class="detail-row">
+            <span class="detail-label">Challenge</span>
+            <span class="detail-text challenge">Risk lived in a silo — assessed once a year, disconnected from the decisions that needed it daily.</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Approach</span>
+            <span class="detail-text">Diagnosed the adoption stall as a product-market fit problem — built for a moment, not a workflow. Pivoted to continuous monitoring with configurable risk scorecards, then embedded risk into sourcing: filtering supplier search, shaping contract terms, and triggering reassessment automatically when signals changed.</span>
+          </div>
         </div>
       </div>
     </div>
@@ -229,24 +481,18 @@
 
 <section id="builder">
   <p class="section-label">Building</p>
-  <div class="builder-grid">
-    <div class="builder-card fade-in">
-      <div class="builder-icon">⚡</div>
-      <h4>Incentive recommendation engine</h4>
-      <p>Input a user segment and growth goal, get an incentive recommendation with projected ROI.</p>
-      <span class="builder-stack">Lovable · Claude API</span>
-    </div>
-    <div class="builder-card fade-in">
-      <div class="builder-icon">🔎</div>
-      <h4>Supplier risk classifier</h4>
-      <p>Input a supplier profile, get a risk score across 4 dimensions and a contract clause suggestion.</p>
-      <span class="builder-stack">Claude Code · Claude API</span>
-    </div>
+  <div class="builder-grid" style="grid-template-columns: repeat(2, 1fr);">
     <div class="builder-card fade-in">
       <div class="builder-icon">🧪</div>
       <h4>PM experiment designer</h4>
       <p>Input a hypothesis, get an experiment design, metrics, sample size, and confounders.</p>
       <span class="builder-stack">n8n · Claude API</span>
+    </div>
+    <div class="builder-card fade-in">
+      <div class="builder-icon">🏹</div>
+      <h4>Trebuchet</h4>
+      <p>A two-player strategy game based on the 2 Model 2 Trebuchet format from the Here's What You Do podcast. Built for fun, designed with care.</p>
+      <span class="builder-stack">Game design</span>
     </div>
   </div>
 </section>
@@ -289,6 +535,14 @@
 </footer>
 
 <script>
+  function toggleDetail(btn) {
+    const detail = btn.nextElementSibling;
+    const icon = btn.querySelector('.toggle-icon');
+    const isOpen = detail.classList.contains('open');
+    detail.classList.toggle('open', !isOpen);
+    icon.textContent = isOpen ? '+' : '−';
+  }
+
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
