@@ -1,0 +1,169 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Babylist Consideration List — Vision & Strategy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FAF8F3; --warm-white:#FFFEF9;
+    --ink:#1C1A17; --ink-soft:#4A4640; --ink-muted:#8A8680;
+    --accent:#C4622A; --accent-soft:#F5EAE2;
+    --border:rgba(28,26,23,0.1);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased;line-height:1.7}
+  .page{max-width:780px;margin:0 auto;padding:60px 48px 72px}
+  .eyebrow{font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:22px}
+  h1{font-family:'Lora',serif;font-weight:400;font-size:clamp(29px,4.4vw,42px);line-height:1.18;color:var(--ink);margin:0 0 20px}
+  h1 em{font-style:italic;color:var(--accent)}
+  .sub{font-size:16.5px;color:var(--ink-soft);line-height:1.7;max-width:640px;margin:0 0 22px;font-weight:300}
+  .sub b{color:var(--ink);font-weight:500}
+  .proto{display:inline-flex;align-items:center;gap:9px;background:var(--ink);color:var(--warm-white);text-decoration:none;font-size:14px;font-weight:400;padding:11px 20px;border-radius:24px;margin-bottom:26px}
+  .proto:hover{background:var(--accent)}
+  .proto .pl{font-size:11px;opacity:.7}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+  .tag{font-size:12px;padding:5px 14px;border-radius:20px;border:0.5px solid var(--border);color:var(--ink-soft);background:var(--warm-white)}
+
+  .disclaimer{background:var(--accent-soft);border:0.5px solid rgba(196,98,42,0.25);border-radius:12px;padding:13px 16px;font-size:12.5px;color:#7d4420;line-height:1.55;margin-bottom:32px}
+  .disclaimer b{color:var(--accent);font-weight:500}
+
+  .stats{display:flex;gap:44px;flex-wrap:wrap;padding:26px 0 6px;border-top:0.5px solid var(--border)}
+  .stat .n{font-family:'Lora',serif;font-size:29px;color:var(--ink);font-weight:400;line-height:1;display:block;margin-bottom:7px}
+  .stat .n em{font-style:italic;color:var(--accent)}
+  .stat .l{font-size:12.5px;color:var(--ink-muted);letter-spacing:0.03em;line-height:1.4;max-width:160px}
+  .rough{font-size:11.5px;color:var(--ink-muted);font-style:italic;margin-top:12px}
+
+  section{padding-top:40px}
+  .kicker{font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:12px}
+  h2{font-family:'Lora',serif;font-weight:400;font-size:22px;color:var(--ink);margin:0 0 16px;line-height:1.3}
+  h2 em{font-style:italic;color:var(--accent)}
+  .lead{font-size:16px;color:var(--ink-soft);max-width:650px;margin:0 0 6px}
+
+  .points{display:grid;gap:17px;margin-top:6px}
+  .pt{display:flex;gap:14px}
+  .pt .ix{font-family:'Lora',serif;font-size:15px;color:var(--accent);font-weight:500;flex:none;width:22px;line-height:1.5}
+  .pt .tx{font-size:15px;color:var(--ink-soft);line-height:1.6}
+  .pt .tx b{color:var(--ink);font-weight:500}
+
+  .calc{background:var(--warm-white);border:0.5px solid var(--border);border-radius:14px;padding:22px 24px;margin-top:24px}
+  .calc .ch{font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-muted);font-weight:500;margin-bottom:3px}
+  .calc .cs{font-size:12px;color:var(--ink-muted);font-style:italic;margin-bottom:16px}
+  .crow{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:9px 0;border-top:0.5px solid var(--border)}
+  .crow:first-of-type{border-top:none}
+  .crow .cl{font-size:14px;color:var(--ink-soft);line-height:1.45}
+  .crow .cl b{color:var(--ink);font-weight:500}
+  .crow .cv{font-family:'Lora',serif;font-size:17px;color:var(--ink);white-space:nowrap;font-weight:500}
+  .crow.total{border-top:1px solid var(--accent);margin-top:6px;padding-top:14px}
+  .crow.total .cl{color:var(--ink);font-weight:500;font-size:14.5px}
+  .crow.total .cv{color:var(--accent);font-size:22px}
+
+  .risks{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:8px}
+  .risk{background:var(--warm-white);border:0.5px solid var(--border);border-radius:14px;padding:20px 22px}
+  .risk .rl{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:8px}
+  .risk h3{font-family:'Lora',serif;font-weight:500;font-size:18px;margin:0 0 8px;color:var(--ink)}
+  .risk p{font-size:14px;color:var(--ink-soft);line-height:1.6;margin:0 0 12px}
+  .risk .mit{font-size:14px;color:var(--ink);line-height:1.6;border-top:0.5px solid var(--border);padding-top:12px}
+  .risk .mit b{color:var(--accent);font-weight:500}
+
+  .close{margin-top:40px;padding-top:22px;border-top:0.5px solid var(--border);font-size:14.5px;color:var(--ink-soft)}
+  .close a,.disclaimer a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)}
+  .foot{margin-top:26px;font-size:11.5px;color:var(--ink-muted);line-height:1.6}
+
+  @media (max-width:680px){ .risks{grid-template-columns:1fr} .page{padding:44px 22px 54px} .stats{gap:26px} .crow{flex-wrap:wrap} }
+  @media print{ body{background:#fff} .page{padding:26px 30px} section{padding-top:28px} .proto{display:none} }
+</style>
+
+<div class="page">
+
+  <div class="eyebrow">Vision &amp; Strategy · Prototyping</div>
+  <h1>How Babylist could own the <em>decision</em>,<br>not just the registry.</h1>
+  <p class="sub"><b>What if you could run your entire baby-prep decision-making inside Babylist, start to finish?</b> Every option you're weighing in one place, with the friends and family you trust weighing in, instead of scattered across group chats and screenshots. That's the promise to parents. For Babylist, it's the key to the decision phase it has never owned.</p>
+
+  <a class="proto" href="https://rb-mocks-babylist-collaboration.lovable.app"><svg viewBox="0 0 24 24" width="16" height="16" style="flex:none" aria-hidden="true"><defs><linearGradient id="lov" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A9B"/><stop offset="1" stop-color="#F0596B"/></linearGradient></defs><path fill="url(#lov)" d="M12 20.7C6.6 16.9 3 13.6 3 9.8 3 7 5 5 7.6 5c1.6 0 3 .8 3.7 2 .7-1.2 2.1-2 3.7-2C18.6 5 20.6 7 20.6 9.8c0 3.8-3.6 7.1-9 10.9z"/></svg> Try the interactive prototype on Lovable</a>
+
+  <div class="tags">
+    <span class="tag">Retention</span>
+    <span class="tag">Monetization</span>
+    <span class="tag">Proprietary data</span>
+    <span class="tag">Trust-first</span>
+    <span class="tag">0→1</span>
+  </div>
+
+  <div class="disclaimer"><b>Personal project.</b> This is an independent product exploration by Riddhi Bhargava. It is not a Babylist product, and it does not represent Babylist's strategy, roadmap, or endorsement. Every number below is a rough personal estimate for illustration only, not verified or certified by Babylist. Prototype: <a href="https://rb-mocks-babylist-collaboration.lovable.app">rb-mocks-babylist-collaboration.lovable.app</a></div>
+
+  <div class="stats">
+    <div class="stat"><span class="n"><em>~$20M+</em></span><span class="l">rough annual revenue opportunity at maturity</span></div>
+    <div class="stat"><span class="n"><em>~5M</em></span><span class="l">net-new high-intent decision signals a year</span></div>
+    <div class="stat"><span class="n"><em>~1M</em></span><span class="l">registries deciding inside Babylist at scale</span></div>
+  </div>
+  <div class="rough">Very rough, back-of-envelope estimates. Not certified by Babylist. See the math below.</div>
+
+  <section>
+    <div class="kicker">The opportunity</div>
+    <h2>The registry is a moment. The <em>deciding</em> is months.</h2>
+    <p class="lead">Babylist sees what parents add and what guests buy. It sees almost none of the weeks of comparing, and none of the trusted opinions that actually drive the choice, because that work happens off-platform. The Consideration List brings that phase home, and turns a one-time event into an ongoing relationship.</p>
+  </section>
+
+  <section>
+    <div class="kicker">What's in it for the parents</div>
+    <h2>Your whole baby-prep <em>decision</em>, in one place.</h2>
+    <p class="lead">The parent promise is simple: run the entire deciding process, start to finish, inside Babylist, and collaborate with the people you would otherwise be texting.</p>
+    <div class="points">
+      <div class="pt"><div class="ix">01</div><div class="tx"><b>Start and finish in one place.</b> Every option you're weighing, from stroller to bottles, lives in one private list instead of scattered across tabs, screenshots, and group chats.</div></div>
+      <div class="pt"><div class="ix">02</div><div class="tx"><b>The trusted second opinion, built in.</b> Invite the few people whose judgment you trust and get their input exactly where you're stuck, without leaving the app or chasing replies.</div></div>
+      <div class="pt"><div class="ix">03</div><div class="tx"><b>Buy what you actually need.</b> Honest input, including "you don't need this," means less overwhelm, fewer returns, and a registry you feel genuinely confident about.</div></div>
+      <div class="pt"><div class="ix">04</div><div class="tx"><b>Commit on your terms.</b> Once you've decided, add it straight to your registry: visible for guests to gift, or hidden if it's something you plan to buy yourselves.</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">What's in it for Babylist</div>
+    <h2>Higher-intent revenue, a data moat, and lock-in by <em>love</em>.</h2>
+    <div class="points">
+      <div class="pt"><div class="ix">01</div><div class="tx"><b>Higher-converting, higher-gifted adds.</b> Considered commitments convert and get purchased by guests at higher rates than impulse adds, and get returned less.</div></div>
+      <div class="pt"><div class="ix">02</div><div class="tx"><b>A net-new, high-margin data product.</b> The rejection trail, what got considered, cut, and which competitor it lost to, is first-party signal brands will pay The Push to see. Sold as labeled presence and intent signal, never as a guaranteed win.</div></div>
+      <div class="pt"><div class="ix">03</div><div class="tx"><b>Lock-in by love.</b> It captures the off-platform graph, accumulates personal investment the parent won't want to abandon, and extends the relationship into the multi-year arc Babylist already bets on with milestone lists and Babylist Money.</div></div>
+    </div>
+
+    <div class="calc">
+      <div class="ch">Back-of-envelope · potential revenue</div>
+      <div class="cs">All figures rough and illustrative. Not verified or certified by Babylist.</div>
+      <div class="crow"><div class="cl"><b>Reachable base</b> · new registries a year (Babylist reaches ~1 in 2 first-time US parents)</div><div class="cv">~2.0M</div></div>
+      <div class="crow"><div class="cl"><b>Mature adoption</b> of the Consideration List (~50%)</div><div class="cv">~1.0M</div></div>
+      <div class="crow"><div class="cl"><b>Lever 1 · Incremental GMV.</b> 1.0M × ~$800 gifted/self-bought × ~4% lift ≈ $32M GMV, at ~12% blended take</div><div class="cv">~$4M</div></div>
+      <div class="crow"><div class="cl"><b>Lever 2 · Rejection-trail data</b> (The Push). ~5 big-ticket decisions × 1.0M ≈ 5M signals × ~$3 each</div><div class="cv">~$15M</div></div>
+      <div class="crow"><div class="cl"><b>Lever 3 · Higher-intent sampling reach</b> for brand partners</div><div class="cv">~$5M</div></div>
+      <div class="crow total"><div class="cl">Rough annual opportunity at maturity</div><div class="cv">~$20–25M</div></div>
+    </div>
+    <p class="rough" style="margin-top:14px">The data product (Lever 2) is the high-margin core and the piece no competitor can copy, since only Babylist sees the considered-and-rejected set. Levers scale with adoption; year-one numbers would be a fraction of the above.</p>
+  </section>
+
+  <section>
+    <div class="kicker">What could break it</div>
+    <h2>Two real risks, with the guardrails that hold them.</h2>
+    <div class="risks">
+      <div class="risk">
+        <div class="rl">Risk 01 · Cannibalization</div>
+        <h3>Deciding delays committing.</h3>
+        <p>If parking items to consider becomes the easy default, it could pull parents away from actually committing them to the registry, the step that drives gifting and revenue.</p>
+        <div class="mit"><b>Mitigation.</b> Keep committing to the registry the primary, most prominent path, and gate launch on hard guardrails: registry-add rate and gifting GMV must not fall. Prove it with a click test before any rollout.</div>
+      </div>
+      <div class="risk">
+        <div class="rl">Risk 02 · Trust erosion</div>
+        <h3>Monetizing advice corrodes the brand.</h3>
+        <p>If Babylist ever tilted the suggestions or the collaborator input parents see toward paid brands, it would undercut the unbiased guidance that is its most valuable asset.</p>
+        <div class="mit"><b>Mitigation.</b> A strict trust wall: monetize the intent signal and labeled presence, never the outcome. Ship "you don't need it" prominently, and run one test every release: would the set look the same if Babylist sold none of these products?</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="close">
+    <b style="color:var(--ink);font-weight:500">Validate first.</b> The cannibalization guardrail and a 30-family concierge test of the collaborative phase answer the two make-or-break questions before any build. See it in action: <a href="https://rb-mocks-babylist-collaboration.lovable.app">rb-mocks-babylist-collaboration.lovable.app</a>
+  </div>
+
+  <div class="foot"><b>Disclaimer.</b> Independent personal project by Riddhi Bhargava. Not affiliated with, endorsed by, or representative of Babylist. All figures are rough personal estimates for illustration only and are not certified by Babylist.</div>
+
+</div>
