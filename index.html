@@ -108,6 +108,26 @@
   .footer-links a { font-size: 13px; color: var(--ink-muted); text-decoration: none; transition: color 0.2s; }
   .footer-links a:hover { color: var(--accent); }
 
+  /* MOCK PREVIEWS */
+  .mock-tile { aspect-ratio: 16/10; background: #EDEAE2; border: 0.5px solid var(--border); border-radius: 6px; overflow: hidden; cursor: pointer; position: relative; transition: border-color 0.2s, box-shadow 0.2s; }
+  .mock-tile:hover { border-color: var(--accent); box-shadow: 0 4px 16px rgba(28,26,23,0.08); }
+  .mock-frame { position: absolute; top: 0; left: 0; width: 1200px; height: 750px; border: 0; transform-origin: top left; pointer-events: none; background: #EDEAE2; }
+  .mock-label { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 20px 8px 6px; font-size: 9px; letter-spacing: 0.05em; text-transform: uppercase; line-height: 1.35; color: #fff; background: linear-gradient(transparent, rgba(28,26,23,0.8)); }
+  .mock-label b { color: #fff; font-weight: 600; }
+
+  /* MOCK MODAL */
+  .mock-modal { position: fixed; inset: 0; z-index: 1000; display: none; align-items: center; justify-content: center; padding: 24px; background: rgba(28,26,23,0.62); backdrop-filter: blur(5px); }
+  .mock-modal.open { display: flex; }
+  .mock-stage { position: relative; }
+  .mock-canvas { width: min(1120px, 94vw, 134vh); aspect-ratio: 16/10; position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 24px 70px rgba(0,0,0,0.35); background: #EDEAE2; }
+  .mock-modal-frame { position: absolute; top: 0; left: 0; width: 1200px; height: 750px; border: 0; transform-origin: top left; }
+  .mock-close { position: absolute; top: -46px; right: 0; background: var(--warm-white); color: var(--ink); border: 0.5px solid var(--border); border-radius: 20px; padding: 8px 18px; font-family: 'DM Sans', sans-serif; font-size: 13px; cursor: pointer; letter-spacing: 0.03em; transition: color 0.2s, border-color 0.2s; }
+  .mock-close:hover { color: var(--accent); border-color: var(--accent); }
+  .mock-nav { position: absolute; bottom: -48px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; }
+  .mock-nav button { background: rgba(255,254,249,0.92); color: var(--ink-soft); border: 0.5px solid var(--border); border-radius: 20px; padding: 7px 16px; font-family: 'DM Sans', sans-serif; font-size: 12px; cursor: pointer; letter-spacing: 0.03em; white-space: nowrap; transition: color 0.2s, border-color 0.2s, background 0.2s; }
+  .mock-nav button:hover { color: var(--accent); border-color: var(--accent); }
+  .mock-nav button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
   /* ANIMATION */
   .fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
   .fade-in.visible { opacity: 1; transform: none; }
@@ -167,9 +187,18 @@
           <div class="work-stat"><span class="work-stat-num">2 in 3 top sellers</span><span class="work-stat-label">Now choose Program first</span></div>
         </div>
         <div class="work-images">
-          <div class="work-img-placeholder"><span class="img-icon">🖼</span><span>Multi-stage checklist, locked steps, weeks between each</span></div>
-          <div class="work-img-placeholder"><span class="img-icon">🖼</span><span>All tasks open simultaneously — observing where users went first</span></div>
-          <div class="work-img-placeholder"><span class="img-icon">🖼</span><span>Program enrollment at platform join, listing setup done in under 10 minutes</span></div>
+          <div class="mock-tile" onclick="openMock(0)">
+            <iframe class="mock-frame" src="onboarding_before.html" title="Onboarding — Before" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+            <span class="mock-label"><b>Before</b> · locked steps, weeks apart</span>
+          </div>
+          <div class="mock-tile" onclick="openMock(1)">
+            <iframe class="mock-frame" src="onboarding_v2.html" title="Onboarding — V2 Parallelized" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+            <span class="mock-label"><b>V2</b> · steps open at once</span>
+          </div>
+          <div class="mock-tile" onclick="openMock(2)">
+            <iframe class="mock-frame" src="onboarding_v3.html" title="Onboarding — V3 Unified" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+            <span class="mock-label"><b>V3</b> · join once, sell everywhere</span>
+          </div>
         </div>
         <button class="work-toggle" onclick="toggleDetail(this)"><span class="toggle-icon">+</span></button>
         <div class="work-detail">
@@ -343,6 +372,20 @@
   </div>
 </footer>
 
+<div class="mock-modal" id="mockModal" onclick="if(event.target===this)closeMock()">
+  <div class="mock-stage">
+    <button class="mock-close" onclick="closeMock()">Close ✕</button>
+    <div class="mock-canvas" id="mockCanvas">
+      <iframe id="mockModalFrame" class="mock-modal-frame" title="Onboarding mock" scrolling="no"></iframe>
+    </div>
+    <div class="mock-nav" id="mockNav">
+      <button onclick="openMock(0)">Before</button>
+      <button onclick="openMock(1)">V2 · Parallelized</button>
+      <button onclick="openMock(2)">V3 · Unified</button>
+    </div>
+  </div>
+</div>
+
 <script>
   function toggleDetail(btn) {
     const detail = btn.nextElementSibling;
@@ -351,6 +394,44 @@
     detail.classList.toggle('open', !isOpen);
     icon.textContent = isOpen ? '+' : '−';
   }
+
+  // Onboarding mock previews
+  const MOCKS = ['onboarding_before.html', 'onboarding_v2.html', 'onboarding_v3.html'];
+  let mockIndex = 0;
+
+  function scaleFrame(frame, container) {
+    if (!frame || !container) return;
+    frame.style.transform = 'scale(' + (container.clientWidth / 1200) + ')';
+  }
+  function scaleTiles() {
+    document.querySelectorAll('.mock-tile').forEach(tile => scaleFrame(tile.querySelector('.mock-frame'), tile));
+  }
+  function openMock(i) {
+    mockIndex = i;
+    const modal = document.getElementById('mockModal');
+    const frame = document.getElementById('mockModalFrame');
+    const canvas = document.getElementById('mockCanvas');
+    frame.src = MOCKS[i];
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    document.querySelectorAll('#mockNav button').forEach((b, n) => b.classList.toggle('active', n === i));
+    requestAnimationFrame(() => scaleFrame(frame, canvas));
+  }
+  function closeMock() {
+    const modal = document.getElementById('mockModal');
+    modal.classList.remove('open');
+    document.getElementById('mockModalFrame').src = '';
+    document.body.style.overflow = '';
+  }
+  window.addEventListener('resize', () => {
+    scaleTiles();
+    const modal = document.getElementById('mockModal');
+    if (modal.classList.contains('open')) scaleFrame(document.getElementById('mockModalFrame'), document.getElementById('mockCanvas'));
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMock(); });
+  scaleTiles();
+  window.addEventListener('load', scaleTiles);
+  setTimeout(scaleTiles, 500);
 
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
