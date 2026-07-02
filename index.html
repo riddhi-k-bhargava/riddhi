@@ -131,6 +131,44 @@
   /* ANIMATION */
   .fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
   .fade-in.visible { opacity: 1; transform: none; }
+
+  /* RESPONSIVE — tablet */
+  @media (max-width: 760px) {
+    nav { padding: 0 20px; }
+    .hero { padding: 120px 24px 64px; }
+    .divider { padding: 0 24px; }
+    section { padding: 60px 24px; }
+    /* stack the work-item meta above its content */
+    .work-item { grid-template-columns: 1fr; gap: 22px; }
+    .work-meta { padding-top: 0; }
+    .work-pill-row { flex-direction: row; flex-wrap: wrap; }
+  }
+
+  /* RESPONSIVE — phone */
+  @media (max-width: 560px) {
+    nav { padding: 0 18px; height: 52px; }
+    .nav-name { display: none; }               /* redundant with hero + footer; frees room for links */
+    .nav-links { width: 100%; justify-content: space-between; gap: 12px; }
+    .nav-links a { font-size: 13px; letter-spacing: 0.02em; }
+
+    .hero { padding: 96px 18px 52px; }
+    .hero h1 { font-size: 30px; }
+    .hero-sub { font-size: 16px; }
+    .divider { padding: 0 18px; }
+    section { padding: 52px 18px; }
+    .section-label { margin-bottom: 28px; }
+
+    .work-item { padding: 32px 0; }
+    /* stack the three stats so long labels read cleanly instead of overflowing */
+    .work-stats { flex-direction: column; gap: 0; padding: 4px 0; }
+    .work-stat { flex: none; padding: 12px 0; }
+    .work-stat:not(:last-child) { border-right: none; margin-right: 0; border-bottom: 0.5px solid var(--border); }
+    /* keep the before/v2/v3 preview triptych but tighten the gap */
+    .work-images { gap: 6px; }
+    .mock-label { font-size: 8px; padding: 14px 5px 5px; }
+
+    footer { flex-direction: column; align-items: flex-start; gap: 14px; padding: 32px 18px 48px; }
+  }
 </style>
 </head>
 <body>
