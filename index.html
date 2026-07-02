@@ -269,9 +269,18 @@
           <div class="work-stat"><span class="work-stat-num">Proved at $xxM</span><span class="work-stat-label">Before full launch</span></div>
         </div>
         <div class="work-images">
-          <div class="work-img-placeholder"><span class="img-icon">🖼</span><span>Rigid Excel uploads, email approval chains, ROI in a separate dashboard</span></div>
-          <div class="work-img-placeholder"><span class="img-icon">🖼</span><span>Bulk processing unblocked, same interface, 10x throughput, $xxM validated</span></div>
-          <div class="work-img-placeholder"><span class="img-icon">🖼</span><span>Self-serve platform, AI-suggested audience, embedded approval, live ROI</span></div>
+          <div class="mock-tile" onclick="openMock('incentives', 0)">
+            <iframe class="mock-frame" src="incentives_before.html" title="Incentives — Before" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+            <span class="mock-label"><b>Before</b> · scattered tools, no single view</span>
+          </div>
+          <div class="mock-tile" onclick="openMock('incentives', 1)">
+            <iframe class="mock-frame" src="incentives_v2.html" title="Incentives — V2 POC" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+            <span class="mock-label"><b>V2</b> · same tool, bulk unblocked</span>
+          </div>
+          <div class="mock-tile" onclick="openMock('incentives', 2)">
+            <iframe class="mock-frame" src="incentives_v3.html" title="Incentives — V3 Platform" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+            <span class="mock-label"><b>V3</b> · one platform, realtime</span>
+          </div>
         </div>
         <button class="work-toggle" onclick="toggleDetail(this)"><span class="toggle-icon">+</span></button>
         <div class="work-detail">
@@ -418,6 +427,11 @@
       { src: 'catalog_before.html', label: 'Before' },
       { src: 'catalog_v2.html', label: 'V2 · ML-augmented' },
       { src: 'catalog_v3.html', label: 'V3 · Live' },
+    ],
+    incentives: [
+      { src: 'incentives_before.html', label: 'Before' },
+      { src: 'incentives_v2.html', label: 'V2 · POC' },
+      { src: 'incentives_v3.html', label: 'V3 · Platform' },
     ],
   };
   let mockGroup = 'onboarding';
