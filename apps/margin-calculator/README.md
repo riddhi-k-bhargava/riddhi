@@ -4,8 +4,6 @@
 break-even, and sensitivity of shipping an AI feature — the unit-economics math most AI
 feature pitches skip.
 
-**Signals:** "I understand AI unit economics" + "I reason rigorously about AI product decisions."
-
 Live: `https://riddhi-k-bhargava.github.io/riddhi/margin-calculator/`
 
 ---
@@ -70,20 +68,6 @@ Same feature, swap the model:
 Same product, same usage — a **−22% loss becomes ~+80% margin** purely on model choice. That is
 the punchline the "Model choice" chart makes visual.
 
-## Strategy + distribution
-
-The calculator is a **credibility artifact**, not a SaaS play. It lives in the portfolio's
-Building section as the lead AI signal and is meant to be linked into conversations ("here's how
-I'd pressure-test that feature's economics"). Distribution is the portfolio itself plus
-shareable, self-contained reasoning — anyone can open it, change one number, and see the argument.
-
-## Build-vs-write-up rationale
-
-A slide claiming "I understand AI margins" is cheap; a working tool that computes them live is
-not. Building it forces the honest edge cases (output billed ~5x input, call-volume as the real
-cost multiplier, list-vs-cached prices) into the open, and the interactive sensitivity view
-teaches the lesson faster than prose. The write-up on the page carries the reasoning; the tool
-carries the proof.
 
 ## Risks + mitigations
 
