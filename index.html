@@ -187,15 +187,15 @@
           <div class="work-stat"><span class="work-stat-num">2 in 3 top sellers</span><span class="work-stat-label">Now choose Program first</span></div>
         </div>
         <div class="work-images">
-          <div class="mock-tile" onclick="openMock(0)">
+          <div class="mock-tile" onclick="openMock('onboarding', 0)">
             <iframe class="mock-frame" src="onboarding_before.html" title="Onboarding — Before" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
             <span class="mock-label"><b>Before</b> · locked steps, weeks apart</span>
           </div>
-          <div class="mock-tile" onclick="openMock(1)">
+          <div class="mock-tile" onclick="openMock('onboarding', 1)">
             <iframe class="mock-frame" src="onboarding_v2.html" title="Onboarding — V2 Parallelized" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
             <span class="mock-label"><b>V2</b> · steps open at once</span>
           </div>
-          <div class="mock-tile" onclick="openMock(2)">
+          <div class="mock-tile" onclick="openMock('onboarding', 2)">
             <iframe class="mock-frame" src="onboarding_v3.html" title="Onboarding — V3 Unified" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
             <span class="mock-label"><b>V3</b> · join once, sell everywhere</span>
           </div>
@@ -228,9 +228,18 @@
           <div class="work-stat"><span class="work-stat-num">60% faster</span><span class="work-stat-label">Time to list</span></div>
         </div>
         <div class="work-images">
-          <div class="work-img-placeholder"><span class="img-icon">🖼</span><span>Flat category form, generic fields, compliance queue taking days</span></div>
-          <div class="work-img-placeholder"><span class="img-icon">🖼</span><span>Product-type specs and ML pre-classification in testing</span></div>
-          <div class="work-img-placeholder"><span class="img-icon">🖼</span><span>Modular listing setup, compliance reused instantly, new categories live</span></div>
+          <div class="mock-tile" onclick="openMock('catalog', 0)">
+            <iframe class="mock-frame" src="catalog_before.html" title="Catalog — Before" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+            <span class="mock-label"><b>Before</b> · generic fields, days in the queue</span>
+          </div>
+          <div class="mock-tile" onclick="openMock('catalog', 1)">
+            <iframe class="mock-frame" src="catalog_v2.html" title="Catalog — V2 ML-augmented" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+            <span class="mock-label"><b>V2</b> · only the fields that fit</span>
+          </div>
+          <div class="mock-tile" onclick="openMock('catalog', 2)">
+            <iframe class="mock-frame" src="catalog_v3.html" title="Catalog — V3 Live" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+            <span class="mock-label"><b>V3</b> · compliance reused instantly</span>
+          </div>
         </div>
         <button class="work-toggle" onclick="toggleDetail(this)"><span class="toggle-icon">+</span></button>
         <div class="work-detail">
@@ -385,11 +394,7 @@
     <div class="mock-canvas" id="mockCanvas">
       <iframe id="mockModalFrame" class="mock-modal-frame" title="Onboarding mock" scrolling="no"></iframe>
     </div>
-    <div class="mock-nav" id="mockNav">
-      <button onclick="openMock(0)">Before</button>
-      <button onclick="openMock(1)">V2 · Parallelized</button>
-      <button onclick="openMock(2)">V3 · Unified</button>
-    </div>
+    <div class="mock-nav" id="mockNav"></div>
   </div>
 </div>
 
@@ -402,8 +407,20 @@
     icon.textContent = isOpen ? '+' : '−';
   }
 
-  // Onboarding mock previews
-  const MOCKS = ['onboarding_before.html', 'onboarding_v2.html', 'onboarding_v3.html'];
+  // Project mock previews (onboarding + catalog) — each opens a closable modal
+  const MOCK_GROUPS = {
+    onboarding: [
+      { src: 'onboarding_before.html', label: 'Before' },
+      { src: 'onboarding_v2.html', label: 'V2 · Parallelized' },
+      { src: 'onboarding_v3.html', label: 'V3 · Unified' },
+    ],
+    catalog: [
+      { src: 'catalog_before.html', label: 'Before' },
+      { src: 'catalog_v2.html', label: 'V2 · ML-augmented' },
+      { src: 'catalog_v3.html', label: 'V3 · Live' },
+    ],
+  };
+  let mockGroup = 'onboarding';
   let mockIndex = 0;
 
   function scaleFrame(frame, container) {
@@ -413,15 +430,26 @@
   function scaleTiles() {
     document.querySelectorAll('.mock-tile').forEach(tile => scaleFrame(tile.querySelector('.mock-frame'), tile));
   }
-  function openMock(i) {
+  function openMock(group, i) {
+    mockGroup = group;
     mockIndex = i;
+    const set = MOCK_GROUPS[group];
+    if (!set || !set[i]) return;
     const modal = document.getElementById('mockModal');
     const frame = document.getElementById('mockModalFrame');
     const canvas = document.getElementById('mockCanvas');
-    frame.src = MOCKS[i];
+    const nav = document.getElementById('mockNav');
+    frame.src = set[i].src;
+    nav.innerHTML = '';
+    set.forEach((m, n) => {
+      const b = document.createElement('button');
+      b.textContent = m.label;
+      if (n === i) b.className = 'active';
+      b.onclick = () => openMock(group, n);
+      nav.appendChild(b);
+    });
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
-    document.querySelectorAll('#mockNav button').forEach((b, n) => b.classList.toggle('active', n === i));
     requestAnimationFrame(() => scaleFrame(frame, canvas));
   }
   function closeMock() {
