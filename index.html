@@ -146,8 +146,9 @@
 
   /* RESPONSIVE — phone */
   @media (max-width: 560px) {
-    nav { padding: 0 18px; height: 52px; }
-    .nav-name { display: none; }               /* redundant with hero + footer; frees room for links */
+    /* two-row nav so the name stays visible alongside the section links */
+    nav { padding: 9px 18px; height: auto; flex-direction: column; align-items: flex-start; gap: 7px; }
+    .nav-name { font-size: 14px; white-space: nowrap; }
     .nav-links { width: 100%; justify-content: space-between; gap: 12px; }
     .nav-links a { font-size: 13px; letter-spacing: 0.02em; }
 
@@ -168,6 +169,13 @@
     .mock-label { font-size: 8px; padding: 14px 5px 5px; }
 
     footer { flex-direction: column; align-items: flex-start; gap: 14px; padding: 32px 18px 48px; }
+
+    /* mock modal on phones: full-screen, scrollable, Close pinned, versions as a bottom bar */
+    .mock-modal { align-items: flex-start; padding: 0; overflow-y: auto; }
+    .mock-stage { width: 100%; padding-bottom: 62px; }
+    .mock-canvas { width: 100vw; border-radius: 0; box-shadow: none; }
+    .mock-close { position: fixed; top: 12px; right: 12px; z-index: 1002; box-shadow: 0 2px 12px rgba(0,0,0,0.18); }
+    .mock-nav { position: fixed; bottom: 0; left: 0; right: 0; transform: none; margin: 0; gap: 8px; justify-content: center; padding: 10px 12px; background: rgba(250,248,243,0.96); backdrop-filter: blur(6px); border-top: 0.5px solid var(--border); }
   }
 </style>
 </head>
@@ -482,6 +490,28 @@
   function scaleTiles() {
     document.querySelectorAll('.mock-tile').forEach(tile => scaleFrame(tile.querySelector('.mock-frame'), tile));
   }
+  // Size the modal iframe. On phones it renders at a ~390px viewport so each artboard
+  // reflows to screen-on-top / write-up-below, then we measure its height and scale to fit.
+  function sizeModalFrame() {
+    const frame = document.getElementById('mockModalFrame');
+    const canvas = document.getElementById('mockCanvas');
+    if (!frame || !canvas) return;
+    const mobile = window.matchMedia('(max-width: 560px)').matches;
+    const renderW = mobile ? 390 : 1200;
+    let renderH = mobile ? 820 : 750;
+    frame.style.width = renderW + 'px';
+    if (mobile) {
+      try {
+        const doc = frame.contentDocument;
+        const ab = doc && (doc.querySelector('.artboard') || doc.body);
+        if (ab) renderH = Math.max(ab.scrollHeight, 560);
+      } catch (e) {}
+    }
+    frame.style.height = renderH + 'px';
+    const scale = canvas.clientWidth / renderW;
+    frame.style.transform = 'scale(' + scale + ')';
+    canvas.style.height = (renderH * scale) + 'px';
+  }
   function openMock(group, i) {
     mockGroup = group;
     mockIndex = i;
@@ -489,8 +519,8 @@
     if (!set || !set[i]) return;
     const modal = document.getElementById('mockModal');
     const frame = document.getElementById('mockModalFrame');
-    const canvas = document.getElementById('mockCanvas');
     const nav = document.getElementById('mockNav');
+    frame.onload = () => { sizeModalFrame(); setTimeout(sizeModalFrame, 250); };
     frame.src = set[i].src;
     nav.innerHTML = '';
     set.forEach((m, n) => {
@@ -501,19 +531,22 @@
       nav.appendChild(b);
     });
     modal.classList.add('open');
+    modal.scrollTop = 0;
     document.body.style.overflow = 'hidden';
-    requestAnimationFrame(() => scaleFrame(frame, canvas));
+    requestAnimationFrame(sizeModalFrame);
   }
   function closeMock() {
     const modal = document.getElementById('mockModal');
     modal.classList.remove('open');
-    document.getElementById('mockModalFrame').src = '';
+    const frame = document.getElementById('mockModalFrame');
+    frame.onload = null;
+    frame.src = '';
     document.body.style.overflow = '';
   }
   window.addEventListener('resize', () => {
     scaleTiles();
     const modal = document.getElementById('mockModal');
-    if (modal.classList.contains('open')) scaleFrame(document.getElementById('mockModalFrame'), document.getElementById('mockCanvas'));
+    if (modal.classList.contains('open')) sizeModalFrame();
   });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMock(); });
   scaleTiles();

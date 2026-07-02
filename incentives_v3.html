@@ -108,6 +108,15 @@ body{background:#EDEAE2;}
 .sc-line.lab{color:var(--ink-muted);font-size:11px;font-style:italic;}
 .sc-line .s-check{width:17px;height:17px;border-radius:50%;background:var(--accent);color:#fff;
   display:flex;align-items:center;justify-content:center;font-size:9px;flex:0 0 auto;}
+@media (max-width:700px){
+  .artboard{width:100%;height:auto;min-height:0;padding:26px 20px 30px;}
+  .ab-top{margin-bottom:22px;}
+  .ab-phase{display:none;}
+  .ab-body{flex-direction:column;gap:24px;align-items:stretch;}
+  .left-col,.screen{flex:0 0 auto;width:100%;}
+  .screen.in-col{flex:0 0 auto;width:100%;}
+  .rail{width:100%;}
+}
 </style></head><body>
 <div class="artboard">
   <div class="ab-top"><div class="ab-crumb">03 &nbsp;·&nbsp; <b>Marketplace</b> &nbsp;·&nbsp; Incentives</div><div class="ab-phase">V3 · Platform</div></div>
