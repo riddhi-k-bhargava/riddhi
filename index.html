@@ -356,9 +356,18 @@
           <div class="work-stat"><span class="work-stat-num">2× customers</span><span class="work-stat-label">In two years</span></div>
         </div>
         <div class="work-images">
-          <div class="work-img-placeholder"><span class="img-icon">🖼</span><span>Annual risk assessment triggered manually, results outside the sourcing workflow</span></div>
-          <div class="work-img-placeholder"><span class="img-icon">🖼</span><span>Continuous monitoring live for anchor customers, scorecards configurable by policy</span></div>
-          <div class="work-img-placeholder"><span class="img-icon">🖼</span><span>Risk scores in supplier search, contract recommendations, and auto-reassessment</span></div>
+          <div class="mock-tile" onclick="openMock('risk', 0)">
+            <iframe class="mock-frame" src="risk_before.html" title="Risk — Before" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+            <span class="mock-label"><b>Before</b> · once a year, off to the side</span>
+          </div>
+          <div class="mock-tile" onclick="openMock('risk', 1)">
+            <iframe class="mock-frame" src="risk_v2.html" title="Risk — V2 Continuous" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+            <span class="mock-label"><b>V2</b> · always on, tuned by policy</span>
+          </div>
+          <div class="mock-tile" onclick="openMock('risk', 2)">
+            <iframe class="mock-frame" src="risk_v3.html" title="Risk — V3 Embedded" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+            <span class="mock-label"><b>V3</b> · risk in every decision</span>
+          </div>
         </div>
         <button class="work-toggle" onclick="toggleDetail(this)"><span class="toggle-icon">+</span></button>
         <div class="work-detail">
@@ -478,6 +487,11 @@
       { src: 'incentives_before.html', label: 'Before' },
       { src: 'incentives_v2.html', label: 'V2 · POC' },
       { src: 'incentives_v3.html', label: 'V3 · Platform' },
+    ],
+    risk: [
+      { src: 'risk_before.html', label: 'Before' },
+      { src: 'risk_v2.html', label: 'V2 · Continuous' },
+      { src: 'risk_v3.html', label: 'V3 · Embedded' },
     ],
   };
   let mockGroup = 'onboarding';
