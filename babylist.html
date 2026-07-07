@@ -182,3 +182,24 @@
   <a class="backlink bottom" href="index.html">← Back to portfolio</a>
 
 </div>
+
+<script>
+  // Track clicks on the Lovable prototype links (primary CTA, disclaimer, closing line).
+  document.addEventListener('DOMContentLoaded', function () {
+    var links = document.querySelectorAll('a[href*="rb-mocks-babylist-collaboration.lovable.app"]');
+    links.forEach(function (a) {
+      a.addEventListener('click', function () {
+        if (!window.posthog) return;
+        var position = a.classList.contains('proto') ? 'primary_cta'
+          : a.closest('.disclaimer') ? 'disclaimer'
+          : a.closest('.close') ? 'closing'
+          : 'other';
+        posthog.capture('babylist_prototype_click', {
+          href: a.href,
+          link_text: (a.textContent || '').trim().slice(0, 80),
+          position: position
+        });
+      });
+    });
+  });
+</script>
