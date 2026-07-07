@@ -128,6 +128,10 @@
   .howto b{color:var(--crimson)}
   .info-btn{position:fixed; top:14px; right:14px; z-index:40; width:38px; height:38px; border-radius:50%; background:#0000004d; border:1px solid #ffffff33; color:var(--gold); font-family:"Cinzel",serif; font-weight:900; font-size:20px; padding:0; line-height:1; cursor:pointer}
   .info-btn:hover{background:#cda43433; border-color:var(--gold)}
+  .backlink{position:fixed; top:14px; left:14px; z-index:55; display:inline-flex; align-items:center; gap:6px; padding:8px 14px; border-radius:20px; background:#0000004d; border:1px solid #ffffff33; color:var(--gold); font-family:"MedievalSharp",cursive; font-size:14px; letter-spacing:.03em; text-decoration:none}
+  .backlink:hover{background:#cda43433; border-color:var(--gold)}
+  .backlink-foot{display:inline-block; margin-top:16px; color:var(--gold); font-family:"MedievalSharp",cursive; font-size:15px; letter-spacing:.03em; text-decoration:none; border-bottom:1px solid transparent; transition:border-color .2s}
+  .backlink-foot:hover{border-color:var(--gold)}
   @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
 </style>
 </head>
@@ -146,6 +150,7 @@
       <button id="beginBtn">Begin the siege</button>
     </div>
   </div>
+  <a class="backlink" href="index.html">← Back to portfolio</a>
   <button class="info-btn" id="infoBtn" aria-label="How to play" title="How to play">?</button>
   <header class="banner">
     <div class="eyebrow">Here's What You Do · the siege round</div>
@@ -237,6 +242,7 @@
   <div class="herald" id="herald">Choose thy boulder, then loose thy guess.</div>
 
   <p class="footnote">The herald's barbs are generated live by a language model. Inspired by the Model Trebuchet round on <em>Here's What You Do</em>.</p>
+  <p style="text-align:center"><a class="backlink-foot" href="index.html">← Back to portfolio</a></p>
 
   <!-- ===== modals ===== -->
   <div class="modal" id="resultModal">

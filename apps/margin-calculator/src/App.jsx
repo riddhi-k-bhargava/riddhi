@@ -390,9 +390,12 @@ breakEvenCost = costPerUser        // the per-user price floor`}
       </main>
 
       {/* FOOTER */}
-      <footer className="mx-auto flex max-w-[1080px] flex-col gap-1 border-t border-hair px-6 py-8 md:px-10">
-        <span className="font-serif text-[14px] text-ink-soft">Riddhi Bhargava</span>
-        <span className="text-[12px] text-ink-muted">AI Feature Margin Calculator · working prototype · list prices as of {PRICES_ASOF}, verify before quoting.</span>
+      <footer className="mx-auto flex max-w-[1080px] flex-col gap-3 border-t border-hair px-6 py-8 md:px-10">
+        <a href="../index.html" className="w-fit text-[13px] text-ink-soft transition-colors hover:text-accent">← Back to portfolio</a>
+        <div className="flex flex-col gap-1">
+          <span className="font-serif text-[14px] text-ink-soft">Riddhi Bhargava</span>
+          <span className="text-[12px] text-ink-muted">AI Feature Margin Calculator · working prototype · list prices as of {PRICES_ASOF}, verify before quoting.</span>
+        </div>
       </footer>
     </div>
   )
