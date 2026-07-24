@@ -23,7 +23,7 @@ function Field({ label, tip, value, onChange, prefix, suffix, step = '1', min = 
         {label}
         <Tooltip text={tip} label={`About ${label}`} />
       </span>
-      <span className="flex items-center rounded-lg border border-hair bg-cream px-3 py-2.5 focus-within:border-accent">
+      <span className="flex items-center rounded-lg border border-hair bg-cream px-3 py-2.5 focus-within:border-support">
         {prefix && <span className="mr-1 text-[14px] text-ink-muted">{prefix}</span>}
         <input
           type="number"
@@ -146,7 +146,7 @@ export default function App() {
     <div className="min-h-screen">
       {/* NAV */}
       <nav className="sticky top-0 z-40 flex h-14 items-center justify-between border-b border-hair bg-cream/90 px-6 backdrop-blur md:px-10">
-        <a href="../index.html" className="text-[13px] text-ink-soft transition-colors hover:text-accent">
+        <a href="../index.html" className="text-[13px] text-ink-soft transition-colors hover:text-support">
           ← Back to portfolio
         </a>
         <span className="font-serif text-[14px] text-ink">Riddhi Bhargava</span>
@@ -184,7 +184,7 @@ export default function App() {
             <select
               value={goal}
               onChange={(e) => applyPreset(Number(e.target.value))}
-              className="w-full rounded-lg border border-hair bg-cream px-3 py-2.5 font-sans text-[15px] text-ink outline-none focus:border-accent"
+              className="w-full rounded-lg border border-hair bg-cream px-3 py-2.5 font-sans text-[15px] text-ink outline-none focus:border-support"
             >
               {PRESETS.map((p, i) => (
                 <option key={i} value={i}>
@@ -208,7 +208,7 @@ export default function App() {
                 <select
                   value={modelId}
                   onChange={(e) => applyModel(e.target.value)}
-                  className="w-full rounded-lg border border-hair bg-cream px-3 py-2.5 font-sans text-[15px] text-ink outline-none focus:border-accent"
+                  className="w-full rounded-lg border border-hair bg-cream px-3 py-2.5 font-sans text-[15px] text-ink outline-none focus:border-support"
                 >
                   {MODELS.map((m) => (
                     <option key={m.id} value={m.id}>
@@ -276,7 +276,7 @@ export default function App() {
                     type="button"
                     onClick={() => setChartMode(m.id)}
                     className={`rounded-full border px-3.5 py-1.5 text-[12px] tracking-[0.02em] transition-colors ${
-                      chartMode === m.id ? 'border-accent bg-accent text-white' : 'border-hair bg-cream text-ink-soft hover:border-accent hover:text-accent'
+                      chartMode === m.id ? 'border-support bg-support text-white' : 'border-hair bg-cream text-ink-soft hover:border-support hover:text-support'
                     }`}
                   >
                     {m.label}
@@ -391,7 +391,7 @@ breakEvenCost = costPerUser        // the per-user price floor`}
 
       {/* FOOTER */}
       <footer className="mx-auto flex max-w-[1080px] flex-col gap-3 border-t border-hair px-6 py-8 md:px-10">
-        <a href="../index.html" className="w-fit text-[13px] text-ink-soft transition-colors hover:text-accent">← Back to portfolio</a>
+        <a href="../index.html" className="w-fit text-[13px] text-ink-soft transition-colors hover:text-support">← Back to portfolio</a>
         <div className="flex flex-col gap-1">
           <span className="font-serif text-[14px] text-ink-soft">Riddhi Bhargava</span>
           <span className="text-[12px] text-ink-muted">AI Feature Margin Calculator · working prototype · list prices as of {PRICES_ASOF}, verify before quoting.</span>

@@ -14,10 +14,11 @@
 </script>
 <style>
   :root{
-    --cream:#FAF8F3; --warm-white:#FFFEF9;
-    --ink:#1C1A17; --ink-soft:#4A4640; --ink-muted:#8A8680;
-    --accent:#C4622A; --accent-soft:#F5EAE2;
-    --border:rgba(28,26,23,0.1);
+    --cream:#F5F6F8; --warm-white:#FFFFFF;
+    --ink:#1A1D23; --ink-soft:#3A4048; --ink-muted:#5A616B;
+    --accent:#A81F3A; --accent-hover:#8A1830; --accent-soft:#F9EAED;
+    --support:#2F6E8F; --support-hover:#235571; --support-soft:#EAF1F5;
+    --border:#E2E5EA;
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
@@ -29,12 +30,12 @@
   .sub{font-size:16.5px;color:var(--ink-soft);line-height:1.7;max-width:640px;margin:0 0 22px;font-weight:300}
   .sub b{color:var(--ink);font-weight:500}
   .proto{display:inline-flex;align-items:center;gap:9px;background:var(--ink);color:var(--warm-white);text-decoration:none;font-size:14px;font-weight:400;padding:11px 20px;border-radius:24px;margin-bottom:26px}
-  .proto:hover{background:var(--accent)}
+  .proto:hover{background:var(--support)}
   .proto .pl{font-size:11px;opacity:.7}
   .tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
   .tag{font-size:12px;padding:5px 14px;border-radius:20px;border:0.5px solid var(--border);color:var(--ink-soft);background:var(--warm-white)}
 
-  .disclaimer{background:var(--accent-soft);border:0.5px solid rgba(196,98,42,0.25);border-radius:12px;padding:13px 16px;font-size:12.5px;color:#7d4420;line-height:1.55;margin-bottom:32px}
+  .disclaimer{background:var(--accent-soft);border:0.5px solid rgba(168,31,58,0.25);border-radius:12px;padding:13px 16px;font-size:12.5px;color:#8A1830;line-height:1.55;margin-bottom:32px}
   .disclaimer b{color:var(--accent);font-weight:500}
 
   .stats{display:flex;gap:44px;flex-wrap:wrap;padding:26px 0 6px;border-top:0.5px solid var(--border)}
@@ -76,10 +77,10 @@
   .risk .mit b{color:var(--accent);font-weight:500}
 
   .close{margin-top:40px;padding-top:22px;border-top:0.5px solid var(--border);font-size:14.5px;color:var(--ink-soft)}
-  .close a,.disclaimer a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)}
+  .close a,.disclaimer a{color:var(--support);text-decoration:none;border-bottom:1px solid var(--support-soft)}
   .foot{margin-top:26px;font-size:11.5px;color:var(--ink-muted);line-height:1.6}
   .backlink{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--ink-soft);text-decoration:none;letter-spacing:0.01em;transition:color .2s}
-  .backlink:hover{color:var(--accent)}
+  .backlink:hover{color:var(--support)}
   .backlink.top{margin-bottom:30px}
   .backlink.bottom{margin-top:34px;padding-top:22px;border-top:0.5px solid var(--border);width:100%}
 

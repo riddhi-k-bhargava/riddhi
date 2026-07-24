@@ -1,14 +1,14 @@
 // Single source of truth for palette — mirrors the CSS vars in index.css and the site.
 // Used by the hand-rolled SVG chart so it stays on-palette with the rest of the portfolio.
 export const C = {
-  cream: '#FAF8F3',
-  warmWhite: '#FFFEF9',
-  ink: '#1C1A17',
-  inkSoft: '#4A4640',
-  inkMuted: '#8A8680',
-  accent: '#C4622A',
-  accentSoft: '#F5EAE2',
-  line: 'rgba(28,26,23,0.1)',
+  cream: '#F5F6F8',
+  warmWhite: '#FFFFFF',
+  ink: '#1A1D23',
+  inkSoft: '#3A4048',
+  inkMuted: '#5A616B',
+  accent: '#A81F3A',
+  accentSoft: '#F9EAED',
+  line: '#E2E5EA',
   pos: '#4E7C59',
   posSoft: '#E7EFE8',
   warn: '#B5792A',

@@ -37,7 +37,7 @@ export default function Tooltip({ text, label = 'More info' }) {
           e.preventDefault()
           setPinned((p) => !p)
         }}
-        className="flex h-[15px] w-[15px] items-center justify-center rounded-full border border-ink-muted/50 text-[9px] font-medium leading-none text-ink-muted transition-colors hover:border-accent hover:text-accent focus:border-accent focus:text-accent"
+        className="flex h-[15px] w-[15px] items-center justify-center rounded-full border border-ink-muted/50 text-[9px] font-medium leading-none text-ink-muted transition-colors hover:border-support hover:text-support focus:border-support focus:text-support"
       >
         i
       </button>
