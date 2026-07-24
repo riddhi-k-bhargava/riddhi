@@ -1,0 +1,327 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Huckleberry Household — Strategy &amp; Analytics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script>
+  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+  posthog.init('phc_nAP5DugiFEEfzH7BpLinUa4yUayiBnBvg9dEyQMrCQy5', {
+    api_host: 'https://us.i.posthog.com',
+    person_profiles: 'identified_only'
+  })
+</script>
+<style>
+  :root{
+    --cream:#F5F6F8; --warm-white:#FFFFFF;
+    --ink:#1A1D23; --ink-soft:#3A4048; --ink-muted:#5A616B;
+    --accent:#A81F3A; --accent-hover:#8A1830; --accent-soft:#F9EAED;
+    --support:#2F6E8F; --support-hover:#235571; --support-soft:#EAF1F5;
+    --border:#E2E5EA;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased;line-height:1.7}
+  .page{max-width:780px;margin:0 auto;padding:60px 48px 72px}
+  .eyebrow{font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:22px}
+  h1{font-family:'Lora',serif;font-weight:400;font-size:clamp(29px,4.4vw,42px);line-height:1.18;color:var(--ink);margin:0 0 20px}
+  h1 em{font-style:italic;color:var(--accent)}
+  .sub{font-size:16.5px;color:var(--ink-soft);line-height:1.7;max-width:640px;margin:0 0 22px;font-weight:300}
+  .sub b{color:var(--ink);font-weight:500}
+  .proto{display:inline-flex;align-items:center;gap:9px;background:var(--ink);color:var(--warm-white);text-decoration:none;font-size:14px;font-weight:400;padding:11px 20px;border-radius:24px;margin-bottom:26px}
+  .proto:hover{background:var(--support)}
+  .proto .pl{font-size:11px;opacity:.7}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+  .tag{font-size:12px;padding:5px 14px;border-radius:20px;border:0.5px solid var(--border);color:var(--ink-soft);background:var(--warm-white)}
+
+  .disclaimer{background:var(--accent-soft);border:0.5px solid rgba(168,31,58,0.25);border-radius:12px;padding:13px 16px;font-size:12.5px;color:#8A1830;line-height:1.55;margin-bottom:32px}
+  .disclaimer b{color:var(--accent);font-weight:500}
+
+  .stats{display:flex;gap:44px;flex-wrap:wrap;padding:26px 0 6px;border-top:0.5px solid var(--border)}
+  .stat .n{font-family:'Lora',serif;font-size:29px;color:var(--ink);font-weight:400;line-height:1;display:block;margin-bottom:7px}
+  .stat .n em{font-style:italic;color:var(--accent)}
+  .stat .l{font-size:12.5px;color:var(--ink-muted);letter-spacing:0.03em;line-height:1.4;max-width:170px}
+  .rough{font-size:11.5px;color:var(--ink-muted);font-style:italic;margin-top:12px}
+
+  section{padding-top:40px}
+  .kicker{font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:12px}
+  h2{font-family:'Lora',serif;font-weight:400;font-size:22px;color:var(--ink);margin:0 0 16px;line-height:1.3}
+  h2 em{font-style:italic;color:var(--accent)}
+  .lead{font-size:16px;color:var(--ink-soft);max-width:650px;margin:0 0 6px}
+
+  .points{display:grid;gap:17px;margin-top:6px}
+  .pt{display:flex;gap:14px}
+  .pt .ix{font-family:'Lora',serif;font-size:15px;color:var(--accent);font-weight:500;flex:none;width:22px;line-height:1.5}
+  .pt .tx{font-size:15px;color:var(--ink-soft);line-height:1.6}
+  .pt .tx b{color:var(--ink);font-weight:500}
+
+  .calc{background:var(--warm-white);border:0.5px solid var(--border);border-radius:14px;padding:22px 24px;margin-top:24px}
+  .calc .ch{font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-muted);font-weight:500;margin-bottom:3px}
+  .calc .cs{font-size:12px;color:var(--ink-muted);font-style:italic;margin-bottom:16px}
+  .crow{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:9px 0;border-top:0.5px solid var(--border)}
+  .crow:first-of-type{border-top:none}
+  .crow .cl{font-size:14px;color:var(--ink-soft);line-height:1.45}
+  .crow .cl b{color:var(--ink);font-weight:500}
+  .crow .cv{font-family:'Lora',serif;font-size:17px;color:var(--ink);white-space:nowrap;font-weight:500}
+  .crow.total{border-top:1px solid var(--accent);margin-top:6px;padding-top:14px}
+  .crow.total .cl{color:var(--ink);font-weight:500;font-size:14.5px}
+  .crow.total .cv{color:var(--accent);font-size:22px}
+
+  .risks{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:8px}
+  .risk{background:var(--warm-white);border:0.5px solid var(--border);border-radius:14px;padding:20px 22px}
+  .risk .rl{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:8px}
+  .risk h3{font-family:'Lora',serif;font-weight:500;font-size:18px;margin:0 0 8px;color:var(--ink)}
+  .risk p{font-size:14px;color:var(--ink-soft);line-height:1.6;margin:0 0 12px}
+  .risk .mit{font-size:14px;color:var(--ink);line-height:1.6;border-top:0.5px solid var(--border);padding-top:12px}
+  .risk .mit b{color:var(--accent);font-weight:500}
+
+  /* metric tree — reuses the calc card idiom */
+  .mrow{display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding:10px 0;border-top:0.5px solid var(--border)}
+  .mrow:first-of-type{border-top:none}
+  .mrow .ml{font-size:14px;color:var(--ink-soft);line-height:1.45}
+  .mrow .ml b{color:var(--ink);font-weight:500;display:block}
+  .mrow .mv{font-family:'Lora',serif;font-size:15px;color:var(--accent);white-space:nowrap;font-weight:500}
+  .mband{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);font-weight:500;padding:16px 0 4px;border-top:0.5px solid var(--border);margin-top:6px}
+  .mband:first-child{border-top:none;padding-top:0;margin-top:0}
+  .nsm{background:var(--accent-soft);border-radius:10px;padding:14px 16px;margin-bottom:6px}
+  .nsm .nl{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:5px}
+  .nsm .nt{font-family:'Lora',serif;font-size:17px;color:var(--ink);line-height:1.4}
+  .nsm .nd{font-size:13px;color:#8A1830;line-height:1.55;margin-top:6px}
+
+  /* migration phases — a real sequence, so it's numbered */
+  .phases{margin-top:10px}
+  .ph{display:flex;gap:16px;padding:0 0 20px 22px;border-left:0.5px solid var(--border);position:relative}
+  .ph:last-child{border-left-color:transparent;padding-bottom:0}
+  .ph::before{content:"";position:absolute;left:-3.5px;top:7px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+  .ph .pn{font-family:'Lora',serif;font-size:13px;color:var(--accent);font-weight:500;flex:none;width:56px;line-height:1.55;letter-spacing:0.02em}
+  .ph .pb{font-size:14.5px;color:var(--ink-soft);line-height:1.6}
+  .ph .pb b{color:var(--ink);font-weight:500}
+  .ph .pg{display:block;font-size:12.5px;color:var(--ink-muted);margin-top:5px;font-style:italic}
+
+  .principle{border-left:2px solid var(--accent);padding:2px 0 2px 16px;margin:22px 0 4px;font-family:'Lora',serif;font-size:17px;line-height:1.45;color:var(--ink)}
+  .principle em{font-style:italic;color:var(--accent)}
+
+  .close{margin-top:40px;padding-top:22px;border-top:0.5px solid var(--border);font-size:14.5px;color:var(--ink-soft)}
+  .close a,.disclaimer a{color:var(--support);text-decoration:none;border-bottom:1px solid var(--support-soft)}
+  .foot{margin-top:26px;font-size:11.5px;color:var(--ink-muted);line-height:1.6}
+  .backlink{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--ink-soft);text-decoration:none;letter-spacing:0.01em;transition:color .2s}
+  .backlink:hover{color:var(--support)}
+  .backlink.top{margin-bottom:30px}
+  .backlink.bottom{margin-top:34px;padding-top:22px;border-top:0.5px solid var(--border);width:100%}
+
+  @media (max-width:680px){ .risks{grid-template-columns:1fr} .page{padding:44px 22px 54px} .stats{gap:26px} .crow,.mrow{flex-wrap:wrap} .ph{gap:10px} .ph .pn{width:auto} }
+  @media print{ body{background:#fff} .page{padding:26px 30px} section{padding-top:28px} .proto{display:none} }
+</style>
+
+<div class="page">
+
+  <a class="backlink top" href="index.html">← Back to portfolio</a>
+
+  <div class="eyebrow">Strategy &amp; Analytics · Prototyping</div>
+  <h1>How Huckleberry could track the <em>household</em>,<br>not just the baby.</h1>
+  <p class="sub"><b>What if the person holding your baby right now could see everything they need, without your password?</b> A nanny, a grandparent and both parents all sign into the same account, so the log can't say who gave the medicine or when. That's the promise to parents. For Huckleberry, it's the household it has never owned.</p>
+
+  <a class="proto" href="https://rb-mocks-huckleberry-household.lovable.app">Try the interactive prototype on Lovable</a>
+
+  <div class="tags">
+    <span class="tag">Identity &amp; permissions</span>
+    <span class="tag">Trust &amp; safety</span>
+    <span class="tag">AI unit economics</span>
+    <span class="tag">Retention</span>
+    <span class="tag">Platform migration</span>
+  </div>
+
+  <div class="disclaimer"><b>Personal project.</b> This is an independent product exploration by Riddhi Bhargava. It is not a Huckleberry product, and it does not represent Huckleberry's strategy, roadmap, or endorsement. Every number below is a rough personal estimate for illustration only, not verified or certified by Huckleberry. Prototype: <a href="https://rb-mocks-huckleberry-household.lovable.app">rb-mocks-huckleberry-household.lovable.app</a></div>
+
+  <div class="stats">
+    <div class="stat"><span class="n"><em>~$2M+</em></span><span class="l">rough incremental annual revenue at maturity</span></div>
+    <div class="stat"><span class="n"><em>~36K</em></span><span class="l">paying households sharing one password with a caregiver today</span></div>
+    <div class="stat"><span class="n"><em>~$0.60</em></span><span class="l">AI cost per household per month, at ~79% gross margin</span></div>
+  </div>
+  <div class="rough">Very rough, back-of-envelope estimates. Not certified by Huckleberry. See the math below.</div>
+
+  <section>
+    <div class="kicker">The opportunity</div>
+    <h2>One baby, four caregivers, one <em>login</em>.</h2>
+    <p class="lead">Huckleberry's help center answers the sharing question directly: everyone signs into the same account on each phone. That is the workaround, and there is nothing underneath it. Most of the complaints about the calendar, the medication log and the reminders trace back to the same place. The account is the thing the app identifies, so the app has no idea that people exist. Give it people and the rest becomes buildable.</p>
+
+    <div class="points">
+      <div class="pt"><span class="ix">01</span><span class="tx"><b>Nobody can say who did what.</b> Four adults share one account, so every entry lands anonymously. A log that can't name who made an entry also can't warn the next person that the medicine already went in.</span></div>
+      <div class="pt"><span class="ix">02</span><span class="tx"><b>The calendar only shows what already happened.</b> SweetSpot predictions never make it onto the timeline. Every bottle is drawn as a flat fifteen minutes whether it took four or twenty, and nothing tells you whether it was finished. What a caregiver arriving at two o'clock needs is the next four hours.</span></div>
+      <div class="pt"><span class="ix">03</span><span class="tx"><b>The calendar just says "medication."</b> Not which one, not the dose, not when the next is due. Reminders run on a single interval, so two prescriptions on different schedules can't both be right.</span></div>
+      <div class="pt"><span class="ix">04</span><span class="tx"><b>There is nowhere to put a tablet.</b> Care happens in a kitchen, and a screen on the counter is the obvious answer. Without caregiver identity the tablet has no idea who is touching it, so everything it records is anonymous all over again.</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">What's in it for the parents</div>
+    <h2>The parent who holds it all in her <em>head</em>.</h2>
+    <p class="lead">The parent who owns the account is usually the one who knows the whole schedule, and she is the reason it works. That is also the problem. When she is the only one who knows, she can't be away from her phone.</p>
+
+    <div class="points">
+      <div class="pt"><span class="ix">01</span><span class="tx"><b>Everyone gets their own way in.</b> Send a link, pick a role, revoke it in one tap when the babysitter stops coming. Nobody has to hand over a password that also opens their billing.</span></div>
+      <div class="pt"><span class="ix">02</span><span class="tx"><b>Every entry has a name on it.</b> Tap it and see who logged it, from which device, and what got edited afterwards. Asking "did anyone give her the amoxicillin" stops being a text message you send from a meeting.</span></div>
+      <div class="pt"><span class="ix">03</span><span class="tx"><b>The calendar shows what's coming.</b> Planned and actual on one timeline: the SweetSpot window as a band you can see, real feed durations, how much of the bottle actually went down, and each medication by name and dose.</span></div>
+      <div class="pt"><span class="ix">04</span><span class="tx"><b>A tablet on the counter, for whoever is here.</b> Next up, a countdown, four big buttons. No password, no phone, and a hard stop before a second dose goes in.</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">What's in it for Huckleberry</div>
+    <h2>Seats it is already giving away, and a graph <em>nobody</em> can copy.</h2>
+
+    <div class="points">
+      <div class="pt"><span class="ix">01</span><span class="tx"><b>Every shared password is a seat nobody is paying for.</b> One subscription covers four adults and a camera. Charging per caregiver turns the busiest households into the highest paying ones, and an invite link sent to a nanny is a signup that arrives already knowing why it's there.</span></div>
+      <div class="pt"><span class="ix">02</span><span class="tx"><b>Better attribution means better predictions.</b> SweetSpot is only as good as the log underneath it, and multi-caregiver households produce the messiest logs in the system. The families most likely to pay are getting the worst version of the feature they're paying for.</span></div>
+      <div class="pt"><span class="ix">03</span><span class="tx"><b>The household is the part nobody can copy.</b> Nap prediction is copyable, and Nanit did it in 2025 with NextNap, built on camera-measured sleep rather than what a parent remembers to type in. Who cares for this child, on what schedule, with what authority, is much harder to lift. It also fixes the integration problem. Once caregivers are first class, a Nanit camera signs in as one and writes sleep into the same log, with the same attribution, as the nanny does.</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">Back-of-envelope · potential revenue</div>
+    <h2>Roughly <em>$2M</em> on a ~$11M base, and where it comes from.</h2>
+
+    <div class="calc">
+      <div class="ch">Revenue levers</div>
+      <div class="cs">All figures rough and illustrative. Not verified or certified by Huckleberry.</div>
+      <div class="crow"><span class="cl">Active families (assumption, against a public "5M+ families" claim)</span><span class="cv">~1.2M</span></div>
+      <div class="crow"><span class="cl">Paying households at ~10% conversion, ~$90 blended annual ARPU</span><span class="cv">~$10.8M</span></div>
+      <div class="crow"><span class="cl"><b>Lever 1 · Caregiver seats.</b> ~30% of paying households have a non-parent caregiver (~36K), ~25% attach at +$4/mo</span><span class="cv">~$0.4M</span></div>
+      <div class="crow"><span class="cl"><b>Lever 2 · Conversion lift.</b> +1.2pp on 1.2M active families, from a use case that currently gets a broken product</span><span class="cv">~$1.3M</span></div>
+      <div class="crow"><span class="cl"><b>Lever 3 · Retention.</b> ~36K multi-caregiver households retained ~1.5 months longer</span><span class="cv">~$0.4M</span></div>
+      <div class="crow total"><span class="cl">Rough incremental annual opportunity at maturity</span><span class="cv">~$2.1M</span></div>
+    </div>
+
+    <div class="calc">
+      <div class="ch">Unit economics · what the AI actually costs</div>
+      <div class="cs">Modeled at ~$1.00 per million input tokens and ~$5.00 per million output tokens. Refresh before citing.</div>
+      <div class="crow"><span class="cl"><b>Handoff Brief.</b> ~2,000 input + ~180 output tokens per brief, ~2.5 handoffs a day</span><span class="cv">~$0.22/mo</span></div>
+      <div class="crow"><span class="cl"><b>Natural-language logging</b> across every event type including medication. ~700 in + ~120 out, ~8 entries a day</span><span class="cv">~$0.31/mo</span></div>
+      <div class="crow"><span class="cl"><b>Kiosk "what's next."</b> Arithmetic over a schedule. No model in the loop, so no cost, no latency, nothing to hallucinate</span><span class="cv">$0.00</span></div>
+      <div class="crow"><span class="cl">Retry and eval overhead, ~10%</span><span class="cv">~$0.06/mo</span></div>
+      <div class="crow total"><span class="cl">AI cost per household per month</span><span class="cv">~$0.60</span></div>
+    </div>
+
+    <div class="calc">
+      <div class="ch">Margin on a $4/month caregiver seat</div>
+      <div class="cs">Including the app-store cut, which most AI feature models quietly skip.</div>
+      <div class="crow"><span class="cl">List price, less ~30% app-store fee</span><span class="cv">$2.80</span></div>
+      <div class="crow"><span class="cl">Less AI cost of goods</span><span class="cv">−$0.60</span></div>
+      <div class="crow"><span class="cl"><b>Break-even price</b> · P × 0.70 − $0.60 ≥ 0</span><span class="cv">$0.86/mo</span></div>
+      <div class="crow"><span class="cl">Heavy household at 3× usage, which is what makes brief-caching a requirement rather than an optimization</span><span class="cv">~$1.75/mo</span></div>
+      <div class="crow total"><span class="cl">Gross margin on net revenue, base case</span><span class="cv">~79%</span></div>
+    </div>
+
+    <div class="rough">Levers scale with adoption; year-one numbers would be a fraction of the above. Bear case ~$1.1M, bull case ~$4.3M.</div>
+  </section>
+
+  <section>
+    <div class="kicker">How we'd know it's working</div>
+    <h2>One number that only moves if identity, capture and <em>trust</em> all work.</h2>
+
+    <div class="calc">
+      <div class="nsm">
+        <div class="nl">North star</div>
+        <div class="nt">Attributed Coverage</div>
+        <div class="nd">The share of a child's waking day accounted for by a logged event with a clear actor. Shared-login households sit near zero on the attribution half of it no matter how diligently anyone logs, which is what makes it a useful baseline to beat.</div>
+      </div>
+
+      <div class="mband">Leading · is anyone actually using it</div>
+      <div class="mrow"><span class="ml"><b>Invite accept rate</b>within 48 hours of sending</span><span class="mv">≥ 55%</span></div>
+      <div class="mrow"><span class="ml"><b>Multi-actor households</b>paying households with 2 or more distinct actors in a 7-day window, by day 60</span><span class="mv">≥ 30%</span></div>
+      <div class="mrow"><span class="ml"><b>Kiosk sessions per day</b>in households with the tablet surface turned on</span><span class="mv">≥ 6</span></div>
+      <div class="mrow"><span class="ml"><b>Handoff Brief open rate</b>at shift change</span><span class="mv">≥ 40%</span></div>
+
+      <div class="mband">Lagging · did it pay for itself</div>
+      <div class="mrow"><span class="ml"><b>D90 household retention</b>multi-caregiver against single-caregiver cohorts</span><span class="mv">+8pp</span></div>
+      <div class="mrow"><span class="ml"><b>Free-to-paid conversion</b>absolute lift</span><span class="mv">+1.2pp</span></div>
+      <div class="mrow"><span class="ml"><b>Seat-expansion ARR</b>net of any downgrade</span><span class="mv">~$0.4M</span></div>
+
+      <div class="mband">Quality · is the AI any good</div>
+      <div class="mrow"><span class="ml"><b>Brief groundedness</b>share of factual claims traceable to a specific logged event ID</span><span class="mv">≥ 99.5%</span></div>
+      <div class="mrow"><span class="ml"><b>Medication fidelity</b>name, dose and time matching the record, enforced in the data model rather than by a score</span><span class="mv">100%</span></div>
+      <div class="mrow"><span class="ml"><b>Slot-extraction accuracy</b>event type, amount, unit, time and drug name, on a 500-example golden set</span><span class="mv">≥ 97%</span></div>
+      <div class="mrow"><span class="ml"><b>Abstention behavior</b>low confidence says "couldn't parse, tap to log" instead of guessing</span><span class="mv">100%</span></div>
+
+      <div class="mband">Guardrail · what must not move</div>
+      <div class="mrow"><span class="ml"><b>AI cost per household</b>monthly, blended</span><span class="mv">&lt; $0.75</span></div>
+      <div class="mrow"><span class="ml"><b>Kiosk p95 latency</b>tap to rendered state</span><span class="mv">&lt; 1.2s</span></div>
+      <div class="mrow"><span class="ml"><b>Model-authored medication facts</b>doses, names or times coming from a model rather than the record</span><span class="mv">zero</span></div>
+    </div>
+
+    <div class="principle">Written so it can fail. <em>We're wrong if</em> households invite caregivers and attributed coverage still doesn't beat the shared-login baseline. That would mean identity was never the friction, and the real problem is thumb-taps at three in the morning.</div>
+  </section>
+
+  <section>
+    <div class="kicker">Getting there</div>
+    <h2>Migrating a million accounts without <em>inventing</em> a single fact.</h2>
+    <p class="lead">Changing what the app identifies is the hard part, and history is the hardest bit of it. Every event ever logged came from one anonymous account. There is no way to work out after the fact who did what, and guessing would break the exact thing the feature is for.</p>
+
+    <div class="principle">One rule holds the whole migration together: <em>never put a name on an event you didn't witness.</em> Leaving it blank is fine. Filling it in with a good guess means the record is wrong somewhere and nobody knows where.</div>
+
+    <div class="phases">
+      <div class="ph"><span class="pn">Phase 0</span><span class="pb"><b>Silent backfill.</b> Every existing account becomes a household of one, with the account holder as Owner. Historical events go to a system actor called "logged before caregivers" rather than to the owner, because the owner may not have been the person who logged them. Nothing changes for the user.<span class="pg">Ships dark, and the measure of success is that nobody notices.</span></span></div>
+      <div class="ph"><span class="pn">Phase 1</span><span class="pb"><b>Detect, then ask.</b> Distinct device IDs on one account already show which households are shared. Use that to target the invite prompt, something along the lines of "looks like three devices use this account", but never to assign an identity to anyone. Detection is allowed to drive the funnel. It is not allowed to write attribution.<span class="pg">Measured on invite-prompt conversion by detected device count.</span></span></div>
+      <div class="ph"><span class="pn">Phase 2</span><span class="pb"><b>Claim one device at a time.</b> The shared password keeps working. Each device that signs in gets a one-time "who's using this device?" chooser that turns it into a member. Migration happens per device, at a moment the person was already opening the app, never as an account-wide event.<span class="pg">Guardrail: no forced logouts, and no login wall in front of someone already signed in.</span></span></div>
+      <div class="ph"><span class="pn">Phase 3</span><span class="pb"><b>Retire the shared credential.</b> Once most active devices are claimed, the shared login stops accepting <em>new</em> devices while existing sessions carry on. Owners get a one-tap invite flow for anything still unclaimed, plus an ownership-transfer path for the households where the nanny is the one holding the login.<span class="pg">Gated on claim rate rather than a launch date.</span></span></div>
+      <div class="ph"><span class="pn">Phase 4</span><span class="pb"><b>Show the seam.</b> The calendar draws a visible marker where caregiver attribution starts. Everything before it stays unlabeled. Smoothing over that line would be trivial to build and would quietly undo the reason anyone trusts the log.<span class="pg">Attribution-unknown rate gets tracked, and should fall close to zero within two months of a household converting.</span></span></div>
+    </div>
+
+    <div class="calc">
+      <div class="ch">Migration instrumentation</div>
+      <div class="cs">What gets watched during rollout, and what stops it.</div>
+      <div class="mrow"><span class="ml"><b>Household conversion rate</b>shared accounts that add at least one real member</span><span class="mv">track weekly</span></div>
+      <div class="mrow"><span class="ml"><b>Device claim rate</b>signed-in devices resolved to a named member</span><span class="mv">gate for Phase 3</span></div>
+      <div class="mrow"><span class="ml"><b>Churn delta at conversion</b>7-day activity drop against a held-out control</span><span class="mv">kill switch</span></div>
+      <div class="mrow"><span class="ml"><b>Support contacts per 1,000 converted</b>the honest cost of any identity change</span><span class="mv">watch</span></div>
+      <div class="mrow"><span class="ml"><b>Attribution-unknown rate</b>events with no resolvable actor after conversion</span><span class="mv">→ 0</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">What could break it</div>
+    <h2>Four real risks, with the <em>guardrails</em> that hold them.</h2>
+
+    <div class="risks">
+      <div class="risk">
+        <div class="rl">Risk 01 · Trust</div>
+        <h3>A nanny is an employee.</h3>
+        <p>A timestamped activity log of a paid worker is workforce monitoring, whatever color the app is. Get it wrong and caregivers experience the feature as being watched rather than being helped.</p>
+        <div class="mit"><b>Mitigation.</b> Consent at invite acceptance, written in plain language. Strict data minimization, so a caregiver sees the child's care record and never billing or another caregiver's location. And an exit they can trigger themselves, revoking their own access without asking anyone.</div>
+      </div>
+
+      <div class="risk">
+        <div class="rl">Risk 02 · Safety</div>
+        <h3>The model states a dose.</h3>
+        <p>A summary that invents a medication name, dose or time is the worst thing this system can produce, and it is the failure an eval score of 99% does nothing to protect you from.</p>
+        <div class="mit"><b>Mitigation.</b> Handle it in the data model, not with a score. Medication lines are rendered straight from the record, so the model writes the narrative around them and never has the authority to state a dose. Paired with dose-lock: a hard stop and a second confirm when someone else gave a medicine recently.</div>
+      </div>
+
+      <div class="risk">
+        <div class="rl">Risk 03 · Dependency</div>
+        <h3>Nanit has no reason to help.</h3>
+        <p>There is no public Nanit API, and since NextNap shipped they compete on nap prediction rather than partner on it. A strategy that assumes an integration may be waiting on a door that never opens.</p>
+        <div class="mit"><b>Mitigation.</b> Build on Apple HealthKit and Google Health Connect as a neutral layer instead of a bilateral deal, and ship a manual "confirm this sleep session" fallback so the feature degrades to zero integrations instead of breaking.</div>
+      </div>
+
+      <div class="risk">
+        <div class="rl">Risk 04 · Monetization</div>
+        <h3>Charging for the safety feature.</h3>
+        <p>Seats are the obvious business model, and the obvious version of it puts attribution behind the paywall. "Pay us and we'll tell you who gave your baby the medicine" is a headline waiting to happen.</p>
+        <div class="mit"><b>Mitigation.</b> Attribution, revocation and the audit trail ship free, because charging for them is what writes that headline. Charge for the parts that save people time: the kiosk surface, handoff briefs, per-medication schedules and device sync. Seats stay strictly additive so no parent has a reason to downgrade.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="close">
+    Validate first. Two questions come before any build: does attributed coverage actually beat the shared-login baseline, and does a per-device claim flow convert without leaking users. A twenty-household diary study answers the first. A held-out control on Phase 2 answers the second. See it in action: <a href="https://rb-mocks-huckleberry-household.lovable.app">rb-mocks-huckleberry-household.lovable.app</a>
+  </div>
+
+  <div class="foot">
+    <b>Disclaimer.</b> Independent personal project by Riddhi Bhargava. Not affiliated with, endorsed by, or representative of Huckleberry Labs or Nanit. All figures are rough personal estimates for illustration only and are not certified by Huckleberry. Product observations reflect the author's own use of the app.
+  </div>
+
+  <a class="backlink bottom" href="index.html">← Back to portfolio</a>
+
+</div>
