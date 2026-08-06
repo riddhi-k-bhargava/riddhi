@@ -1,0 +1,464 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Baby Gear Tracker — Working Prototype</title>
+<link rel="icon" href="/riddhi/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/riddhi/favicon.ico">
+<meta name="theme-color" content="#A81F3A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script>
+  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+  posthog.init('phc_nAP5DugiFEEfzH7BpLinUa4yUayiBnBvg9dEyQMrCQy5', {
+    api_host: 'https://us.i.posthog.com',
+    person_profiles: 'identified_only'
+  })
+</script>
+<style>
+  :root{
+    --cream:#F5F6F8; --warm-white:#FFFFFF;
+    --ink:#1A1D23; --ink-soft:#3A4048; --ink-muted:#5A616B;
+    --accent:#A81F3A; --accent-hover:#8A1830; --accent-soft:#F9EAED;
+    --support:#2F6E8F; --support-hover:#235571; --support-soft:#EAF1F5;
+    --border:#E2E5EA;
+    --pos:#4E7C59; --pos-soft:#E7EFE8;
+    --warn:#B5792A; --warn-soft:#F6EEDD;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif;font-weight:400;-webkit-font-smoothing:antialiased;line-height:1.6}
+  .page{max-width:760px;margin:0 auto;padding:56px 40px 64px}
+  a{color:var(--support);text-decoration:none}
+  a:hover{color:var(--support-hover)}
+
+  .backlink{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--ink-soft);text-decoration:none;letter-spacing:0.01em;transition:color .2s}
+  .backlink:hover{color:var(--support)}
+  .backlink.top{margin-bottom:30px}
+  .backlink.bottom{display:inline-flex;margin-top:36px;padding-top:22px;border-top:0.5px solid var(--border);width:100%}
+
+  .eyebrow{font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:20px}
+  h1{font-family:'Lora',serif;font-weight:400;font-size:clamp(28px,4.4vw,40px);line-height:1.18;color:var(--ink);margin:0 0 16px;letter-spacing:-0.01em}
+  h1 em{font-style:italic;color:var(--accent)}
+  .sub{font-size:16px;color:var(--ink-soft);line-height:1.7;max-width:620px;margin:0 0 10px;font-weight:300}
+  .asof{font-size:12px;color:var(--ink-muted);font-style:italic;margin:0 0 30px}
+
+  .status{position:fixed;top:14px;right:14px;z-index:30;font-size:11.5px;letter-spacing:0.03em;color:var(--ink-muted);background:var(--warm-white);border:0.5px solid var(--border);border-radius:20px;padding:6px 12px;opacity:0;transition:opacity .25s;pointer-events:none}
+  .status.show{opacity:1}
+  .status.err{color:var(--accent);border-color:rgba(168,31,58,0.3);background:var(--accent-soft)}
+
+  .card{background:var(--warm-white);border:0.5px solid var(--border);border-radius:14px;padding:22px 24px;margin-bottom:18px}
+  .card-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:4px}
+  .card-h h2{font-family:'Lora',serif;font-weight:500;font-size:19px;margin:0;color:var(--ink)}
+  .card-note{font-size:12.5px;color:var(--ink-muted);margin:0 0 18px;line-height:1.5}
+
+  .fieldrow{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+  label.field{display:flex;flex-direction:column;gap:7px}
+  .flabel{font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-muted)}
+  input,select{font-family:'DM Sans',sans-serif;font-size:15px;color:var(--ink);background:var(--cream);border:0.5px solid var(--border);border-radius:8px;padding:10px 12px;width:100%}
+  input:focus,select:focus{outline:none;border-color:var(--support)}
+  input[type="date"]{font-family:'DM Sans',sans-serif}
+
+  .capgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin:4px 0 4px}
+  .cap{display:flex;align-items:flex-start;gap:9px;font-size:14px;color:var(--ink-soft);cursor:pointer;line-height:1.4}
+  .cap input{width:16px;height:16px;flex:none;margin-top:2px;accent-color:var(--support)}
+
+  .btn{font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:500;letter-spacing:0.02em;cursor:pointer;border-radius:22px;padding:10px 20px;border:0.5px solid transparent;transition:background .15s,color .15s,border-color .15s}
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-primary:hover{background:var(--accent-hover)}
+  .btn-support{background:var(--support);color:#fff}
+  .btn-support:hover{background:var(--support-hover)}
+  .btn-ghost{background:transparent;color:var(--support);border-color:var(--border)}
+  .btn-ghost:hover{border-color:var(--support)}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+  .btnrow{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:6px}
+
+  .inv-add{display:grid;grid-template-columns:1fr 150px auto;gap:10px;margin-bottom:14px}
+  .inv-list{display:flex;flex-direction:column}
+  .inv-item{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:0.5px solid var(--border)}
+  .inv-item:first-child{border-top:none}
+  .inv-name{font-size:14.5px;color:var(--ink)}
+  .inv-cat{font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink-muted)}
+  .inv-spacer{margin-left:auto}
+  .toggle{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-size:12px;color:var(--ink-muted);white-space:nowrap}
+  .sw{width:34px;height:19px;border-radius:20px;background:var(--border);position:relative;transition:background .15s;flex:none}
+  .sw::after{content:"";position:absolute;top:2.5px;left:2.5px;width:14px;height:14px;border-radius:50%;background:#fff;transition:left .15s}
+  .toggle.on .sw{background:var(--support)}
+  .toggle.on .sw::after{left:17.5px}
+  .toggle.on{color:var(--support)}
+  .rm{background:none;border:none;color:var(--ink-muted);cursor:pointer;font-size:16px;line-height:1;padding:4px}
+  .rm:hover{color:var(--accent)}
+  .empty{font-size:13.5px;color:var(--ink-muted);font-style:italic;padding:6px 0}
+
+  /* buckets */
+  .bucket{border:0.5px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden;background:var(--cream)}
+  .bucket summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:14px 16px}
+  .bucket summary::-webkit-details-marker{display:none}
+  .bdot{width:9px;height:9px;border-radius:50%;flex:none}
+  .btitle{font-family:'Lora',serif;font-size:15.5px;color:var(--ink);font-weight:500}
+  .bcount{font-size:12px;color:var(--ink-muted)}
+  .bcaret{margin-left:auto;color:var(--ink-muted);font-size:12px;transition:transform .15s}
+  .bucket[open] .bcaret{transform:rotate(180deg)}
+  .bbody{padding:2px 16px 14px}
+  .rec{padding:10px 0;border-top:0.5px solid var(--border)}
+  .rec:first-child{border-top:none}
+  .rec .rn{font-size:14.5px;color:var(--ink);font-weight:500}
+  .rec .rw{font-size:13px;color:var(--ink-soft);line-height:1.55;margin-top:3px}
+  .b-getnow .bdot{background:var(--accent)}
+  .b-coming .bdot{background:var(--support)}
+  .b-keep .bdot{background:var(--pos)}
+  .b-pack .bdot{background:var(--warn)}
+  .b-skip .bdot{background:var(--ink-muted)}
+
+  .lookahead{background:var(--support-soft);border:0.5px solid rgba(47,110,143,0.2);border-radius:12px;padding:15px 17px;margin-top:4px}
+  .lookahead .ll{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--support);font-weight:500;margin-bottom:7px}
+  .lookahead .lt{font-size:14.5px;color:var(--ink-soft);line-height:1.6}
+  .lookahead ul{margin:4px 0 0;padding-left:18px}
+  .lookahead li{margin:4px 0}
+
+  .ontrack{background:var(--pos-soft);border:0.5px solid rgba(78,124,89,0.25);border-radius:12px;padding:14px 16px;margin-top:12px;font-size:13.5px;color:#33513c;line-height:1.6}
+  .ontrack b{color:#2b4433}
+
+  .method{font-size:13px;color:var(--ink-muted);line-height:1.65;margin-top:2px}
+  .method b{color:var(--ink-soft);font-weight:500}
+
+  .foot{margin-top:26px;font-size:11.5px;color:var(--ink-muted);line-height:1.6}
+  .foot b{color:var(--ink-soft);font-weight:500}
+
+  @media (max-width:640px){
+    .page{padding:40px 20px 52px}
+    .fieldrow,.capgrid{grid-template-columns:1fr}
+    .inv-add{grid-template-columns:1fr;gap:8px}
+    .status{position:static;display:inline-block;margin-bottom:14px}
+  }
+</style>
+
+<div class="status" id="status"></div>
+
+<div class="page">
+  <a class="backlink top" href="index.html">← Back to portfolio</a>
+
+  <div class="eyebrow">Working prototype · Baby gear economics</div>
+  <h1>The right baby gear, <em>right when you need it</em>.</h1>
+  <p class="sub">Tell it your baby's age and what they can do today. It sorts your gear into what to get now, what is coming next month, what to keep using, and what to pack away. Minimalist by default, so the honest answer is often "you do not need that yet."</p>
+  <p class="asof">A working prototype. Not affiliated with any brand. Not medical advice.</p>
+
+  <!-- ABOUT BABY -->
+  <section class="card" id="profileCard">
+    <div class="card-h"><h2>About your baby</h2></div>
+    <p class="card-note">Age drives the timing. What your baby can do today refines it. Nothing here is stored with your name, and it is not a developmental screen.</p>
+
+    <div class="fieldrow">
+      <label class="field">
+        <span class="flabel">Birthdate</span>
+        <input type="date" id="birthdate">
+      </label>
+      <label class="field">
+        <span class="flabel">Growth trend</span>
+        <select id="growth">
+          <option value="">Pick one</option>
+          <option value="smaller">On the smaller side</option>
+          <option value="middle">Around the middle</option>
+          <option value="larger">On the larger side</option>
+          <option value="unsure">Not sure</option>
+        </select>
+      </label>
+    </div>
+
+    <span class="flabel" style="display:block;margin:6px 0 10px">What can your baby do today</span>
+    <div class="capgrid" id="capgrid"></div>
+
+    <div class="btnrow">
+      <button class="btn btn-primary" id="saveProfile">Save and continue</button>
+      <span id="ageReadout" class="method"></span>
+    </div>
+  </section>
+
+  <!-- INVENTORY -->
+  <section class="card" id="inventoryCard">
+    <div class="card-h"><h2>Your gear</h2></div>
+    <p class="card-note">Add what you already own. Flip the switch to mark whether you are using it right now. That is what tells the tracker what to keep, pack away, or skip.</p>
+
+    <div class="inv-add">
+      <input type="text" id="invName" placeholder="Item name, for example convertible car seat" maxlength="60">
+      <select id="invCat">
+        <option value="Sleep">Sleep</option>
+        <option value="Feeding">Feeding</option>
+        <option value="Carry & travel">Carry &amp; travel</option>
+        <option value="Play">Play</option>
+        <option value="Clothing">Clothing</option>
+        <option value="Bath & care">Bath &amp; care</option>
+        <option value="Safety">Safety</option>
+        <option value="Other">Other</option>
+      </select>
+      <button class="btn btn-ghost" id="invAdd">Add</button>
+    </div>
+
+    <details id="invDetails" open>
+      <summary style="cursor:pointer;font-size:12px;color:var(--ink-muted);letter-spacing:0.04em;margin-bottom:6px">Your list</summary>
+      <div class="inv-list" id="invList"></div>
+    </details>
+  </section>
+
+  <!-- RECOMMENDATIONS -->
+  <section class="card" id="recCard">
+    <div class="card-h"><h2>What to do with your gear</h2></div>
+    <p class="card-note">Generated by the tracker service, which reads your profile and inventory and returns five buckets. Minimalist bias: it will tell you to skip things you do not need.</p>
+    <div class="btnrow">
+      <button class="btn btn-support" id="recBtn">Generate recommendations</button>
+      <span id="recStatus" class="method"></span>
+    </div>
+    <div id="recOut" style="margin-top:18px"></div>
+  </section>
+
+  <!-- METHOD -->
+  <section class="card">
+    <div class="card-h"><h2>How it decides</h2></div>
+    <p class="method">
+      Timing is anchored to the CDC "Learn the Signs. Act Early." milestone checklists (2022 revision, the 75th percentile ages at which most babies show a skill) and the WHO windows for the six gross motor milestones. Those set when a piece of gear tends to become useful or outgrown.
+      <br><br>
+      The on-track line below any result is a <b>non-diagnostic</b> reflection of what you entered against those public references. It is not a developmental screen and it cannot see your child. If you have any concern about development, talk to your pediatrician and ask about a formal screening.
+      <br><br>
+      The bias is toward owning less. Borrowing, buying secondhand, and waiting are treated as valid answers, and "you do not need this yet" is a real recommendation, not a filler.
+    </p>
+  </section>
+
+  <div class="foot">
+    <b>Not medical advice.</b> This is a working prototype for organizing baby gear, not a medical or developmental tool. Milestone references are public population averages and every baby is different. Nothing here diagnoses or screens for anything. For questions about your child's health or development, contact a qualified clinician. Independent personal project by Riddhi Bhargava, not affiliated with the CDC, the WHO, or any product brand.
+  </div>
+
+  <a class="backlink bottom" href="index.html">← Back to portfolio</a>
+</div>
+
+<script>
+  var API = 'https://baby-gear-tracker.riddhi-kumar246.workers.dev';
+
+  // CDC-anchored capability checklist (motor-forward, plus a couple feeding cues that drive gear)
+  var CAPS = [
+    { id: 'head_control', label: 'Holds head steady when held upright' },
+    { id: 'rolls',        label: 'Rolls over both ways' },
+    { id: 'sits',         label: 'Sits without support' },
+    { id: 'crawls',       label: 'Crawls or scoots' },
+    { id: 'pulls_stand',  label: 'Pulls up to stand' },
+    { id: 'cruises',      label: 'Cruises along furniture' },
+    { id: 'walks',        label: 'Walks a few steps alone' },
+    { id: 'pincer',       label: 'Picks up small things with finger and thumb' },
+    { id: 'self_feeds',   label: 'Feeds self finger foods' },
+    { id: 'open_cup',     label: 'Drinks from an open or straw cup' }
+  ];
+
+  var BUCKETS = [
+    { key: 'getNow',     cls: 'b-getnow', title: 'Get now',            desc: 'useful this week' },
+    { key: 'comingNext', cls: 'b-coming', title: 'Coming next month',  desc: 'get ready, do not buy yet' },
+    { key: 'keepUsing',  cls: 'b-keep',   title: 'Keep using',         desc: 'still earning its space' },
+    { key: 'packAway',   cls: 'b-pack',   title: 'Pack away',          desc: 'outgrown, store or pass on' },
+    { key: 'skip',       cls: 'b-skip',   title: 'Skip',               desc: 'you do not need this' }
+  ];
+
+  var state = { profile: { birthdate: '', growth: '', caps: {} }, inventory: [] };
+  var saveTimer = null;
+
+  var $ = function (id) { return document.getElementById(id); };
+  function setStatus(msg, isErr) {
+    var s = $('status'); s.textContent = msg; s.className = 'status show' + (isErr ? ' err' : '');
+    clearTimeout(s._t); s._t = setTimeout(function () { s.className = 'status'; }, isErr ? 5000 : 1800);
+  }
+
+  /* ---------- worker calls ---------- */
+  async function loadState() {
+    try {
+      var r = await fetch(API + '/state', { method: 'GET' });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      var data = await r.json();
+      if (data && typeof data === 'object') {
+        if (data.profile) state.profile = Object.assign({ birthdate: '', growth: '', caps: {} }, data.profile);
+        if (Array.isArray(data.inventory)) state.inventory = data.inventory;
+      }
+      setStatus('Loaded');
+    } catch (e) {
+      setStatus('Starting fresh (service not reached)', true);
+    }
+    renderProfile(); renderInventory();
+  }
+
+  function queueSave() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(saveState, 600);
+  }
+  async function saveState() {
+    try {
+      var r = await fetch(API + '/state', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ profile: state.profile, inventory: state.inventory })
+      });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      setStatus('Saved');
+    } catch (e) {
+      setStatus('Could not save (service not reached)', true);
+    }
+  }
+
+  async function getRecommendations() {
+    if (!state.profile.birthdate) { setStatus('Add a birthdate first', true); return; }
+    $('recBtn').disabled = true;
+    $('recStatus').textContent = 'Thinking...';
+    try {
+      var r = await fetch(API + '/recommend', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ profile: state.profile, inventory: state.inventory })
+      });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      var data = await r.json();
+      renderRecs(normalizeRecs(data));
+      $('recStatus').textContent = '';
+      if (window.posthog) posthog.capture('babygear_recommend', { items: state.inventory.length });
+    } catch (e) {
+      $('recStatus').textContent = '';
+      $('recOut').innerHTML = '<p class="empty">Could not reach the tracker service. It may be waking up, give it a moment and try again.</p>';
+      setStatus('Recommend failed (service not reached)', true);
+    }
+    $('recBtn').disabled = false;
+  }
+
+  /* ---------- normalize the /recommend response defensively ---------- */
+  function normalizeRecs(data) {
+    var src = (data && data.buckets && typeof data.buckets === 'object') ? data.buckets : (data || {});
+    function pick() {
+      for (var i = 0; i < arguments.length; i++) { var k = arguments[i]; if (Array.isArray(src[k])) return src[k]; }
+      return [];
+    }
+    function item(x) {
+      if (typeof x === 'string') return { name: x, why: '' };
+      x = x || {};
+      return { name: x.name || x.item || x.label || x.title || '', why: x.why || x.reason || x.note || x.rationale || '' };
+    }
+    var buckets = {
+      getNow:     pick('getNow', 'get_now', 'get now').map(item),
+      comingNext: pick('comingNext', 'coming_next_month', 'coming_next', 'coming next month').map(item),
+      keepUsing:  pick('keepUsing', 'keep_using', 'keep using').map(item),
+      packAway:   pick('packAway', 'pack_away', 'pack away').map(item),
+      skip:       pick('skip').map(item)
+    };
+    var week = data.weeklyLookAhead || data.week_ahead || data.weekAhead || data.weekly_look_ahead || src.week_ahead || src.weeklyLookAhead || '';
+    var onTrack = data.onTrackNote || data.on_track_note || data.on_track || src.on_track_note || '';
+    return { buckets: buckets, week: week, onTrack: onTrack };
+  }
+
+  /* ---------- render ---------- */
+  function renderProfile() {
+    $('birthdate').value = state.profile.birthdate || '';
+    $('growth').value = state.profile.growth || '';
+    var grid = $('capgrid'); grid.innerHTML = '';
+    CAPS.forEach(function (c) {
+      var l = document.createElement('label'); l.className = 'cap';
+      var cb = document.createElement('input'); cb.type = 'checkbox'; cb.checked = !!state.profile.caps[c.id];
+      cb.onchange = function () { state.profile.caps[c.id] = cb.checked; queueSave(); };
+      l.appendChild(cb); l.appendChild(document.createTextNode(c.label));
+      grid.appendChild(l);
+    });
+    updateAgeReadout();
+  }
+
+  function ageInMonths(bd) {
+    if (!bd) return null;
+    var d = new Date(bd + 'T00:00:00'); if (isNaN(d)) return null;
+    var now = new Date();
+    var m = (now.getFullYear() - d.getFullYear()) * 12 + (now.getMonth() - d.getMonth());
+    if (now.getDate() < d.getDate()) m -= 1;
+    return Math.max(0, m);
+  }
+  function updateAgeReadout() {
+    var m = ageInMonths(state.profile.birthdate);
+    $('ageReadout').textContent = m === null ? '' : ('About ' + m + ' month' + (m === 1 ? '' : 's') + ' old today.');
+  }
+
+  function renderInventory() {
+    var list = $('invList'); list.innerHTML = '';
+    if (!state.inventory.length) {
+      list.innerHTML = '<p class="empty">No gear yet. Add your first item above.</p>';
+      return;
+    }
+    state.inventory.forEach(function (it) {
+      var row = document.createElement('div'); row.className = 'inv-item';
+      var name = document.createElement('span'); name.className = 'inv-name'; name.textContent = it.name;
+      var cat = document.createElement('span'); cat.className = 'inv-cat'; cat.textContent = it.category || '';
+      var spacer = document.createElement('span'); spacer.className = 'inv-spacer';
+      var tg = document.createElement('span'); tg.className = 'toggle' + (it.using ? ' on' : '');
+      tg.innerHTML = '<span class="sw"></span><span>' + (it.using ? 'Using' : 'Not using') + '</span>';
+      tg.onclick = function () { it.using = !it.using; renderInventory(); queueSave(); };
+      var rm = document.createElement('button'); rm.className = 'rm'; rm.setAttribute('aria-label', 'Remove'); rm.textContent = '×';
+      rm.onclick = function () { state.inventory = state.inventory.filter(function (x) { return x.id !== it.id; }); renderInventory(); queueSave(); };
+      row.appendChild(name); row.appendChild(cat); row.appendChild(spacer); row.appendChild(tg); row.appendChild(rm);
+      list.appendChild(row);
+    });
+  }
+
+  function addInventory() {
+    var name = $('invName').value.trim();
+    if (!name) { $('invName').focus(); return; }
+    state.inventory.push({ id: 'i' + Date.now() + Math.round(Math.random() * 1000), name: name, category: $('invCat').value, using: true });
+    $('invName').value = '';
+    renderInventory(); queueSave();
+  }
+
+  function renderRecs(rec) {
+    var out = $('recOut'); out.innerHTML = '';
+    var total = 0;
+    BUCKETS.forEach(function (b) { total += (rec.buckets[b.key] || []).length; });
+    if (!total) {
+      out.innerHTML = '<p class="empty">The service returned no items. Try adding some gear, or generate again.</p>';
+      return;
+    }
+    BUCKETS.forEach(function (b) {
+      var items = rec.buckets[b.key] || [];
+      var d = document.createElement('details'); d.className = 'bucket ' + b.cls;
+      if (b.key === 'getNow' || b.key === 'comingNext') d.open = true;
+      var sum = document.createElement('summary');
+      sum.innerHTML = '<span class="bdot"></span><span class="btitle">' + b.title + '</span>' +
+        '<span class="bcount">' + items.length + ' · ' + b.desc + '</span><span class="bcaret">▾</span>';
+      d.appendChild(sum);
+      var body = document.createElement('div'); body.className = 'bbody';
+      if (!items.length) {
+        body.innerHTML = '<p class="empty">Nothing here.</p>';
+      } else {
+        items.forEach(function (it) {
+          var r = document.createElement('div'); r.className = 'rec';
+          var nm = document.createElement('div'); nm.className = 'rn'; nm.textContent = it.name;
+          r.appendChild(nm);
+          if (it.why) { var w = document.createElement('div'); w.className = 'rw'; w.textContent = it.why; r.appendChild(w); }
+          body.appendChild(r);
+        });
+      }
+      d.appendChild(body); out.appendChild(d);
+    });
+
+    if (rec.week) {
+      var la = document.createElement('div'); la.className = 'lookahead';
+      var inner = '<div class="ll">The week ahead</div>';
+      if (Array.isArray(rec.week)) {
+        inner += '<ul>' + rec.week.map(function (x) { return '<li>' + esc(typeof x === 'string' ? x : (x.name || x.text || '')) + '</li>'; }).join('') + '</ul>';
+      } else {
+        inner += '<div class="lt">' + esc(String(rec.week)) + '</div>';
+      }
+      la.innerHTML = inner; out.appendChild(la);
+    }
+    if (rec.onTrack) {
+      var ot = document.createElement('div'); ot.className = 'ontrack';
+      ot.innerHTML = '<b>On track:</b> ' + esc(String(rec.onTrack));
+      out.appendChild(ot);
+    }
+  }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]; }); }
+
+  /* ---------- wire up ---------- */
+  $('birthdate').addEventListener('change', function () { state.profile.birthdate = this.value; updateAgeReadout(); queueSave(); });
+  $('growth').addEventListener('change', function () { state.profile.growth = this.value; queueSave(); });
+  $('saveProfile').addEventListener('click', function () { saveState(); $('inventoryCard').scrollIntoView({ behavior: 'smooth' }); });
+  $('invAdd').addEventListener('click', addInventory);
+  $('invName').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); addInventory(); } });
+  $('recBtn').addEventListener('click', getRecommendations);
+
+  loadState();
+</script>
