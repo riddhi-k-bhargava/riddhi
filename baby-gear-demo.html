@@ -29,20 +29,20 @@
   [hidden]{display:none!important}
   html,body{margin:0;padding:0}
   body{background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif;font-weight:400;-webkit-font-smoothing:antialiased;line-height:1.6}
-  .page{max-width:760px;margin:0 auto;padding:56px 40px 64px}
+  .page{max-width:960px;margin:0 auto;padding:44px 40px 64px}
   a{color:var(--support);text-decoration:none}
   a:hover{color:var(--support-hover)}
 
   .backlink{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--ink-soft);text-decoration:none;letter-spacing:0.01em;transition:color .2s}
   .backlink:hover{color:var(--support)}
   .backlink.bottom{display:inline-flex;margin-top:36px;padding-top:22px;border-top:0.5px solid var(--border);width:100%}
-  .toprow{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:30px}
+  .toprow{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:26px}
 
-  .eyebrow{font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:20px}
-  h1{font-family:'Lora',serif;font-weight:400;font-size:clamp(28px,4.4vw,40px);line-height:1.18;color:var(--ink);margin:0 0 16px;letter-spacing:-0.01em}
+  .eyebrow{font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:14px}
+  h1{font-family:'Lora',serif;font-weight:400;font-size:clamp(25px,3.4vw,32px);line-height:1.18;color:var(--ink);margin:0 0 12px;letter-spacing:-0.01em}
   h1 em{font-style:italic;color:var(--accent)}
-  .sub{font-size:16px;color:var(--ink-soft);line-height:1.7;max-width:620px;margin:0 0 10px;font-weight:300}
-  .asof{font-size:12px;color:var(--ink-muted);font-style:italic;margin:0 0 30px}
+  .sub{font-size:15.5px;color:var(--ink-soft);line-height:1.65;max-width:620px;margin:0 0 8px;font-weight:300}
+  .asof{font-size:12px;color:var(--ink-muted);font-style:italic;margin:0 0 26px}
 
   .status{position:fixed;top:14px;right:14px;z-index:60;font-size:11.5px;letter-spacing:0.03em;color:var(--ink-muted);background:var(--warm-white);border:0.5px solid var(--border);border-radius:20px;padding:6px 12px;opacity:0;transition:opacity .25s;pointer-events:none}
   .status.show{opacity:1}
@@ -53,18 +53,12 @@
   .card-h h2{font-family:'Lora',serif;font-weight:500;font-size:19px;margin:0;color:var(--ink)}
   .card-note{font-size:12.5px;color:var(--ink-muted);margin:0 0 18px;line-height:1.5}
 
-  .fieldrow{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+  .fieldrow{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:8px}
   label.field{display:flex;flex-direction:column;gap:7px}
   .flabel{font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-muted)}
   input,select{font-family:'DM Sans',sans-serif;font-size:15px;color:var(--ink);background:var(--cream);border:0.5px solid var(--border);border-radius:8px;padding:10px 12px;width:100%}
   input:focus,select:focus{outline:none;border-color:var(--support)}
   input[type="date"]{font-family:'DM Sans',sans-serif}
-
-  .capgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin:4px 0 4px}
-  .cap{display:flex;align-items:flex-start;gap:9px;font-size:14px;color:var(--ink-soft);cursor:pointer;line-height:1.4}
-  .cap input{width:16px;height:16px;flex:none;margin-top:2px;accent-color:var(--support)}
-  .capgroup{grid-column:1 / -1;font-size:10.5px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-muted);margin:8px 0 -2px}
-  .capgroup:first-child{margin-top:0}
 
   .btn{font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:500;letter-spacing:0.02em;cursor:pointer;border-radius:22px;padding:10px 20px;border:0.5px solid transparent;transition:background .15s,color .15s,border-color .15s}
   .btn-primary{background:var(--accent);color:#fff}
@@ -73,56 +67,83 @@
   .btn-support:hover{background:var(--support-hover)}
   .btn-ghost{background:transparent;color:var(--support);border-color:var(--border)}
   .btn-ghost:hover{border-color:var(--support)}
+  .btn-plain{background:transparent;border:none;color:var(--ink-muted)}
+  .btn-plain:hover{color:var(--support)}
   .btn:disabled{opacity:.5;cursor:not-allowed}
   .btnrow{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:6px}
 
-  /* goal chips */
+  /* skills + goal chips */
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:12.5px;color:var(--ink-soft);background:var(--cream);border:0.5px solid var(--border);border-radius:16px;padding:6px 12px;cursor:pointer;transition:background .12s,border-color .12s,color .12s;user-select:none}
+  .chip:hover{border-color:var(--support)}
+  .chip.on{background:var(--support-soft);border-color:var(--support);color:var(--support)}
+  .chip.static{cursor:default}
+  .chip.static:hover{border-color:var(--border)}
+  .chip.static.on:hover{border-color:var(--support)}
+  .skillgroup{flex-basis:100%;font-size:10.5px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-muted);margin:8px 0 -2px}
+  .skillgroup:first-child{margin-top:0}
+
   .goalblock{margin-bottom:16px}
   .goalblock:last-child{margin-bottom:0}
   .goalhdr{font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-muted);margin:0 0 8px}
   .chiprow{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 10px}
-  .chip{font-size:12.5px;color:var(--ink-soft);background:var(--cream);border:0.5px solid var(--border);border-radius:16px;padding:6px 12px;cursor:pointer;transition:background .12s,border-color .12s,color .12s;user-select:none}
-  .chip:hover{border-color:var(--support)}
-  .chip.on{background:var(--support-soft);border-color:var(--support);color:var(--support)}
 
-  .inv-add{display:grid;grid-template-columns:1fr 150px auto;gap:10px;margin-bottom:14px}
+  /* stepper */
+  .stepdots{display:flex;gap:7px;margin:2px 0 16px}
+  .stepdots span{width:8px;height:8px;border-radius:50%;background:var(--border)}
+  .stepdots span.on{background:var(--support)}
+  .steppane{padding-top:4px}
+  .stepnav{display:flex;gap:10px;align-items:center;margin-top:18px}
+
+  /* settings bar */
+  .settingsbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--warm-white);border:0.5px solid var(--border);border-radius:12px;padding:11px 14px;margin-bottom:16px}
+  .settingsbar .sbl{font-size:10px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);margin-right:2px}
+
+  /* workspace */
+  .wsgrid{display:grid;grid-template-columns:0.92fr 1.08fr;gap:16px;align-items:start;margin-bottom:8px}
+  @media (max-width:720px){ .wsgrid{grid-template-columns:1fr} }
+  .panelabel{font-size:10.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--support);margin-bottom:9px;display:flex;align-items:center;gap:10px}
+  .updating{font-size:11px;color:var(--support);letter-spacing:0.02em;font-style:italic}
+
+  .inv-add{display:grid;grid-template-columns:1fr 130px auto;gap:8px;margin:2px 0 12px}
   .inv-list{display:flex;flex-direction:column}
-  .inv-item{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:0.5px solid var(--border)}
+  .inv-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:0.5px solid var(--border)}
   .inv-item:first-child{border-top:none}
-  .inv-name{font-size:14.5px;color:var(--ink)}
-  .inv-cat{font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink-muted)}
+  .inv-name{font-size:14px;color:var(--ink)}
+  .inv-cat{font-size:10.5px;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink-muted)}
   .inv-spacer{margin-left:auto}
-  .toggle{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-size:12px;color:var(--ink-muted);white-space:nowrap}
-  .sw{width:34px;height:19px;border-radius:20px;background:var(--border);position:relative;transition:background .15s;flex:none}
-  .sw::after{content:"";position:absolute;top:2.5px;left:2.5px;width:14px;height:14px;border-radius:50%;background:#fff;transition:left .15s}
+  .qtytag{font-size:11px;color:var(--support);background:var(--support-soft);border-radius:9px;padding:1px 7px;margin-left:5px}
+  .toggle{display:inline-flex;align-items:center;gap:7px;cursor:pointer;font-size:11.5px;color:var(--ink-muted);white-space:nowrap}
+  .sw{width:32px;height:18px;border-radius:20px;background:var(--border);position:relative;transition:background .15s;flex:none}
+  .sw::after{content:"";position:absolute;top:2.5px;left:2.5px;width:13px;height:13px;border-radius:50%;background:#fff;transition:left .15s}
   .toggle.on .sw{background:var(--support)}
-  .toggle.on .sw::after{left:17.5px}
+  .toggle.on .sw::after{left:16.5px}
   .toggle.on{color:var(--support)}
-  .rm{background:none;border:none;color:var(--ink-muted);cursor:pointer;font-size:16px;line-height:1;padding:4px}
-  .rm:hover{color:var(--accent)}
+  .iconbtn{width:26px;height:26px;border:0.5px solid var(--border);border-radius:7px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;color:var(--ink-muted);background:var(--warm-white);cursor:pointer;flex:none;line-height:1}
+  .iconbtn:hover{border-color:var(--support);color:var(--support)}
+  .iconbtn.del:hover{border-color:var(--accent);color:var(--accent)}
   .empty{font-size:13.5px;color:var(--ink-muted);font-style:italic;padding:6px 0}
 
   /* buckets */
   .bucket{border:0.5px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden;background:var(--cream)}
-  .bucket summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:14px 16px}
+  .bucket summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:13px 15px}
   .bucket summary::-webkit-details-marker{display:none}
   .bdot{width:9px;height:9px;border-radius:50%;flex:none}
-  .btitle{font-family:'Lora',serif;font-size:15.5px;color:var(--ink);font-weight:500}
-  .bcount{font-size:12px;color:var(--ink-muted)}
+  .btitle{font-family:'Lora',serif;font-size:15px;color:var(--ink);font-weight:500}
+  .bcount{font-size:11.5px;color:var(--ink-muted)}
   .bcaret{margin-left:auto;color:var(--ink-muted);font-size:12px;transition:transform .15s}
   .bucket[open] .bcaret{transform:rotate(180deg)}
-  .bbody{padding:2px 16px 14px}
-  .rec{padding:10px 0;border-top:0.5px solid var(--border)}
+  .bbody{padding:2px 15px 13px}
+  .rec{padding:9px 0;border-top:0.5px solid var(--border)}
   .rec:first-child{border-top:none}
-  .rec .rn{font-size:14.5px;color:var(--ink);font-weight:500}
-  .rec .rw{font-size:13px;color:var(--ink-soft);line-height:1.55;margin-top:3px}
+  .rec .rn{font-size:14px;color:var(--ink);font-weight:500}
+  .rec .rw{font-size:12.5px;color:var(--ink-soft);line-height:1.5;margin-top:3px}
   .b-getnow .bdot{background:var(--accent)}
   .b-coming .bdot{background:var(--support)}
   .b-keep .bdot{background:var(--pos)}
   .b-pack .bdot{background:var(--warn)}
   .b-skip .bdot{background:var(--ink-muted)}
 
-  /* goal support */
   .gs-grp{margin-bottom:10px}
   .gs-grp:last-child{margin-bottom:0}
   .gs-ghdr{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--support);font-weight:500;margin:4px 0 6px}
@@ -133,21 +154,19 @@
   .gs-tag{font-size:10px;letter-spacing:0.05em;text-transform:uppercase;padding:2px 8px;border-radius:10px;font-weight:500}
   .gs-use{background:var(--pos-soft);color:#33513c}
   .gs-buy{background:var(--warn-soft);color:#7a5117}
-  .gs-why{font-size:12.5px;color:var(--ink-soft);line-height:1.55;margin-top:3px}
+  .gs-why{font-size:12.5px;color:var(--ink-soft);line-height:1.5;margin-top:3px}
 
-  .lookahead{background:var(--support-soft);border:0.5px solid rgba(47,110,143,0.2);border-radius:12px;padding:15px 17px;margin-top:4px}
+  .lookahead{background:var(--support-soft);border:0.5px solid rgba(47,110,143,0.2);border-radius:12px;padding:14px 16px;margin-top:4px}
   .lookahead .ll{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--support);font-weight:500;margin-bottom:7px}
-  .lookahead .lt{font-size:14.5px;color:var(--ink-soft);line-height:1.6}
+  .lookahead .lt{font-size:14px;color:var(--ink-soft);line-height:1.55}
   .lookahead ul{margin:4px 0 0;padding-left:18px}
   .lookahead li{margin:4px 0}
-
-  .ontrack{background:var(--pos-soft);border:0.5px solid rgba(78,124,89,0.25);border-radius:12px;padding:14px 16px;margin-top:12px;font-size:13.5px;color:#33513c;line-height:1.6}
+  .ontrack{background:var(--pos-soft);border:0.5px solid rgba(78,124,89,0.25);border-radius:12px;padding:13px 15px;margin-top:12px;font-size:13px;color:#33513c;line-height:1.55}
   .ontrack b{color:#2b4433}
 
-  .method{font-size:13px;color:var(--ink-muted);line-height:1.65;margin-top:2px}
+  .method{font-size:13px;color:var(--ink-muted);line-height:1.6;margin-top:2px}
   .method b{color:var(--ink-soft);font-weight:500}
-
-  .foot{margin-top:26px;font-size:11.5px;color:var(--ink-muted);line-height:1.6}
+  .foot{margin-top:22px;font-size:11.5px;color:var(--ink-muted);line-height:1.6}
   .foot b{color:var(--ink-soft);font-weight:500}
 
   /* login */
@@ -155,7 +174,7 @@
   .login-card{background:var(--warm-white);border:0.5px solid var(--border);border-radius:16px;padding:32px 30px;width:100%;max-width:400px;box-shadow:0 12px 40px rgba(26,29,35,0.08)}
   .login-card h1{font-size:24px;margin-bottom:10px}
 
-  /* scan modal */
+  /* scan / edit modal */
   .scan-modal{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:20px}
   .scan-backdrop{position:absolute;inset:0;background:rgba(26,29,35,0.55)}
   .scan-box{position:relative;background:var(--warm-white);border-radius:16px;border:0.5px solid var(--border);padding:22px 22px 20px;width:100%;max-width:420px;box-shadow:0 20px 60px rgba(26,29,35,0.25);max-height:calc(100vh - 40px);overflow-y:auto}
@@ -163,12 +182,12 @@
   .scan-hint{font-size:12.5px;color:var(--ink-muted);line-height:1.5;margin:0 0 14px}
   .scan-viewport{background:#0b0d10;border-radius:12px;overflow:hidden;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center}
   .scan-viewport video{width:100%;height:100%;object-fit:cover}
-  .scan-actions{display:flex;gap:10px;margin-top:16px}
+  .scan-actions{display:flex;gap:10px;margin-top:16px;align-items:center}
   .scan-busy{position:absolute;inset:0;background:rgba(255,255,255,0.92);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--ink-soft)}
 
   @media (max-width:640px){
-    .page{padding:40px 20px 52px}
-    .fieldrow,.capgrid{grid-template-columns:1fr}
+    .page{padding:36px 20px 52px}
+    .fieldrow{grid-template-columns:1fr}
     .inv-add{grid-template-columns:1fr;gap:8px}
     .status{position:static;display:inline-block;margin-bottom:14px}
   }
@@ -201,103 +220,99 @@
 
   <div class="eyebrow">Working prototype · Live demo</div>
   <h1>The right baby gear, <em>right when you need it</em>.</h1>
-  <p class="sub">Tell it your baby's age and what they can do today. It sorts your gear into what to get now, what is coming next month, what to keep using, and what to pack away. Minimalist by default, so the honest answer is often "you do not need that yet."</p>
+  <p class="sub">Tell it your baby's age and what they can do, add your gear, and it keeps a live plan: what to get now, what is coming next, what to keep, and what you have outgrown.</p>
   <p class="asof">A working prototype. Not affiliated with any brand. Not medical advice.</p>
 
-  <!-- ABOUT BABY -->
-  <section class="card" id="profileCard">
-    <div class="card-h"><h2>About your baby</h2></div>
-    <p class="card-note">Age drives the timing. What your baby can do today refines it. Nothing here is stored with your name, and it is not a developmental screen.</p>
+  <!-- SETTINGS (guided setup + edit) -->
+  <section id="settings" hidden>
+    <div class="card">
+      <div class="card-h"><h2 id="setHeadTitle">Set up your tracker</h2><span id="setStepTitle" class="method"></span></div>
+      <div class="stepdots" id="setDots"></div>
 
-    <div class="fieldrow">
-      <label class="field">
-        <span class="flabel">Birthdate</span>
-        <input type="date" id="birthdate">
-      </label>
-      <label class="field">
-        <span class="flabel">Growth trend</span>
-        <select id="growth">
-          <option value="">Pick one</option>
-          <option value="smaller">On the smaller side</option>
-          <option value="middle">Around the middle</option>
-          <option value="larger">On the larger side</option>
-          <option value="unsure">Not sure</option>
-        </select>
-      </label>
-    </div>
+      <div class="steppane" id="sec_baby">
+        <p class="card-note">Age drives the timing. Two quick fields. Nothing here is stored with your name, and it is not a developmental screen.</p>
+        <div class="fieldrow">
+          <label class="field"><span class="flabel">Birthdate</span><input type="date" id="birthdate"></label>
+          <label class="field"><span class="flabel">Growth trend</span>
+            <select id="growth">
+              <option value="">Pick one</option>
+              <option value="smaller">On the smaller side</option>
+              <option value="middle">Around the middle</option>
+              <option value="larger">On the larger side</option>
+              <option value="unsure">Not sure</option>
+            </select>
+          </label>
+        </div>
+        <div id="ageReadout" class="method"></div>
+      </div>
 
-    <span class="flabel" style="display:block;margin:6px 0 10px">What can she do lately</span>
-    <div class="capgrid" id="capgrid"></div>
+      <div class="steppane" id="sec_skills" hidden>
+        <p class="card-note">Tap what your baby can do lately. It refines the timing. Skip any you are unsure about.</p>
+        <div class="chips" id="capchips"></div>
+      </div>
 
-    <div class="btnrow">
-      <button class="btn btn-primary" id="saveProfile">Save and continue</button>
-      <span id="ageReadout" class="method"></span>
+      <div class="steppane" id="sec_goals" hidden>
+        <p class="card-note">What are you working toward, this week and this month? Pick a chip or type your own. It shapes the goal ideas, with a bias toward using what you already have.</p>
+        <div id="goalsArea"></div>
+      </div>
+
+      <div class="stepnav" id="setStepNav">
+        <button class="btn btn-ghost" id="stepBack">Back</button>
+        <button class="btn btn-primary" id="stepNext">Next →</button>
+        <button class="btn btn-plain" id="stepSkip">Skip</button>
+      </div>
+      <div class="stepnav" id="setDoneRow" hidden>
+        <button class="btn btn-primary" id="setDone">Done</button>
+      </div>
     </div>
   </section>
 
-  <!-- GOALS -->
-  <section class="card" id="goalsCard">
-    <div class="card-h"><h2>Your goals</h2></div>
-    <p class="card-note">What are you working toward, this week and this month? Pick a chip or type your own. This shapes the "toward your goals" ideas below, with a bias toward using what you already have. Update it any time.</p>
-    <div id="goalsArea"></div>
-  </section>
+  <!-- WORKSPACE -->
+  <section id="workspace" hidden>
+    <div class="settingsbar" id="settingsBar"></div>
 
-  <!-- INVENTORY -->
-  <section class="card" id="inventoryCard">
-    <div class="card-h"><h2>Your gear</h2></div>
-    <p class="card-note">Add what you already own, or add one from a photo. Flip the switch to mark whether you are using it right now. That is what tells the tracker what to keep, pack away, or skip.</p>
+    <div class="wsgrid">
+      <div>
+        <div class="panelabel">Your gear</div>
+        <div class="card">
+          <div class="btnrow" style="margin-top:0;margin-bottom:12px">
+            <button class="btn btn-support" id="camBtn">Take a photo</button>
+            <button class="btn btn-ghost" id="uploadBtn">Upload a photo</button>
+            <button class="btn btn-ghost" id="typeBtn">Type it in</button>
+          </div>
+          <div class="inv-add" id="manualAdd" hidden>
+            <input type="text" id="invName" placeholder="Item name, for example convertible car seat" maxlength="60">
+            <select id="invCat"></select>
+            <button class="btn btn-ghost" id="invAdd">Add</button>
+          </div>
+          <div class="inv-list" id="invList"></div>
+        </div>
+      </div>
 
-    <div class="btnrow" style="margin-bottom:14px">
-      <button class="btn btn-support" id="camBtn">Take a photo</button>
-      <button class="btn btn-ghost" id="uploadBtn">Upload a photo</button>
-      <span class="method">A photo is analyzed to classify one item, then discarded. It is never stored.</span>
+      <div>
+        <div class="panelabel">Your plan <span class="updating" id="planStatus"></span></div>
+        <div class="card"><div id="recOut"><p class="empty">Building your plan...</p></div></div>
+      </div>
     </div>
 
-    <div class="inv-add">
-      <input type="text" id="invName" placeholder="Item name, for example convertible car seat" maxlength="60">
-      <select id="invCat"></select>
-      <button class="btn btn-ghost" id="invAdd">Add</button>
+    <section class="card">
+      <div class="card-h"><h2>How it decides</h2></div>
+      <p class="method">
+        Timing is anchored to the CDC "Learn the Signs. Act Early." milestone checklists (2022 revision, the 75th percentile ages at which most babies show a skill) and the WHO windows for the six gross motor milestones.
+        It does not blindly trust the "using" switch: if your baby has likely aged past an item's useful window, it moves to pack away with the typical age noted. For safety-adjacent items like car seat inserts and swaddles, it points you to the product's own weight and height limits and current safe-sleep guidance rather than a hard age.
+        The on-track line is a <b>non-diagnostic</b> reflection of what you entered against those public references. It is not a screen and cannot see your child.
+      </p>
+    </section>
+
+    <div class="foot">
+      <b>Not medical advice.</b> This is a working prototype for organizing baby gear, not a medical or developmental tool. Milestone references are public population averages and every baby is different. Practice ideas like propping to sit are for supervised, awake time only, never for sleep and never unattended. For questions about your child's health, development, feeding, or safe sleep, contact a qualified clinician. Independent personal project by Riddhi Bhargava, not affiliated with the CDC, the WHO, or any product brand.
     </div>
 
-    <details id="invDetails" open>
-      <summary style="cursor:pointer;font-size:12px;color:var(--ink-muted);letter-spacing:0.04em;margin-bottom:6px">Your list</summary>
-      <div class="inv-list" id="invList"></div>
-    </details>
+    <a class="backlink bottom" href="index.html">← Back to portfolio</a>
   </section>
-
-  <!-- RECOMMENDATIONS -->
-  <section class="card" id="recCard">
-    <div class="card-h"><h2>What to do with your gear</h2></div>
-    <p class="card-note">Generated by the tracker service, which reads your profile, goals, and inventory and returns five buckets plus goal ideas. Minimalist bias: it will tell you to skip things you do not need.</p>
-    <div class="btnrow">
-      <button class="btn btn-support" id="recBtn">Generate recommendations</button>
-      <span id="recStatus" class="method"></span>
-    </div>
-    <div id="recOut" style="margin-top:18px"></div>
-  </section>
-
-  <!-- METHOD -->
-  <section class="card">
-    <div class="card-h"><h2>How it decides</h2></div>
-    <p class="method">
-      Timing is anchored to the CDC "Learn the Signs. Act Early." milestone checklists (2022 revision, the 75th percentile ages at which most babies show a skill) and the WHO windows for the six gross motor milestones. Those set when a piece of gear tends to become useful or outgrown.
-      <br><br>
-      It does not blindly trust the "using" switch. If your baby has likely aged past an item's useful window, it moves to pack away with the typical age noted. For safety-adjacent items like car seat inserts and swaddles, it points you to the product's own weight and height limits and current safe-sleep guidance rather than a hard age.
-      <br><br>
-      The on-track line below any result is a <b>non-diagnostic</b> reflection of what you entered against those public references. It is not a developmental screen and it cannot see your child. If you have any concern about development, talk to your pediatrician and ask about a formal screening.
-      <br><br>
-      The bias is toward owning less. Borrowing, buying secondhand, and waiting are treated as valid answers, and "you do not need this yet" is a real recommendation, not a filler.
-    </p>
-  </section>
-
-  <div class="foot">
-    <b>Not medical advice.</b> This is a working prototype for organizing baby gear, not a medical or developmental tool. Milestone references are public population averages and every baby is different. Nothing here diagnoses or screens for anything. Practice ideas like propping to sit are for supervised, awake time only, never for sleep and never unattended. For questions about your child's health, development, feeding, or safe sleep, contact a qualified clinician. Independent personal project by Riddhi Bhargava, not affiliated with the CDC, the WHO, or any product brand.
-  </div>
-
-  <a class="backlink bottom" href="index.html">← Back to portfolio</a>
 </div>
 
-<!-- SCAN MODAL -->
+<!-- SCAN / EDIT MODAL -->
 <div class="scan-modal" id="scanModal" hidden>
   <div class="scan-backdrop" id="scanBackdrop"></div>
   <div class="scan-box">
@@ -312,8 +327,8 @@
     </div>
 
     <div id="scanConfirm" hidden>
-      <div class="scan-title">Confirm before adding</div>
-      <p class="scan-hint" id="scanConfHint">Check the details, adjust anything, then add it to your catalog.</p>
+      <div class="scan-title" id="cfTitle">Confirm before adding</div>
+      <p class="scan-hint" id="cfHint">Check the details, adjust anything, then add it to your catalog.</p>
       <label class="field"><span class="flabel">Item name</span><input type="text" id="cfName" maxlength="60"></label>
       <label class="field" style="margin-top:12px"><span class="flabel">Category</span><select id="cfCat"></select></label>
       <label class="field" style="margin-top:12px"><span class="flabel">Size</span><select id="cfSizeSel"></select></label>
@@ -325,6 +340,7 @@
       <div class="scan-actions">
         <button class="btn btn-primary" id="cfAdd">Add to catalog</button>
         <button class="btn btn-ghost" id="cfRetake">Retake</button>
+        <button class="btn btn-plain" id="cfDelete" style="margin-left:auto;color:var(--accent)" hidden>Delete</button>
       </div>
     </div>
 
@@ -337,48 +353,39 @@
 <script>
   var API = 'https://baby-gear-tracker.riddhi-kumar246.workers.dev';
   var TOKEN = localStorage.getItem('bg_token') || '';
+  var currentView = '';
 
-  // Capability checklist, anchored to CDC / WHO milestone framing.
   var CAPS = [
-    { g: 'Motor',   id: 'head_control',  label: 'Holds head steady when held upright' },
-    { g: 'Motor',   id: 'push_up',       label: 'Pushes up on arms during tummy time' },
+    { g: 'Motor',   id: 'head_control',  label: 'Holds head steady' },
+    { g: 'Motor',   id: 'push_up',       label: 'Pushes up in tummy time' },
     { g: 'Motor',   id: 'rolls',         label: 'Rolls over both ways' },
     { g: 'Motor',   id: 'sits_support',  label: 'Sits with support' },
     { g: 'Motor',   id: 'sits',          label: 'Sits without support' },
-    { g: 'Motor',   id: 'bears_weight',  label: 'Bears weight on legs when held' },
+    { g: 'Motor',   id: 'bears_weight',  label: 'Bears weight on legs' },
     { g: 'Motor',   id: 'crawls',        label: 'Crawls or scoots' },
     { g: 'Motor',   id: 'pulls_stand',   label: 'Pulls up to stand' },
     { g: 'Motor',   id: 'cruises',       label: 'Cruises along furniture' },
-    { g: 'Motor',   id: 'walks',         label: 'Walks a few steps alone' },
-    { g: 'Motor',   id: 'reaches',       label: 'Reaches for and grabs objects' },
-    { g: 'Motor',   id: 'passes',        label: 'Passes objects hand to hand' },
-    { g: 'Motor',   id: 'pincer',        label: 'Picks up small things with finger and thumb' },
+    { g: 'Motor',   id: 'walks',         label: 'Walks a few steps' },
+    { g: 'Motor',   id: 'reaches',       label: 'Reaches for and grabs' },
+    { g: 'Motor',   id: 'passes',        label: 'Passes hand to hand' },
+    { g: 'Motor',   id: 'pincer',        label: 'Finger and thumb pincer' },
     { g: 'Feeding', id: 'mouths',        label: 'Brings objects to mouth' },
     { g: 'Feeding', id: 'watches_eat',   label: 'Watches you eat' },
-    { g: 'Feeding', id: 'reaches_food',  label: 'Leans toward or reaches for your food' },
-    { g: 'Feeding', id: 'opens_mouth',   label: 'Opens mouth when offered a spoon' },
+    { g: 'Feeding', id: 'reaches_food',  label: 'Reaches for your food' },
+    { g: 'Feeding', id: 'opens_mouth',   label: 'Opens mouth for a spoon' },
     { g: 'Feeding', id: 'self_feeds',    label: 'Feeds self finger foods' },
-    { g: 'Feeding', id: 'open_cup',      label: 'Drinks from an open or straw cup' },
+    { g: 'Feeding', id: 'open_cup',      label: 'Drinks from an open cup' },
     { g: 'Social',  id: 'babbles',       label: 'Babbles' },
     { g: 'Social',  id: 'responds_name', label: 'Responds to their name' },
     { g: 'Social',  id: 'laughs',        label: 'Laughs' }
   ];
 
-  // Fixed category enum, shared with the Worker /scan classifier.
   var CATS = [
-    { v: 'clothes',   l: 'Clothes' },
-    { v: 'feeding',   l: 'Feeding' },
-    { v: 'sleep',     l: 'Sleep' },
-    { v: 'furniture', l: 'Furniture' },
-    { v: 'toys',      l: 'Toys' },
-    { v: 'books',     l: 'Books' },
-    { v: 'travel',    l: 'Travel' },
-    { v: 'safety',    l: 'Safety' },
-    { v: 'bath',      l: 'Bath' },
-    { v: 'other',     l: 'Other' }
+    { v: 'clothes', l: 'Clothes' }, { v: 'feeding', l: 'Feeding' }, { v: 'sleep', l: 'Sleep' },
+    { v: 'furniture', l: 'Furniture' }, { v: 'toys', l: 'Toys' }, { v: 'books', l: 'Books' },
+    { v: 'travel', l: 'Travel' }, { v: 'safety', l: 'Safety' }, { v: 'bath', l: 'Bath' }, { v: 'other', l: 'Other' }
   ];
 
-  // Fixed size buckets, shared with the Worker /scan classifier.
   var SIZE_BUCKETS = [
     'Free size', 'Newborn', 'Up to 3 months', 'Up to 6 months', 'Up to 9 months',
     'Up to 12 months', 'Up to 18 months', 'Up to 24 months', 'Not applicable'
@@ -397,6 +404,8 @@
     { key: 'skip',       cls: 'b-skip',   title: 'Skip',               desc: 'you do not need this' }
   ];
 
+  var GROWTH_LABEL = { smaller: 'On the smaller side', middle: 'Around the middle', larger: 'On the larger side', unsure: 'Not sure' };
+
   var state = { profile: { birthdate: '', growth: '', caps: {}, goalWeek: '', goalMonth: '' }, inventory: [] };
   var saveTimer = null;
 
@@ -405,10 +414,13 @@
   function catLabel(v) { for (var i = 0; i < CATS.length; i++) { if (CATS[i].v === v) return CATS[i].l; } return v || ''; }
   function newId() { return 'i' + Date.now() + Math.round(Math.random() * 1000); }
   function titleCase(s) { return String(s || '').toLowerCase().replace(/\b([a-z])/g, function (m, c) { return c.toUpperCase(); }).trim(); }
+  function skillsCount() { var n = 0; CAPS.forEach(function (c) { if (state.profile.caps[c.id]) n++; }); return n; }
   function setStatus(msg, isErr) {
     var s = $('status'); s.textContent = msg; s.className = 'status show' + (isErr ? ' err' : '');
     clearTimeout(s._t); s._t = setTimeout(function () { s.className = 'status'; }, isErr ? 5000 : 1800);
   }
+  // A change happened: persist, and (in the workspace) refresh the plan.
+  function changed() { queueSave(); scheduleRefresh(); }
 
   /* ---------- auth ---------- */
   async function authFetch(path, opts) {
@@ -423,10 +435,9 @@
   function showApp() { $('login').hidden = true; $('app').hidden = false; }
   function showLogin() { $('app').hidden = true; $('login').hidden = false; }
   function doLogout() {
-    TOKEN = '';
-    localStorage.removeItem('bg_token');
-    localStorage.removeItem('bg_user');
+    TOKEN = ''; localStorage.removeItem('bg_token'); localStorage.removeItem('bg_user');
     state = { profile: { birthdate: '', growth: '', caps: {}, goalWeek: '', goalMonth: '' }, inventory: [] };
+    currentView = '';
     showLogin();
   }
   async function signIn() {
@@ -434,10 +445,7 @@
     if (!u || !p) { $('loginErr').textContent = 'Enter username and password'; return; }
     $('loginBtn').disabled = true; $('loginErr').textContent = '';
     try {
-      var r = await fetch(API + '/login', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: u, password: p })
-      });
+      var r = await fetch(API + '/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: u, password: p }) });
       if (r.status === 401) { $('loginErr').textContent = 'Wrong username or password'; $('loginBtn').disabled = false; return; }
       if (!r.ok) throw new Error('HTTP ' + r.status);
       var d = await r.json();
@@ -446,9 +454,7 @@
       $('loginPass').value = '';
       if (window.posthog) posthog.capture('babygear_login');
       showApp(); loadState();
-    } catch (e) {
-      $('loginErr').textContent = 'Could not reach the service, try again';
-    }
+    } catch (e) { $('loginErr').textContent = 'Could not reach the service, try again'; }
     $('loginBtn').disabled = false;
   }
 
@@ -457,13 +463,9 @@
     var caps = [];
     CAPS.forEach(function (c) { if (state.profile.caps[c.id]) caps.push(c.label); });
     return {
-      birthdate: state.profile.birthdate,
-      ageMonths: ageInMonths(state.profile.birthdate),
-      growth: state.profile.growth,
-      caps: state.profile.caps,
-      capabilities: caps,
-      goalWeek: state.profile.goalWeek || '',
-      goalMonth: state.profile.goalMonth || ''
+      birthdate: state.profile.birthdate, ageMonths: ageInMonths(state.profile.birthdate),
+      growth: state.profile.growth, caps: state.profile.caps, capabilities: caps,
+      goalWeek: state.profile.goalWeek || '', goalMonth: state.profile.goalMonth || ''
     };
   }
 
@@ -477,74 +479,66 @@
         if (!state.profile.caps) state.profile.caps = {};
         if (Array.isArray(data.inventory)) state.inventory = data.inventory;
       }
-      setStatus('Loaded');
     } catch (e) {
-      if (String(e && e.message) !== 'unauthorized') setStatus('Starting fresh (service not reached)', true);
+      if (String(e && e.message) === 'unauthorized') return;
+      setStatus('Starting fresh (service not reached)', true);
     }
-    renderProfile(); renderGoals(); renderInventory();
+    route();
   }
 
-  function queueSave() {
-    clearTimeout(saveTimer);
-    saveTimer = setTimeout(saveState, 600);
-  }
+  function queueSave() { clearTimeout(saveTimer); saveTimer = setTimeout(saveState, 700); }
   async function saveState() {
     try {
-      var r = await authFetch('/state', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ profile: state.profile, inventory: state.inventory })
-      });
+      var r = await authFetch('/state', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ profile: state.profile, inventory: state.inventory }) });
       if (!r.ok) throw new Error('HTTP ' + r.status);
       setStatus('Saved');
-    } catch (e) {
-      if (String(e && e.message) !== 'unauthorized') setStatus('Could not save (service not reached)', true);
-    }
+    } catch (e) { if (String(e && e.message) !== 'unauthorized') setStatus('Could not save (service not reached)', true); }
   }
 
+  /* ---------- auto-refresh plan ---------- */
+  var refreshTimer = null, refreshing = false, refreshQueued = false;
+  function scheduleRefresh() {
+    if (currentView !== 'workspace' || !state.profile.birthdate) return;
+    $('planStatus').textContent = 'updating...';
+    clearTimeout(refreshTimer);
+    refreshTimer = setTimeout(refreshNow, 1000);
+  }
+  function refreshNow() {
+    if (currentView !== 'workspace' || !state.profile.birthdate) return;
+    clearTimeout(refreshTimer);
+    if (refreshing) { refreshQueued = true; return; }
+    getRecommendations();
+  }
   async function getRecommendations() {
-    if (!state.profile.birthdate) { setStatus('Add a birthdate first', true); return; }
-    $('recBtn').disabled = true;
-    $('recStatus').textContent = 'Thinking...';
+    refreshing = true;
+    $('planStatus').textContent = 'updating...';
     try {
-      var r = await authFetch('/recommend', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ profile: profilePayload(), inventory: state.inventory })
-      });
+      var r = await authFetch('/recommend', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ profile: profilePayload(), inventory: state.inventory }) });
       if (!r.ok) throw new Error('HTTP ' + r.status);
       var data = await r.json();
       renderRecs(normalizeRecs(data));
-      $('recStatus').textContent = '';
+      $('planStatus').textContent = 'updated';
       if (window.posthog) posthog.capture('babygear_recommend', { items: state.inventory.length });
     } catch (e) {
-      $('recStatus').textContent = '';
       if (String(e && e.message) !== 'unauthorized') {
-        $('recOut').innerHTML = '<p class="empty">Could not reach the tracker service. It may be waking up, give it a moment and try again.</p>';
-        setStatus('Recommend failed (service not reached)', true);
+        $('planStatus').textContent = '';
+        $('recOut').innerHTML = '<p class="empty">Could not reach the tracker service. It may be waking up, give it a moment.</p>';
       }
     }
-    $('recBtn').disabled = false;
+    refreshing = false;
+    if (refreshQueued) { refreshQueued = false; refreshNow(); }
   }
 
-  /* ---------- normalize the /recommend response defensively ---------- */
   function normalizeRecs(data) {
     var src = (data && data.buckets && typeof data.buckets === 'object') ? data.buckets : (data || {});
-    function pick() {
-      for (var i = 0; i < arguments.length; i++) { var k = arguments[i]; if (Array.isArray(src[k])) return src[k]; }
-      return [];
-    }
-    function item(x) {
-      if (typeof x === 'string') return { name: x, why: '' };
-      x = x || {};
-      return { name: x.name || x.item || x.label || x.title || '', why: x.why || x.reason || x.note || x.rationale || '' };
-    }
+    function pick() { for (var i = 0; i < arguments.length; i++) { var k = arguments[i]; if (Array.isArray(src[k])) return src[k]; } return []; }
+    function item(x) { if (typeof x === 'string') return { name: x, why: '' }; x = x || {}; return { name: x.name || x.item || x.label || x.title || '', why: x.why || x.reason || x.note || x.rationale || '' }; }
     var buckets = {
-      getNow:     pick('getNow', 'get_now', 'get now').map(item),
+      getNow: pick('getNow', 'get_now', 'get now').map(item),
       comingNext: pick('comingNext', 'coming_next_month', 'coming_next', 'coming next month').map(item),
-      keepUsing:  pick('keepUsing', 'keep_using', 'keep using').map(item),
-      packAway:   pick('packAway', 'pack_away', 'pack away').map(item),
-      skip:       pick('skip').map(item)
+      keepUsing: pick('keepUsing', 'keep_using', 'keep using').map(item),
+      packAway: pick('packAway', 'pack_away', 'pack away').map(item),
+      skip: pick('skip').map(item)
     };
     var week = data.weeklyLookAhead || data.week_ahead || data.weekAhead || data.weekly_look_ahead || src.week_ahead || src.weeklyLookAhead || '';
     var onTrack = data.onTrackNote || data.on_track_note || data.on_track || src.on_track_note || '';
@@ -553,36 +547,12 @@
       g = g || {};
       var horizon = String(g.goalHorizon || g.horizon || 'week').toLowerCase();
       var mode = String(g.mode || 'use').toLowerCase();
-      return {
-        horizon: horizon === 'month' ? 'month' : 'week',
-        item: g.item || g.name || '',
-        mode: mode === 'buy' ? 'buy' : 'use',
-        why: g.why || g.reason || ''
-      };
+      return { horizon: horizon === 'month' ? 'month' : 'week', item: g.item || g.name || '', mode: mode === 'buy' ? 'buy' : 'use', why: g.why || g.reason || '' };
     }).filter(function (g) { return g.item; });
     return { buckets: buckets, week: week, onTrack: onTrack, goals: goals };
   }
 
-  /* ---------- render: profile ---------- */
-  function renderProfile() {
-    $('birthdate').value = state.profile.birthdate || '';
-    $('growth').value = state.profile.growth || '';
-    var grid = $('capgrid'); grid.innerHTML = '';
-    var lastGroup = '';
-    CAPS.forEach(function (c) {
-      if (c.g !== lastGroup) {
-        var h = document.createElement('div'); h.className = 'capgroup'; h.textContent = c.g;
-        grid.appendChild(h); lastGroup = c.g;
-      }
-      var l = document.createElement('label'); l.className = 'cap';
-      var cb = document.createElement('input'); cb.type = 'checkbox'; cb.checked = !!state.profile.caps[c.id];
-      cb.onchange = function () { state.profile.caps[c.id] = cb.checked; queueSave(); };
-      l.appendChild(cb); l.appendChild(document.createTextNode(c.label));
-      grid.appendChild(l);
-    });
-    updateAgeReadout();
-  }
-
+  /* ---------- age ---------- */
   function ageInMonths(bd) {
     if (!bd) return null;
     var d = new Date(bd + 'T00:00:00'); if (isNaN(d)) return null;
@@ -597,171 +567,198 @@
   }
   function ageToBucket(m) {
     if (m === null || m === undefined) return 'Free size';
-    if (m < 1) return 'Newborn';
-    if (m < 3) return 'Up to 3 months';
-    if (m < 6) return 'Up to 6 months';
-    if (m < 9) return 'Up to 9 months';
-    if (m < 12) return 'Up to 12 months';
-    if (m < 18) return 'Up to 18 months';
+    if (m < 1) return 'Newborn'; if (m < 3) return 'Up to 3 months'; if (m < 6) return 'Up to 6 months';
+    if (m < 9) return 'Up to 9 months'; if (m < 12) return 'Up to 12 months'; if (m < 18) return 'Up to 18 months';
     return 'Up to 24 months';
   }
 
-  /* ---------- render: goals ---------- */
+  /* ---------- render: baby + skills + goals ---------- */
+  function renderBaby() {
+    $('birthdate').value = state.profile.birthdate || '';
+    $('growth').value = state.profile.growth || '';
+    updateAgeReadout();
+  }
+  function renderSkills() {
+    var host = $('capchips'); host.innerHTML = ''; var lastG = '';
+    CAPS.forEach(function (c) {
+      if (c.g !== lastG) { var h = document.createElement('div'); h.className = 'skillgroup'; h.textContent = c.g; host.appendChild(h); lastG = c.g; }
+      var chip = document.createElement('span'); chip.className = 'chip' + (state.profile.caps[c.id] ? ' on' : ''); chip.textContent = c.label;
+      chip.onclick = function () { state.profile.caps[c.id] = !state.profile.caps[c.id]; chip.className = 'chip' + (state.profile.caps[c.id] ? ' on' : ''); changed(); updateSettingsBar(); };
+      host.appendChild(chip);
+    });
+  }
   function goalSegments(s) { return (s || '').split(',').map(function (x) { return x.trim(); }).filter(Boolean); }
   function goalField(horizon) { return horizon === 'week' ? 'goalWeek' : 'goalMonth'; }
-
   function renderGoals() {
     var area = $('goalsArea'); area.innerHTML = '';
     [['week', 'This week'], ['month', 'This month']].forEach(function (pair) {
       var horizon = pair[0];
       var block = document.createElement('div'); block.className = 'goalblock';
-      var hdr = document.createElement('div'); hdr.className = 'goalhdr'; hdr.textContent = pair[1];
-      block.appendChild(hdr);
-
+      var hdr = document.createElement('div'); hdr.className = 'goalhdr'; hdr.textContent = pair[1]; block.appendChild(hdr);
       var row = document.createElement('div'); row.className = 'chiprow';
-      var input = document.createElement('input'); input.type = 'text'; input.maxLength = 120;
-      input.placeholder = 'Type a goal, or pick a chip above';
+      var input = document.createElement('input'); input.type = 'text'; input.maxLength = 120; input.placeholder = 'Type a goal, or pick a chip above';
       input.value = state.profile[goalField(horizon)] || '';
-
       function refreshChips() {
         var have = goalSegments(state.profile[goalField(horizon)]).map(function (x) { return x.toLowerCase(); });
-        Array.prototype.forEach.call(row.children, function (chip) {
-          var on = have.indexOf(chip.getAttribute('data-label').toLowerCase()) >= 0;
-          chip.className = 'chip' + (on ? ' on' : '');
-        });
+        Array.prototype.forEach.call(row.children, function (chip) { chip.className = 'chip' + (have.indexOf(chip.getAttribute('data-label').toLowerCase()) >= 0 ? ' on' : ''); });
       }
-
       GOAL_CHIPS.forEach(function (label) {
-        var chip = document.createElement('span'); chip.className = 'chip';
-        chip.setAttribute('data-label', label); chip.textContent = label;
+        var chip = document.createElement('span'); chip.className = 'chip'; chip.setAttribute('data-label', label); chip.textContent = label;
         chip.onclick = function () {
-          var field = goalField(horizon);
-          var segs = goalSegments(state.profile[field]);
-          var i = -1;
+          var field = goalField(horizon); var segs = goalSegments(state.profile[field]); var i = -1;
           for (var k = 0; k < segs.length; k++) { if (segs[k].toLowerCase() === label.toLowerCase()) { i = k; break; } }
           if (i >= 0) segs.splice(i, 1); else segs.push(label);
-          state.profile[field] = segs.join(', ');
-          input.value = state.profile[field];
-          refreshChips(); queueSave();
+          state.profile[field] = segs.join(', '); input.value = state.profile[field]; refreshChips(); changed(); updateSettingsBar();
         };
         row.appendChild(chip);
       });
-
-      input.addEventListener('input', function () {
-        state.profile[goalField(horizon)] = input.value;
-        refreshChips(); queueSave();
-      });
-
-      block.appendChild(row); block.appendChild(input);
-      area.appendChild(block);
-      refreshChips();
+      input.addEventListener('input', function () { state.profile[goalField(horizon)] = input.value; refreshChips(); changed(); updateSettingsBar(); });
+      block.appendChild(row); block.appendChild(input); area.appendChild(block); refreshChips();
     });
+  }
+
+  /* ---------- guided setup / edit ---------- */
+  var SET_SECS = [{ id: 'baby', title: 'About your baby' }, { id: 'skills', title: 'What can she do lately' }, { id: 'goals', title: 'Your goals' }];
+  var stepIndex = 0, setMode = 'onboard';
+
+  function showSettings(mode) {
+    setMode = mode; currentView = 'settings';
+    $('app').hidden = false; $('login').hidden = true;
+    $('workspace').hidden = true; $('settings').hidden = false;
+    renderBaby(); renderSkills(); renderGoals();
+    if (mode === 'onboard') {
+      $('setHeadTitle').textContent = 'Set up your tracker';
+      $('setDots').hidden = false; $('setStepNav').hidden = false; $('setDoneRow').hidden = true;
+      stepIndex = 0; applyStep();
+    } else {
+      $('setHeadTitle').textContent = 'Edit settings';
+      $('setStepTitle').textContent = ''; $('setDots').hidden = true;
+      $('setStepNav').hidden = true; $('setDoneRow').hidden = false;
+      SET_SECS.forEach(function (s) { $('sec_' + s.id).hidden = false; });
+    }
+    window.scrollTo(0, 0);
+  }
+  function applyStep() {
+    SET_SECS.forEach(function (s, i) { $('sec_' + s.id).hidden = i !== stepIndex; });
+    $('setStepTitle').textContent = 'Step ' + (stepIndex + 1) + ' of ' + SET_SECS.length + ' · ' + SET_SECS[stepIndex].title;
+    var dots = $('setDots'); dots.innerHTML = '';
+    SET_SECS.forEach(function (s, i) { var d = document.createElement('span'); if (i === stepIndex) d.className = 'on'; dots.appendChild(d); });
+    $('stepBack').disabled = stepIndex === 0;
+    $('stepNext').textContent = stepIndex === SET_SECS.length - 1 ? 'See your plan →' : 'Next →';
+  }
+  function stepNext() {
+    if (setMode === 'onboard' && stepIndex === 0 && !state.profile.birthdate) { setStatus('Add a birthdate to continue', true); $('birthdate').focus(); return; }
+    if (stepIndex < SET_SECS.length - 1) { stepIndex++; applyStep(); window.scrollTo(0, 0); }
+    else finishSettings();
+  }
+  function finishSettings() { saveState(); showWorkspace(); }
+
+  /* ---------- workspace ---------- */
+  function route() { if (state.profile.birthdate) showWorkspace(); else showSettings('onboard'); }
+  function showWorkspace() {
+    currentView = 'workspace';
+    $('app').hidden = false; $('login').hidden = true;
+    $('settings').hidden = true; $('workspace').hidden = false;
+    updateSettingsBar(); renderInventory();
+    if (state.profile.birthdate) { $('planStatus').textContent = 'updating...'; refreshNow(); }
+    window.scrollTo(0, 0);
+  }
+  function updateSettingsBar() {
+    var bar = $('settingsBar'); bar.innerHTML = '';
+    var lbl = document.createElement('span'); lbl.className = 'sbl'; lbl.textContent = 'Settings'; bar.appendChild(lbl);
+    function chip(txt, on) { var c = document.createElement('span'); c.className = 'chip static' + (on ? ' on' : ''); c.textContent = txt; bar.appendChild(c); }
+    var m = ageInMonths(state.profile.birthdate);
+    if (m !== null) chip(m + ' mo', true);
+    if (state.profile.growth) chip(GROWTH_LABEL[state.profile.growth] || state.profile.growth, false);
+    var sc = skillsCount(); chip(sc + ' skill' + (sc === 1 ? '' : 's'), sc > 0);
+    var goals = [].concat(goalSegments(state.profile.goalWeek), goalSegments(state.profile.goalMonth));
+    goals.slice(0, 3).forEach(function (g) { chip(g, true); });
+    var btn = document.createElement('button'); btn.className = 'btn btn-support'; btn.style.marginLeft = 'auto'; btn.style.padding = '7px 16px'; btn.style.fontSize = '12.5px';
+    btn.textContent = 'Edit settings'; btn.onclick = function () { showSettings('edit'); };
+    bar.appendChild(btn);
   }
 
   /* ---------- render: inventory ---------- */
   function renderInventory() {
     var list = $('invList'); list.innerHTML = '';
-    if (!state.inventory.length) {
-      list.innerHTML = '<p class="empty">No gear yet. Add your first item above, or add one from a photo.</p>';
-      return;
-    }
+    if (!state.inventory.length) { list.innerHTML = '<p class="empty">No gear yet. Take or upload a photo, or type an item.</p>'; return; }
     state.inventory.forEach(function (it) {
       var qty = it.quantity && it.quantity > 1 ? it.quantity : 1;
       var row = document.createElement('div'); row.className = 'inv-item';
       var name = document.createElement('span'); name.className = 'inv-name';
-      name.textContent = it.name + (qty > 1 ? ' ×' + qty : '');
+      name.textContent = it.name; if (qty > 1) { var q = document.createElement('span'); q.className = 'qtytag'; q.textContent = '×' + qty; name.appendChild(q); }
       var cat = document.createElement('span'); cat.className = 'inv-cat'; cat.textContent = catLabel(it.category);
       var spacer = document.createElement('span'); spacer.className = 'inv-spacer';
       var tg = document.createElement('span'); tg.className = 'toggle' + (it.using ? ' on' : '');
       tg.innerHTML = '<span class="sw"></span><span>' + (it.using ? 'Using' : 'Not using') + '</span>';
-      tg.onclick = function () { it.using = !it.using; renderInventory(); queueSave(); };
-      var rm = document.createElement('button'); rm.className = 'rm'; rm.setAttribute('aria-label', 'Remove'); rm.textContent = '×';
-      rm.onclick = function () { state.inventory = state.inventory.filter(function (x) { return x.id !== it.id; }); renderInventory(); queueSave(); };
-      row.appendChild(name); row.appendChild(cat); row.appendChild(spacer); row.appendChild(tg); row.appendChild(rm);
+      tg.onclick = function () { it.using = !it.using; renderInventory(); changed(); };
+      var ed = document.createElement('button'); ed.className = 'iconbtn'; ed.setAttribute('aria-label', 'Edit'); ed.textContent = '✎';
+      ed.onclick = function () { openItemEditor(it.id); };
+      var rm = document.createElement('button'); rm.className = 'iconbtn del'; rm.setAttribute('aria-label', 'Remove'); rm.textContent = '×';
+      rm.onclick = function () { state.inventory = state.inventory.filter(function (x) { return x.id !== it.id; }); renderInventory(); changed(); };
+      row.appendChild(name); row.appendChild(cat); row.appendChild(spacer); row.appendChild(tg); row.appendChild(ed); row.appendChild(rm);
       list.appendChild(row);
     });
   }
-
   function addInventory() {
     var name = $('invName').value.trim();
     if (!name) { $('invName').focus(); return; }
-    state.inventory.push({ id: newId(), name: name, category: $('invCat').value, using: true, quantity: 1 });
+    state.inventory.push({ id: newId(), name: titleCase(name), category: $('invCat').value, using: true, quantity: 1 });
     $('invName').value = '';
-    renderInventory(); queueSave();
+    renderInventory(); changed();
   }
 
   /* ---------- render: recommendations ---------- */
   function renderRecs(rec) {
     var out = $('recOut'); out.innerHTML = '';
-    var total = 0;
-    BUCKETS.forEach(function (b) { total += (rec.buckets[b.key] || []).length; });
-    if (!total && !(rec.goals && rec.goals.length)) {
-      out.innerHTML = '<p class="empty">The service returned no items. Try adding some gear, or generate again.</p>';
-      return;
-    }
+    var total = 0; BUCKETS.forEach(function (b) { total += (rec.buckets[b.key] || []).length; });
+    if (!total && !(rec.goals && rec.goals.length)) { out.innerHTML = '<p class="empty">Add some gear to see it sorted into buckets.</p>'; return; }
     BUCKETS.forEach(function (b) {
       var items = rec.buckets[b.key] || [];
       var d = document.createElement('details'); d.className = 'bucket ' + b.cls;
       if (b.key === 'getNow' || b.key === 'comingNext') d.open = true;
       var sum = document.createElement('summary');
-      sum.innerHTML = '<span class="bdot"></span><span class="btitle">' + b.title + '</span>' +
-        '<span class="bcount">' + items.length + ' · ' + b.desc + '</span><span class="bcaret">▾</span>';
+      sum.innerHTML = '<span class="bdot"></span><span class="btitle">' + b.title + '</span><span class="bcount">' + items.length + ' · ' + b.desc + '</span><span class="bcaret">▾</span>';
       d.appendChild(sum);
       var body = document.createElement('div'); body.className = 'bbody';
-      if (!items.length) {
-        body.innerHTML = '<p class="empty">Nothing here.</p>';
-      } else {
+      if (!items.length) { body.innerHTML = '<p class="empty">Nothing here.</p>'; }
+      else {
         items.forEach(function (it) {
           var r = document.createElement('div'); r.className = 'rec';
-          var nm = document.createElement('div'); nm.className = 'rn'; nm.textContent = it.name;
-          r.appendChild(nm);
+          var nm = document.createElement('div'); nm.className = 'rn'; nm.textContent = it.name; r.appendChild(nm);
           if (it.why) { var w = document.createElement('div'); w.className = 'rw'; w.textContent = it.why; r.appendChild(w); }
           body.appendChild(r);
         });
       }
       d.appendChild(body); out.appendChild(d);
     });
-
     renderGoalSupport(out, rec.goals);
-
     if (rec.week) {
       var la = document.createElement('div'); la.className = 'lookahead';
       var inner = '<div class="ll">The week ahead</div>';
-      if (Array.isArray(rec.week)) {
-        inner += '<ul>' + rec.week.map(function (x) { return '<li>' + esc(typeof x === 'string' ? x : (x.name || x.text || '')) + '</li>'; }).join('') + '</ul>';
-      } else {
-        inner += '<div class="lt">' + esc(String(rec.week)) + '</div>';
-      }
+      if (Array.isArray(rec.week)) { inner += '<ul>' + rec.week.map(function (x) { return '<li>' + esc(typeof x === 'string' ? x : (x.name || x.text || '')) + '</li>'; }).join('') + '</ul>'; }
+      else { inner += '<div class="lt">' + esc(String(rec.week)) + '</div>'; }
       la.innerHTML = inner; out.appendChild(la);
     }
-    if (rec.onTrack) {
-      var ot = document.createElement('div'); ot.className = 'ontrack';
-      ot.innerHTML = '<b>On track:</b> ' + esc(String(rec.onTrack));
-      out.appendChild(ot);
-    }
+    if (rec.onTrack) { var ot = document.createElement('div'); ot.className = 'ontrack'; ot.innerHTML = '<b>On track:</b> ' + esc(String(rec.onTrack)); out.appendChild(ot); }
   }
-
   function renderGoalSupport(out, goals) {
     if (!goals || !goals.length) return;
     var d = document.createElement('details'); d.className = 'bucket'; d.open = true;
     var sum = document.createElement('summary');
-    sum.innerHTML = '<span class="bdot" style="background:var(--support)"></span><span class="btitle">Toward your goals</span>' +
-      '<span class="bcount">' + goals.length + ' · use what you have first</span><span class="bcaret">▾</span>';
+    sum.innerHTML = '<span class="bdot" style="background:var(--support)"></span><span class="btitle">Toward your goals</span><span class="bcount">' + goals.length + ' · use what you have first</span><span class="bcaret">▾</span>';
     d.appendChild(sum);
     var body = document.createElement('div'); body.className = 'bbody';
-
     [['week', 'This week'], ['month', 'This month']].forEach(function (pair) {
       var group = goals.filter(function (g) { return g.horizon === pair[0]; });
       if (!group.length) return;
       var grp = document.createElement('div'); grp.className = 'gs-grp';
-      var gh = document.createElement('div'); gh.className = 'gs-ghdr'; gh.textContent = pair[1];
-      grp.appendChild(gh);
+      var gh = document.createElement('div'); gh.className = 'gs-ghdr'; gh.textContent = pair[1]; grp.appendChild(gh);
       group.forEach(function (g) {
         var it = document.createElement('div'); it.className = 'gs-item';
         var top = document.createElement('div'); top.className = 'gs-top';
         var nm = document.createElement('span'); nm.className = 'gs-name'; nm.textContent = g.item;
-        var tag = document.createElement('span'); tag.className = 'gs-tag ' + (g.mode === 'buy' ? 'gs-buy' : 'gs-use');
-        tag.textContent = g.mode === 'buy' ? 'buy' : 'use what you have';
+        var tag = document.createElement('span'); tag.className = 'gs-tag ' + (g.mode === 'buy' ? 'gs-buy' : 'gs-use'); tag.textContent = g.mode === 'buy' ? 'buy' : 'use what you have';
         top.appendChild(nm); top.appendChild(tag); it.appendChild(top);
         if (g.why) { var w = document.createElement('div'); w.className = 'gs-why'; w.textContent = g.why; it.appendChild(w); }
         grp.appendChild(it);
@@ -771,150 +768,106 @@
     d.appendChild(body); out.appendChild(d);
   }
 
-  /* ---------- scan: camera / upload -> classify -> confirm ---------- */
-  var scanStream = null;
-  var cfUsingState = false;
+  /* ---------- scan / edit item ---------- */
+  var scanStream = null, cfUsingState = false, editingId = null;
 
-  function showScanPane(which) {
-    $('scanCam').hidden = which !== 'cam';
-    $('scanConfirm').hidden = which !== 'confirm';
-    $('scanBusy').hidden = which !== 'busy';
-  }
+  function showScanPane(which) { $('scanCam').hidden = which !== 'cam'; $('scanConfirm').hidden = which !== 'confirm'; $('scanBusy').hidden = which !== 'busy'; }
 
   async function openCamera() {
-    $('scanModal').hidden = false;
-    showScanPane('cam');
-    try {
-      scanStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' } }, audio: false });
-      var v = $('scanVideo'); v.srcObject = scanStream; await v.play();
-    } catch (e) {
-      // No live camera or permission denied: fall back to the OS camera via a capture input.
-      closeScan();
-      $('scanFileCapture').value = '';
-      $('scanFileCapture').click();
-    }
+    editingId = null;
+    $('scanModal').hidden = false; showScanPane('cam');
+    try { scanStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' } }, audio: false }); var v = $('scanVideo'); v.srcObject = scanStream; await v.play(); }
+    catch (e) { closeScan(); $('scanFileCapture').value = ''; $('scanFileCapture').click(); }
   }
-
-  function openUpload() {
-    $('scanFileUpload').value = '';
-    $('scanFileUpload').click();
-  }
-
-  function stopCamera() {
-    if (scanStream) { scanStream.getTracks().forEach(function (t) { t.stop(); }); scanStream = null; }
-    var v = $('scanVideo'); if (v) v.srcObject = null;
-  }
-
-  function closeScan() {
-    stopCamera();
-    $('scanModal').hidden = true;
-  }
+  function openUpload() { editingId = null; $('scanFileUpload').value = ''; $('scanFileUpload').click(); }
+  function stopCamera() { if (scanStream) { scanStream.getTracks().forEach(function (t) { t.stop(); }); scanStream = null; } var v = $('scanVideo'); if (v) v.srcObject = null; }
+  function closeScan() { stopCamera(); $('scanModal').hidden = true; }
 
   function drawScaledToBase64(source, w, h) {
-    var max = 1024;
-    var scale = Math.min(1, max / Math.max(w, h));
-    var cw = Math.max(1, Math.round(w * scale));
-    var ch = Math.max(1, Math.round(h * scale));
+    var max = 1024; var scale = Math.min(1, max / Math.max(w, h));
+    var cw = Math.max(1, Math.round(w * scale)), ch = Math.max(1, Math.round(h * scale));
     var cv = document.createElement('canvas'); cv.width = cw; cv.height = ch;
     cv.getContext('2d').drawImage(source, 0, 0, cw, ch);
-    var url = cv.toDataURL('image/jpeg', 0.8);
-    return url.split(',')[1];
+    return cv.toDataURL('image/jpeg', 0.8).split(',')[1];
   }
-
   async function captureFromCamera() {
-    var v = $('scanVideo');
-    if (!v.videoWidth) { setStatus('Camera not ready yet', true); return; }
-    var base64 = drawScaledToBase64(v, v.videoWidth, v.videoHeight);
-    stopCamera();
-    await sendScan(base64);
+    var v = $('scanVideo'); if (!v.videoWidth) { setStatus('Camera not ready yet', true); return; }
+    var base64 = drawScaledToBase64(v, v.videoWidth, v.videoHeight); stopCamera(); await sendScan(base64);
   }
-
   function handleFile(file) {
     if (!file) return;
     var img = new Image();
-    img.onload = function () {
-      var base64 = drawScaledToBase64(img, img.naturalWidth, img.naturalHeight);
-      URL.revokeObjectURL(img.src);
-      sendScan(base64);
-    };
+    img.onload = function () { var base64 = drawScaledToBase64(img, img.naturalWidth, img.naturalHeight); URL.revokeObjectURL(img.src); sendScan(base64); };
     img.onerror = function () { setStatus('Could not read that image', true); closeScan(); };
     img.src = URL.createObjectURL(file);
   }
-
   async function sendScan(base64) {
-    $('scanModal').hidden = false;
-    showScanPane('busy');
+    $('scanModal').hidden = false; showScanPane('busy');
     try {
-      var r = await authFetch('/scan', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ imageBase64: base64, mimeType: 'image/jpeg' })
-      });
+      var r = await authFetch('/scan', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ imageBase64: base64, mimeType: 'image/jpeg' }) });
       if (!r.ok) throw new Error('HTTP ' + r.status);
       var res = await r.json();
       if (window.posthog) posthog.capture('babygear_scan', { category: res.category || 'other' });
       showConfirm(res || {});
-    } catch (e) {
-      closeScan();
-      if (String(e && e.message) !== 'unauthorized') setStatus('Scan failed (service not reached)', true);
-    }
+    } catch (e) { closeScan(); if (String(e && e.message) !== 'unauthorized') setStatus('Scan failed (service not reached)', true); }
   }
 
-  function showConfirm(res) {
-    var confident = Number(res.confidence) >= 0.5 && res.category;
-    $('cfName').value = titleCase(res.productType || '');
-    $('cfCat').value = confident ? res.category : '';
-    var size = (res.sizeBucket && SIZE_BUCKETS.indexOf(res.sizeBucket) >= 0)
-      ? res.sizeBucket
-      : ageToBucket(ageInMonths(state.profile.birthdate));
+  // Fill the confirm/edit form. `res` from a scan, or an existing item when editing.
+  function fillItemForm(v) {
+    $('cfName').value = titleCase(v.name || v.productType || '');
+    $('cfCat').value = (v.category && CATS.some(function (c) { return c.v === v.category; })) ? v.category : (v.confident ? v.category : '');
+    var size = (v.sizeBucket && SIZE_BUCKETS.indexOf(v.sizeBucket) >= 0) ? v.sizeBucket : ageToBucket(ageInMonths(state.profile.birthdate));
     $('cfSizeSel').value = size;
-    $('cfQty').value = 1;
-    cfUsingState = false;
-    updateCfUsing();
-    $('scanConfHint').textContent = confident
-      ? 'Check the details, adjust anything, then add it to your catalog.'
-      : 'Not fully sure on this one. Please pick a category and confirm the details.';
-    showScanPane('confirm');
-    $('cfName').focus();
+    $('cfQty').value = v.quantity && v.quantity > 0 ? v.quantity : 1;
+    cfUsingState = !!v.using; updateCfUsing();
   }
-
-  function updateCfUsing() {
-    var t = $('cfUsing');
-    t.className = 'toggle' + (cfUsingState ? ' on' : '');
-    $('cfUsingLbl').textContent = cfUsingState ? 'Using' : 'Not using';
+  function showConfirm(res) {
+    editingId = null;
+    var confident = Number(res.confidence) >= 0.5 && res.category;
+    fillItemForm({ name: res.productType, category: res.category, confident: confident, sizeBucket: res.sizeBucket, quantity: 1, using: false });
+    $('cfTitle').textContent = 'Confirm before adding';
+    $('cfHint').textContent = confident ? 'Check the details, adjust anything, then add it to your catalog.' : 'Not fully sure on this one. Please pick a category and confirm the details.';
+    $('cfAdd').textContent = 'Add to catalog'; $('cfRetake').hidden = false; $('cfDelete').hidden = true;
+    showScanPane('confirm'); $('cfName').focus();
   }
+  function openItemEditor(id) {
+    var it = null; for (var i = 0; i < state.inventory.length; i++) { if (state.inventory[i].id === id) { it = state.inventory[i]; break; } }
+    if (!it) return;
+    editingId = id;
+    fillItemForm({ name: it.name, category: it.category, confident: true, sizeBucket: it.sizeBucket, quantity: it.quantity || 1, using: it.using });
+    $('cfTitle').textContent = 'Edit item';
+    $('cfHint').textContent = 'Update any field, then save.';
+    $('cfAdd').textContent = 'Save'; $('cfRetake').hidden = true; $('cfDelete').hidden = false;
+    $('scanModal').hidden = false; showScanPane('confirm'); $('cfName').focus();
+  }
+  function updateCfUsing() { $('cfUsing').className = 'toggle' + (cfUsingState ? ' on' : ''); $('cfUsingLbl').textContent = cfUsingState ? 'Using' : 'Not using'; }
 
-  function confirmAdd() {
+  function saveItem() {
     var name = titleCase($('cfName').value.trim());
-    var cat = $('cfCat').value || 'other';
     if (!name) { $('cfName').focus(); setStatus('Give the item a name', true); return; }
+    var cat = $('cfCat').value || 'other';
     var qty = Math.max(1, parseInt($('cfQty').value, 10) || 1);
-    state.inventory.push({
-      id: newId(),
-      name: name,
-      category: cat,
-      using: cfUsingState,
-      productType: name,
-      sizeBucket: $('cfSizeSel').value,
-      quantity: qty
-    });
-    renderInventory();
-    closeScan();
-    saveState();
-    if (state.profile.birthdate) getRecommendations();
-    else setStatus('Added. Add a birthdate to get recommendations.', false);
+    var fields = { name: name, category: cat, using: cfUsingState, productType: name, sizeBucket: $('cfSizeSel').value, quantity: qty };
+    if (editingId) {
+      for (var i = 0; i < state.inventory.length; i++) { if (state.inventory[i].id === editingId) { Object.assign(state.inventory[i], fields); break; } }
+    } else {
+      fields.id = newId(); state.inventory.push(fields);
+    }
+    editingId = null; renderInventory(); closeScan(); queueSave(); refreshNow();
+  }
+  function deleteItem() {
+    if (!editingId) { closeScan(); return; }
+    state.inventory = state.inventory.filter(function (x) { return x.id !== editingId; });
+    editingId = null; renderInventory(); closeScan(); queueSave(); refreshNow();
   }
 
-  /* ---------- populate selects ---------- */
+  /* ---------- selects ---------- */
   function fillCatSelect(sel, withPlaceholder) {
     sel.innerHTML = '';
     if (withPlaceholder) { var o = document.createElement('option'); o.value = ''; o.textContent = 'Pick one'; sel.appendChild(o); }
     CATS.forEach(function (c) { var o = document.createElement('option'); o.value = c.v; o.textContent = c.l; sel.appendChild(o); });
   }
-  function fillSizeSelect(sel) {
-    sel.innerHTML = '';
-    SIZE_BUCKETS.forEach(function (s) { var o = document.createElement('option'); o.value = s; o.textContent = s; sel.appendChild(o); });
-  }
+  function fillSizeSelect(sel) { sel.innerHTML = ''; SIZE_BUCKETS.forEach(function (s) { var o = document.createElement('option'); o.value = s; o.textContent = s; sel.appendChild(o); }); }
 
   /* ---------- wire up ---------- */
   fillCatSelect($('invCat'), false);
@@ -926,23 +879,29 @@
   $('loginUser').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); $('loginPass').focus(); } });
   $('signOut').addEventListener('click', function () { if (window.posthog) posthog.capture('babygear_logout'); doLogout(); });
 
-  $('birthdate').addEventListener('change', function () { state.profile.birthdate = this.value; updateAgeReadout(); queueSave(); });
-  $('growth').addEventListener('change', function () { state.profile.growth = this.value; queueSave(); });
-  $('saveProfile').addEventListener('click', function () { saveState(); $('goalsCard').scrollIntoView({ behavior: 'smooth' }); });
-  $('invAdd').addEventListener('click', addInventory);
-  $('invName').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); addInventory(); } });
-  $('recBtn').addEventListener('click', getRecommendations);
+  $('birthdate').addEventListener('change', function () { state.profile.birthdate = this.value; updateAgeReadout(); changed(); updateSettingsBar(); });
+  $('growth').addEventListener('change', function () { state.profile.growth = this.value; changed(); updateSettingsBar(); });
+
+  $('stepBack').addEventListener('click', function () { if (stepIndex > 0) { stepIndex--; applyStep(); window.scrollTo(0, 0); } });
+  $('stepNext').addEventListener('click', stepNext);
+  $('stepSkip').addEventListener('click', finishSettings);
+  $('setDone').addEventListener('click', finishSettings);
 
   $('camBtn').addEventListener('click', openCamera);
   $('uploadBtn').addEventListener('click', openUpload);
+  $('typeBtn').addEventListener('click', function () { var m = $('manualAdd'); m.hidden = !m.hidden; if (!m.hidden) $('invName').focus(); });
+  $('invAdd').addEventListener('click', addInventory);
+  $('invName').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); addInventory(); } });
+
   $('scanCapture').addEventListener('click', captureFromCamera);
   $('scanCancel').addEventListener('click', closeScan);
   $('scanBackdrop').addEventListener('click', closeScan);
   $('scanFileCapture').addEventListener('change', function () { handleFile(this.files && this.files[0]); });
   $('scanFileUpload').addEventListener('change', function () { handleFile(this.files && this.files[0]); });
   $('cfUsing').addEventListener('click', function () { cfUsingState = !cfUsingState; updateCfUsing(); });
-  $('cfAdd').addEventListener('click', confirmAdd);
+  $('cfAdd').addEventListener('click', saveItem);
   $('cfRetake').addEventListener('click', openCamera);
+  $('cfDelete').addEventListener('click', deleteItem);
 
   /* ---------- boot ---------- */
   if (TOKEN) { showApp(); loadState(); } else { showLogin(); }
