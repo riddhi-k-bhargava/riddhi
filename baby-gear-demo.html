@@ -35,8 +35,8 @@
 
   .backlink{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--ink-soft);text-decoration:none;letter-spacing:0.01em;transition:color .2s}
   .backlink:hover{color:var(--support)}
-  .backlink.top{margin-bottom:30px}
   .backlink.bottom{display:inline-flex;margin-top:36px;padding-top:22px;border-top:0.5px solid var(--border);width:100%}
+  .toprow{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:30px}
 
   .eyebrow{font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:20px}
   h1{font-family:'Lora',serif;font-weight:400;font-size:clamp(28px,4.4vw,40px);line-height:1.18;color:var(--ink);margin:0 0 16px;letter-spacing:-0.01em}
@@ -44,7 +44,7 @@
   .sub{font-size:16px;color:var(--ink-soft);line-height:1.7;max-width:620px;margin:0 0 10px;font-weight:300}
   .asof{font-size:12px;color:var(--ink-muted);font-style:italic;margin:0 0 30px}
 
-  .status{position:fixed;top:14px;right:14px;z-index:30;font-size:11.5px;letter-spacing:0.03em;color:var(--ink-muted);background:var(--warm-white);border:0.5px solid var(--border);border-radius:20px;padding:6px 12px;opacity:0;transition:opacity .25s;pointer-events:none}
+  .status{position:fixed;top:14px;right:14px;z-index:60;font-size:11.5px;letter-spacing:0.03em;color:var(--ink-muted);background:var(--warm-white);border:0.5px solid var(--border);border-radius:20px;padding:6px 12px;opacity:0;transition:opacity .25s;pointer-events:none}
   .status.show{opacity:1}
   .status.err{color:var(--accent);border-color:rgba(168,31,58,0.3);background:var(--accent-soft)}
 
@@ -150,6 +150,11 @@
   .foot{margin-top:26px;font-size:11.5px;color:var(--ink-muted);line-height:1.6}
   .foot b{color:var(--ink-soft);font-weight:500}
 
+  /* login */
+  .login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+  .login-card{background:var(--warm-white);border:0.5px solid var(--border);border-radius:16px;padding:32px 30px;width:100%;max-width:400px;box-shadow:0 12px 40px rgba(26,29,35,0.08)}
+  .login-card h1{font-size:24px;margin-bottom:10px}
+
   /* scan modal */
   .scan-modal{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:20px}
   .scan-backdrop{position:absolute;inset:0;background:rgba(26,29,35,0.55)}
@@ -171,8 +176,28 @@
 
 <div class="status" id="status"></div>
 
-<div class="page">
-  <a class="backlink top" href="baby-gear.html">← Back to the case study</a>
+<!-- LOGIN -->
+<div class="login-wrap" id="login" hidden>
+  <div class="login-card">
+    <div class="eyebrow">Working prototype · Live demo</div>
+    <h1>Sign in to the tracker</h1>
+    <p class="sub" style="margin-bottom:20px">Shared demo login. Your entries are saved to your account only.</p>
+    <label class="field" style="margin-bottom:12px"><span class="flabel">Username</span><input type="text" id="loginUser" autocomplete="username"></label>
+    <label class="field" style="margin-bottom:16px"><span class="flabel">Password</span><input type="password" id="loginPass" autocomplete="current-password"></label>
+    <div class="btnrow">
+      <button class="btn btn-primary" id="loginBtn">Sign in</button>
+      <span id="loginErr" class="method" style="color:var(--accent)"></span>
+    </div>
+    <a class="backlink" style="margin-top:22px" href="baby-gear.html">← Back to the case study</a>
+  </div>
+</div>
+
+<!-- APP -->
+<div class="page" id="app" hidden>
+  <div class="toprow">
+    <a class="backlink" href="baby-gear.html">← Back to the case study</a>
+    <button class="btn btn-ghost" id="signOut" style="padding:7px 16px;font-size:12.5px">Sign out</button>
+  </div>
 
   <div class="eyebrow">Working prototype · Live demo</div>
   <h1>The right baby gear, <em>right when you need it</em>.</h1>
@@ -220,11 +245,12 @@
   <!-- INVENTORY -->
   <section class="card" id="inventoryCard">
     <div class="card-h"><h2>Your gear</h2></div>
-    <p class="card-note">Add what you already own, or scan an item with your camera. Flip the switch to mark whether you are using it right now. That is what tells the tracker what to keep, pack away, or skip.</p>
+    <p class="card-note">Add what you already own, or add one from a photo. Flip the switch to mark whether you are using it right now. That is what tells the tracker what to keep, pack away, or skip.</p>
 
-    <div class="btnrow scanrow" style="margin-bottom:14px">
-      <button class="btn btn-support" id="scanBtn">Scan an item</button>
-      <span class="method">Uses your camera to classify one item. The photo is discarded after, never stored.</span>
+    <div class="btnrow" style="margin-bottom:14px">
+      <button class="btn btn-support" id="camBtn">Take a photo</button>
+      <button class="btn btn-ghost" id="uploadBtn">Upload a photo</button>
+      <span class="method">A photo is analyzed to classify one item, then discarded. It is never stored.</span>
     </div>
 
     <div class="inv-add">
@@ -276,8 +302,8 @@
   <div class="scan-backdrop" id="scanBackdrop"></div>
   <div class="scan-box">
     <div id="scanCam">
-      <div class="scan-title">Scan an item</div>
-      <p class="scan-hint">Point the camera at one item and capture. The photo is sent to the tracker to classify the item, then discarded. It is never stored.</p>
+      <div class="scan-title">Take a photo</div>
+      <p class="scan-hint">Point the camera at one item and capture. The photo is analyzed to classify the item, then discarded. It is never stored.</p>
       <div class="scan-viewport"><video id="scanVideo" playsinline muted></video></div>
       <div class="scan-actions">
         <button class="btn btn-support" id="scanCapture">Capture</button>
@@ -290,7 +316,8 @@
       <p class="scan-hint" id="scanConfHint">Check the details, adjust anything, then add it to your catalog.</p>
       <label class="field"><span class="flabel">Item name</span><input type="text" id="cfName" maxlength="60"></label>
       <label class="field" style="margin-top:12px"><span class="flabel">Category</span><select id="cfCat"></select></label>
-      <label class="field" style="margin-top:12px"><span class="flabel">Size or age band</span><input type="text" id="cfSize" maxlength="40" placeholder="for example 0-3 months"></label>
+      <label class="field" style="margin-top:12px"><span class="flabel">Size</span><select id="cfSizeSel"></select></label>
+      <label class="field" style="margin-top:12px"><span class="flabel">How many?</span><input type="number" id="cfQty" min="1" step="1" value="1"></label>
       <div style="margin-top:14px">
         <span class="flabel" style="display:block;margin-bottom:8px">Do you use this now?</span>
         <span class="toggle" id="cfUsing"><span class="sw"></span><span id="cfUsingLbl">Not using</span></span>
@@ -301,17 +328,17 @@
       </div>
     </div>
 
-    <div id="scanBusy" class="scan-busy" hidden>Classifying...</div>
-    <input type="file" id="scanFile" accept="image/*" capture="environment" hidden>
+    <div id="scanBusy" class="scan-busy" hidden>Analyzing...</div>
   </div>
 </div>
+<input type="file" id="scanFileCapture" accept="image/*" capture="environment" hidden>
+<input type="file" id="scanFileUpload" accept="image/*" hidden>
 
 <script>
   var API = 'https://baby-gear-tracker.riddhi-kumar246.workers.dev';
+  var TOKEN = localStorage.getItem('bg_token') || '';
 
   // Capability checklist, anchored to CDC / WHO milestone framing.
-  // Grouped by motor / feeding / social. Feeding and motor cues sharpen the
-  // solids-readiness and sitting-readiness reasoning on the recommender side.
   var CAPS = [
     { g: 'Motor',   id: 'head_control',  label: 'Holds head steady when held upright' },
     { g: 'Motor',   id: 'push_up',       label: 'Pushes up on arms during tummy time' },
@@ -351,6 +378,12 @@
     { v: 'other',     l: 'Other' }
   ];
 
+  // Fixed size buckets, shared with the Worker /scan classifier.
+  var SIZE_BUCKETS = [
+    'Free size', 'Newborn', 'Up to 3 months', 'Up to 6 months', 'Up to 9 months',
+    'Up to 12 months', 'Up to 18 months', 'Up to 24 months', 'Not applicable'
+  ];
+
   var GOAL_CHIPS = [
     'Start solids', 'Sit independently', 'Roll over', 'Start crawling',
     'Self-feed / finger foods', 'Sleep longer stretches', 'Pull to stand'
@@ -371,9 +404,52 @@
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]; }); }
   function catLabel(v) { for (var i = 0; i < CATS.length; i++) { if (CATS[i].v === v) return CATS[i].l; } return v || ''; }
   function newId() { return 'i' + Date.now() + Math.round(Math.random() * 1000); }
+  function titleCase(s) { return String(s || '').toLowerCase().replace(/\b([a-z])/g, function (m, c) { return c.toUpperCase(); }).trim(); }
   function setStatus(msg, isErr) {
     var s = $('status'); s.textContent = msg; s.className = 'status show' + (isErr ? ' err' : '');
     clearTimeout(s._t); s._t = setTimeout(function () { s.className = 'status'; }, isErr ? 5000 : 1800);
+  }
+
+  /* ---------- auth ---------- */
+  async function authFetch(path, opts) {
+    opts = opts || {};
+    var headers = opts.headers || {};
+    if (TOKEN) headers['Authorization'] = 'Bearer ' + TOKEN;
+    opts.headers = headers;
+    var r = await fetch(API + path, opts);
+    if (r.status === 401) { doLogout(); throw new Error('unauthorized'); }
+    return r;
+  }
+  function showApp() { $('login').hidden = true; $('app').hidden = false; }
+  function showLogin() { $('app').hidden = true; $('login').hidden = false; }
+  function doLogout() {
+    TOKEN = '';
+    localStorage.removeItem('bg_token');
+    localStorage.removeItem('bg_user');
+    state = { profile: { birthdate: '', growth: '', caps: {}, goalWeek: '', goalMonth: '' }, inventory: [] };
+    showLogin();
+  }
+  async function signIn() {
+    var u = $('loginUser').value.trim(), p = $('loginPass').value;
+    if (!u || !p) { $('loginErr').textContent = 'Enter username and password'; return; }
+    $('loginBtn').disabled = true; $('loginErr').textContent = '';
+    try {
+      var r = await fetch(API + '/login', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: u, password: p })
+      });
+      if (r.status === 401) { $('loginErr').textContent = 'Wrong username or password'; $('loginBtn').disabled = false; return; }
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      var d = await r.json();
+      TOKEN = d.token; localStorage.setItem('bg_token', TOKEN);
+      if (d.username) localStorage.setItem('bg_user', d.username);
+      $('loginPass').value = '';
+      if (window.posthog) posthog.capture('babygear_login');
+      showApp(); loadState();
+    } catch (e) {
+      $('loginErr').textContent = 'Could not reach the service, try again';
+    }
+    $('loginBtn').disabled = false;
   }
 
   /* ---------- worker calls ---------- */
@@ -393,7 +469,7 @@
 
   async function loadState() {
     try {
-      var r = await fetch(API + '/state', { method: 'GET' });
+      var r = await authFetch('/state', { method: 'GET' });
       if (!r.ok) throw new Error('HTTP ' + r.status);
       var data = await r.json();
       if (data && typeof data === 'object') {
@@ -403,7 +479,7 @@
       }
       setStatus('Loaded');
     } catch (e) {
-      setStatus('Starting fresh (service not reached)', true);
+      if (String(e && e.message) !== 'unauthorized') setStatus('Starting fresh (service not reached)', true);
     }
     renderProfile(); renderGoals(); renderInventory();
   }
@@ -414,7 +490,7 @@
   }
   async function saveState() {
     try {
-      var r = await fetch(API + '/state', {
+      var r = await authFetch('/state', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ profile: state.profile, inventory: state.inventory })
@@ -422,7 +498,7 @@
       if (!r.ok) throw new Error('HTTP ' + r.status);
       setStatus('Saved');
     } catch (e) {
-      setStatus('Could not save (service not reached)', true);
+      if (String(e && e.message) !== 'unauthorized') setStatus('Could not save (service not reached)', true);
     }
   }
 
@@ -431,7 +507,7 @@
     $('recBtn').disabled = true;
     $('recStatus').textContent = 'Thinking...';
     try {
-      var r = await fetch(API + '/recommend', {
+      var r = await authFetch('/recommend', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ profile: profilePayload(), inventory: state.inventory })
@@ -443,8 +519,10 @@
       if (window.posthog) posthog.capture('babygear_recommend', { items: state.inventory.length });
     } catch (e) {
       $('recStatus').textContent = '';
-      $('recOut').innerHTML = '<p class="empty">Could not reach the tracker service. It may be waking up, give it a moment and try again.</p>';
-      setStatus('Recommend failed (service not reached)', true);
+      if (String(e && e.message) !== 'unauthorized') {
+        $('recOut').innerHTML = '<p class="empty">Could not reach the tracker service. It may be waking up, give it a moment and try again.</p>';
+        setStatus('Recommend failed (service not reached)', true);
+      }
     }
     $('recBtn').disabled = false;
   }
@@ -517,6 +595,16 @@
     var m = ageInMonths(state.profile.birthdate);
     $('ageReadout').textContent = m === null ? '' : ('About ' + m + ' month' + (m === 1 ? '' : 's') + ' old today.');
   }
+  function ageToBucket(m) {
+    if (m === null || m === undefined) return 'Free size';
+    if (m < 1) return 'Newborn';
+    if (m < 3) return 'Up to 3 months';
+    if (m < 6) return 'Up to 6 months';
+    if (m < 9) return 'Up to 9 months';
+    if (m < 12) return 'Up to 12 months';
+    if (m < 18) return 'Up to 18 months';
+    return 'Up to 24 months';
+  }
 
   /* ---------- render: goals ---------- */
   function goalSegments(s) { return (s || '').split(',').map(function (x) { return x.trim(); }).filter(Boolean); }
@@ -574,12 +662,14 @@
   function renderInventory() {
     var list = $('invList'); list.innerHTML = '';
     if (!state.inventory.length) {
-      list.innerHTML = '<p class="empty">No gear yet. Add your first item above, or scan one.</p>';
+      list.innerHTML = '<p class="empty">No gear yet. Add your first item above, or add one from a photo.</p>';
       return;
     }
     state.inventory.forEach(function (it) {
+      var qty = it.quantity && it.quantity > 1 ? it.quantity : 1;
       var row = document.createElement('div'); row.className = 'inv-item';
-      var name = document.createElement('span'); name.className = 'inv-name'; name.textContent = it.name;
+      var name = document.createElement('span'); name.className = 'inv-name';
+      name.textContent = it.name + (qty > 1 ? ' ×' + qty : '');
       var cat = document.createElement('span'); cat.className = 'inv-cat'; cat.textContent = catLabel(it.category);
       var spacer = document.createElement('span'); spacer.className = 'inv-spacer';
       var tg = document.createElement('span'); tg.className = 'toggle' + (it.using ? ' on' : '');
@@ -595,7 +685,7 @@
   function addInventory() {
     var name = $('invName').value.trim();
     if (!name) { $('invName').focus(); return; }
-    state.inventory.push({ id: newId(), name: name, category: $('invCat').value, using: true });
+    state.inventory.push({ id: newId(), name: name, category: $('invCat').value, using: true, quantity: 1 });
     $('invName').value = '';
     renderInventory(); queueSave();
   }
@@ -681,7 +771,7 @@
     d.appendChild(body); out.appendChild(d);
   }
 
-  /* ---------- scan: camera + classify + confirm ---------- */
+  /* ---------- scan: camera / upload -> classify -> confirm ---------- */
   var scanStream = null;
   var cfUsingState = false;
 
@@ -691,19 +781,23 @@
     $('scanBusy').hidden = which !== 'busy';
   }
 
-  async function openScan() {
+  async function openCamera() {
     $('scanModal').hidden = false;
     showScanPane('cam');
     try {
       scanStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' } }, audio: false });
       var v = $('scanVideo'); v.srcObject = scanStream; await v.play();
     } catch (e) {
-      // No camera or permission denied: fall back to the file picker (which can also
-      // open the camera on mobile via the capture attribute).
-      stopCamera();
-      $('scanFile').value = '';
-      $('scanFile').click();
+      // No live camera or permission denied: fall back to the OS camera via a capture input.
+      closeScan();
+      $('scanFileCapture').value = '';
+      $('scanFileCapture').click();
     }
+  }
+
+  function openUpload() {
+    $('scanFileUpload').value = '';
+    $('scanFileUpload').click();
   }
 
   function stopCamera() {
@@ -736,7 +830,7 @@
   }
 
   function handleFile(file) {
-    if (!file) { if (!scanStream) closeScan(); return; }
+    if (!file) return;
     var img = new Image();
     img.onload = function () {
       var base64 = drawScaledToBase64(img, img.naturalWidth, img.naturalHeight);
@@ -751,7 +845,7 @@
     $('scanModal').hidden = false;
     showScanPane('busy');
     try {
-      var r = await fetch(API + '/scan', {
+      var r = await authFetch('/scan', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ imageBase64: base64, mimeType: 'image/jpeg' })
@@ -761,17 +855,20 @@
       if (window.posthog) posthog.capture('babygear_scan', { category: res.category || 'other' });
       showConfirm(res || {});
     } catch (e) {
-      showScanPane('cam');
-      setStatus('Scan failed (service not reached)', true);
       closeScan();
+      if (String(e && e.message) !== 'unauthorized') setStatus('Scan failed (service not reached)', true);
     }
   }
 
   function showConfirm(res) {
     var confident = Number(res.confidence) >= 0.5 && res.category;
-    $('cfName').value = res.productType || '';
-    $('cfSize').value = res.sizeOrAgeBand || '';
+    $('cfName').value = titleCase(res.productType || '');
     $('cfCat').value = confident ? res.category : '';
+    var size = (res.sizeBucket && SIZE_BUCKETS.indexOf(res.sizeBucket) >= 0)
+      ? res.sizeBucket
+      : ageToBucket(ageInMonths(state.profile.birthdate));
+    $('cfSizeSel').value = size;
+    $('cfQty').value = 1;
     cfUsingState = false;
     updateCfUsing();
     $('scanConfHint').textContent = confident
@@ -788,16 +885,18 @@
   }
 
   function confirmAdd() {
-    var name = $('cfName').value.trim();
+    var name = titleCase($('cfName').value.trim());
     var cat = $('cfCat').value || 'other';
     if (!name) { $('cfName').focus(); setStatus('Give the item a name', true); return; }
+    var qty = Math.max(1, parseInt($('cfQty').value, 10) || 1);
     state.inventory.push({
       id: newId(),
       name: name,
       category: cat,
       using: cfUsingState,
-      productType: $('cfName').value.trim(),
-      sizeOrAgeBand: $('cfSize').value.trim()
+      productType: name,
+      sizeBucket: $('cfSizeSel').value,
+      quantity: qty
     });
     renderInventory();
     closeScan();
@@ -807,15 +906,25 @@
   }
 
   /* ---------- populate selects ---------- */
-  function fillSelect(sel, withPlaceholder) {
+  function fillCatSelect(sel, withPlaceholder) {
     sel.innerHTML = '';
     if (withPlaceholder) { var o = document.createElement('option'); o.value = ''; o.textContent = 'Pick one'; sel.appendChild(o); }
     CATS.forEach(function (c) { var o = document.createElement('option'); o.value = c.v; o.textContent = c.l; sel.appendChild(o); });
   }
+  function fillSizeSelect(sel) {
+    sel.innerHTML = '';
+    SIZE_BUCKETS.forEach(function (s) { var o = document.createElement('option'); o.value = s; o.textContent = s; sel.appendChild(o); });
+  }
 
   /* ---------- wire up ---------- */
-  fillSelect($('invCat'), false);
-  fillSelect($('cfCat'), true);
+  fillCatSelect($('invCat'), false);
+  fillCatSelect($('cfCat'), true);
+  fillSizeSelect($('cfSizeSel'));
+
+  $('loginBtn').addEventListener('click', signIn);
+  $('loginPass').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); signIn(); } });
+  $('loginUser').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); $('loginPass').focus(); } });
+  $('signOut').addEventListener('click', function () { if (window.posthog) posthog.capture('babygear_logout'); doLogout(); });
 
   $('birthdate').addEventListener('change', function () { state.profile.birthdate = this.value; updateAgeReadout(); queueSave(); });
   $('growth').addEventListener('change', function () { state.profile.growth = this.value; queueSave(); });
@@ -824,14 +933,17 @@
   $('invName').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); addInventory(); } });
   $('recBtn').addEventListener('click', getRecommendations);
 
-  $('scanBtn').addEventListener('click', openScan);
+  $('camBtn').addEventListener('click', openCamera);
+  $('uploadBtn').addEventListener('click', openUpload);
   $('scanCapture').addEventListener('click', captureFromCamera);
   $('scanCancel').addEventListener('click', closeScan);
   $('scanBackdrop').addEventListener('click', closeScan);
-  $('scanFile').addEventListener('change', function () { handleFile(this.files && this.files[0]); });
+  $('scanFileCapture').addEventListener('change', function () { handleFile(this.files && this.files[0]); });
+  $('scanFileUpload').addEventListener('change', function () { handleFile(this.files && this.files[0]); });
   $('cfUsing').addEventListener('click', function () { cfUsingState = !cfUsingState; updateCfUsing(); });
   $('cfAdd').addEventListener('click', confirmAdd);
-  $('cfRetake').addEventListener('click', openScan);
+  $('cfRetake').addEventListener('click', openCamera);
 
-  loadState();
+  /* ---------- boot ---------- */
+  if (TOKEN) { showApp(); loadState(); } else { showLogin(); }
 </script>
