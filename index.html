@@ -57,9 +57,9 @@
   .nav-links a:hover { color: var(--support); }
 
   /* HERO */
-  .hero { padding: 140px 40px 80px; max-width: 760px; margin: 0 auto; }
+  .hero { padding: 140px 40px 80px; max-width: 1100px; margin: 0 auto; }
   .hero-eyebrow { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; font-weight: 500; }
-  .hero h1 { font-family: 'Lora', serif; font-size: clamp(32px, 5vw, 48px); line-height: 1.2; font-weight: 400; color: var(--ink); margin-bottom: 24px; letter-spacing: -0.01em; }
+  .hero h1 { font-family: 'Lora', serif; font-size: clamp(32px, 5vw, 48px); line-height: 1.2; font-weight: 400; color: var(--ink); margin-bottom: 24px; letter-spacing: -0.01em; max-width: 860px; }
   .hero h1 em { font-style: italic; color: var(--accent); }
   .hero-sub { font-size: 17px; color: var(--ink-soft); line-height: 1.7; max-width: 580px; margin-bottom: 40px; font-weight: 300; }
   .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
@@ -69,8 +69,8 @@
   .stat-label { font-size: 12px; color: var(--ink-muted); letter-spacing: 0.04em; }
 
   /* LAYOUT */
-  .divider { max-width: 760px; margin: 0 auto; padding: 0 40px; border-bottom: 0.5px solid var(--border); }
-  section { max-width: 760px; margin: 0 auto; padding: var(--section-gap) 40px; }
+  .divider { max-width: 1100px; margin: 0 auto; padding: 0 40px; border-bottom: 0.5px solid var(--border); }
+  section { max-width: 1100px; margin: 0 auto; padding: var(--section-gap) 40px; }
   .section-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 40px; font-weight: 500; }
 
   /* WORK CARDS */
@@ -103,7 +103,7 @@
   .detail-row { display: grid; grid-template-columns: 90px 1fr; gap: 14px; margin-bottom: 12px; align-items: baseline; }
   .detail-row:last-child { margin-bottom: 0; }
   .detail-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); font-weight: 500; padding-top: 2px; }
-  .detail-text { font-size: 13px; color: var(--ink-soft); line-height: 1.7; }
+  .detail-text { font-size: 13px; color: var(--ink-soft); line-height: 1.7; max-width: 760px; }
   .detail-text.challenge { font-style: italic; color: var(--ink-muted); }
 
   /* BUILDER */
@@ -133,7 +133,7 @@
   a.writing-item:hover .writing-read { color: var(--support); }
 
   /* FOOTER */
-  footer { max-width: 760px; margin: 0 auto; padding: 40px 40px 60px; border-top: 0.5px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  footer { max-width: 1100px; margin: 0 auto; padding: 40px 40px 60px; border-top: 0.5px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
   .footer-name { font-family: 'Lora', serif; font-size: 14px; color: var(--ink-soft); }
   .footer-links { display: flex; gap: 24px; }
   .footer-links a { font-size: 13px; color: var(--ink-muted); text-decoration: none; transition: color 0.2s; }
@@ -245,7 +245,7 @@
 <section id="builder">
   <p class="section-label">Building</p>
   <p class="builder-lead">AI product experiments in the domains I know — each one shows the reasoning most AI demos skip: the unit economics, the evals, the failure modes.</p>
-  <div class="builder-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+  <div class="builder-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
     <div class="builder-card fade-in" style="border-color: var(--accent); box-shadow: 0 2px 12px rgba(15,118,110,0.09);">
       <span class="builder-status live">Working prototype</span>
       <div class="builder-icon">📊</div>
