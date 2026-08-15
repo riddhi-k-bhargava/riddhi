@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>JV Radar · Multi-agent deal monitoring</title>
-<meta name="description" content="A self-running multi-agent system that watches about 2,000 companies daily for JV and M and A deals, drafts an outreach digest, and stages it for a person to approve and send. An interactive recreation with synthetic data.">
-<link rel="canonical" href="https://riddhi-k-bhargava.github.io/riddhi/jv-radar/">
+<title>BD Radar · Agentic BD intelligence</title>
+<meta name="description" content="A production multi-agent system that monitors deal news, classifies it against a proprietary taxonomy, finds the right contacts, and drafts outreach for an 8-person business development team. An interactive recreation with synthetic data.">
+<link rel="canonical" href="https://riddhi-k-bhargava.github.io/riddhi/bd-radar/">
 <link rel="icon" href="/riddhi/favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="/riddhi/favicon.ico">
 <link rel="apple-touch-icon" href="/riddhi/apple-touch-icon.png">
@@ -162,43 +162,46 @@
 <div class="page">
   <a class="backlink top" href="../index.html#builder">← Back to portfolio</a>
 
-  <div class="eyebrow">Multi-agent system</div>
-  <h1>From manual, inconsistent monitoring to a <em>self-running multi-agent system</em> that surfaces JV and M&amp;A deals while they're still actionable</h1>
+  <div class="eyebrow">Agentic BD intelligence · Side project</div>
+  <h1>From a manual daily research chore to a <em>self-running multi-agent system</em> that surfaces deals while they're still actionable</h1>
 
   <div class="tags">
     <span class="tag mark">Shipped, recreated</span>
-    <span class="tag">9 agents, 3 flows</span>
+    <span class="tag">9 agents + scheduled flows</span>
     <span class="tag">Human in the loop</span>
     <span class="tag">Separation of concerns</span>
   </div>
 
   <div class="stats">
-    <div class="stat"><span class="n"><em>9 agents + 3 flows</em></span><span class="l">one shared state layer, coordinated by an immutable DealID</span></div>
-    <div class="stat"><span class="n"><em>~2,000</em> companies watched daily</span><span class="l">complete coverage, up from ad hoc manual scanning</span></div>
-    <div class="stat"><span class="n"><em>~15</em> analyst-hours/week saved<span class="est">Estimated</span></span><span class="l">one analyst spent 3 hours a day combing news and finding contacts, now unattended</span></div>
+    <div class="stat"><span class="n"><em>9 agents</em> + scheduled flows</span><span class="l">on Copilot Studio and Power Automate, over one shared state layer coordinated by an immutable DealID</span></div>
+    <div class="stat"><span class="n"><em>~2,000</em> companies watched</span><span class="l">2,238 contacts managed, 95+ deals classified and growing</span></div>
+    <div class="stat"><span class="n"><em>15 to 1</em> duplicate outputs per run</span><span class="l">the looping failure, fixed by design, with no more duplicate writes or broken IDs</span></div>
   </div>
 
   <section>
-    <div class="kicker">The challenge</div>
-    <h2>Deals went cold before anyone acted.</h2>
-    <p class="lead">An 8-person BD team had no systematic way to catch JV and M&amp;A announcements and reach the right contact while a deal was still fresh. Monitoring was manual and inconsistent, so deals went cold before anyone acted.</p>
+    <div class="kicker">Why it needed to exist</div>
+    <h2>Getting to a deal early is the whole game.</h2>
+    <p class="lead">A JV advisory firm wins by getting to a deal early. Once an announcement is public, corp dev and legal are fielding calls within days, and the first credible outreach usually wins the work. Eight people were scanning the news by hand: slow, patchy, and impossible to measure. I wanted to turn that into something the firm owns and that gets sharper over time, so outreach goes out faster and we can finally see our own coverage.</p>
   </section>
 
   <section>
-    <div class="kicker">The approach</div>
-    <h2>One principle: <em>separation of concerns</em>.</h2>
-    <p class="lead">I built a multi-agent system governed by one principle: separation of concerns. Agents that write structured data never produce conversational output, conversational agents never write, and no email is ever sent automatically. The system drafts and stages; a person approves and sends. The first version was a single agent doing everything, and it failed in production, looping into 15 duplicate digests in a run and corrupting its own ID counter. The rebuild split it into write-only and talk-only agents coordinated by one immutable DealID that every table carries, which is what lets stateless agents share state.</p>
+    <div class="kicker">Strategy</div>
+    <h2>Agent systems break at the seams, <em>not</em> on model quality.</h2>
+    <p class="lead">They break where state moves between steps and where autonomy should stop. So I built around two things: a single source of truth every agent shares, the system's memory, and a clear line between what the system decides and what a person signs off on. Get those right and the rest is plumbing.</p>
   </section>
 
   <section>
-    <div class="kicker">Process and iterations</div>
-    <h2>How it got to a stable design.</h2>
+    <div class="kicker">What I did</div>
+    <h2>The calls I made.</h2>
     <div class="points">
-      <div class="pt"><div class="ix">01</div><div class="tx">v1 was a single agent doing everything. In production it looped, producing 15 duplicate digests in a run and corrupting its own ID counter.</div></div>
-      <div class="pt"><div class="ix">02</div><div class="tx">Traced it to a design error: one agent was mixing state writes with conversational output. Split it into write-only and talk-only agents.</div></div>
-      <div class="pt"><div class="ix">03</div><div class="tx">Made the DealID immutable and moved the chain off-hours, spaced two hours apart, so the agents stopped competing for one shared rate limit.</div></div>
-      <div class="pt"><div class="ix">04</div><div class="tx">Drew a hard line: the system classifies, dedups, and drafts; a person approves, and only a person sends.</div></div>
+      <div class="pt"><div class="ix">01</div><div class="tx"><b>Split agents by job.</b> Writers write, formatters talk, sending happens in flows. More moving parts, but the flood-the-team failure is gone by design.</div></div>
+      <div class="pt"><div class="ix">02</div><div class="tx"><b>Made the shared key immutable and told it to fail loud.</b> If the read it depends on breaks, the system stops instead of guessing. A quietly corrupted intelligence file is worse than a late one.</div></div>
+      <div class="pt"><div class="ix">03</div><div class="tx"><b>Drew the autonomy line</b> at anything a client sees or any record that becomes truth. Emails are drafted, never sent. Writes need a confirm.</div></div>
+      <div class="pt"><div class="ix">04</div><div class="tx"><b>Matched coverage on the key, never on similar names.</b> A false "we've got this" hides a real gap, which costs more than a visible hole.</div></div>
+      <div class="pt"><div class="ix">05</div><div class="tx"><b>Fixed the actual bottleneck,</b> a shared API rate limit and silent date corruption, not the model. Put the work into scheduling, pacing, and date handling.</div></div>
     </div>
+    <p class="lead" style="margin-top:18px"><b>What I built.</b> The whole thing. Nine agents plus scheduled flows over a shared data layer, live and running on its own every day for the team.</p>
+    <p class="lead"><b>What it shows.</b> The judgment agent products turn on: where autonomy should stop, and how state survives the handoffs between agents. Backed by real guardrail and eval habits rather than a demo.</p>
   </section>
 
   <section>
@@ -279,7 +282,7 @@
         <span class="legend-key">solid = write, dashed = read</span>
       </div>
 
-      <p class="caption">1A and 1B were one agent in v1. Splitting write from talk stopped the loop.</p>
+      <p class="caption">1A and 1B were one agent in v1. Splitting write from talk stopped the loop. Beyond this nightly pipeline, on-demand agents (Teams assistant, meeting prep, outreach, prospecting, tracker, and a weekly gap finder) read and write the same shared layer.</p>
 
       <!-- approval gate (appears during walkthrough) -->
       <div class="approve" id="approvePanel" hidden>
@@ -304,9 +307,19 @@
     </div>
   </section>
 
-  <div class="disclaimer"><b>Shipped, recreated.</b> The production system runs on the firm's Microsoft tenant and cannot be shown. This page is an interactive recreation with synthetic data. Contoso Industrial and Fabrikam Logistics are fictional sample names. The agent count and watchlist size are measured facts from the live system; the analyst-hours figure is an estimate.</div>
+  <section>
+    <div class="kicker">Results</div>
+    <h2>Live, and measured.</h2>
+    <p class="lead"><b>Running unattended.</b> Live every day for the 8-person team, on its own.</p>
+    <p class="lead"><b>The loop, fixed by design.</b> 15 duplicate outputs per run down to 1, with no more duplicate writes or broken IDs.</p>
+    <p class="lead"><b>Rate limits solved by redesign, not spend.</b> I traced the throttling to the platform underneath the vendor, so a pricier tier would not have touched it. The fix was scheduling and pacing.</p>
+    <p class="lead"><b>Coverage.</b> Roughly 2,000 companies watched, 2,238 contacts managed, 95+ deals classified and growing.</p>
+    <p class="lead"><b>Time saved, estimated.</b> Cut about 13 hours a week of manual deal monitoring. Method: 8 people at about 20 minutes each a day, 5 days a week. The 20-minute figure is the input to adjust; the agent count, watchlist, contacts, and deal counts are measured.</p>
+  </section>
 
-  <div class="foot"><b>Method for the hours estimate.</b> One BD analyst spent about 3 hours a day combing news and finding contacts, 5 days a week, which is roughly 15 hours a week. Independent write-up by Riddhi Bhargava. Not affiliated with Manzama, Seamless AI, Microsoft, or any named company.</div>
+  <div class="disclaimer"><b>Shipped, recreated.</b> The production system runs on the firm's Microsoft tenant and cannot be shown. This page is an interactive recreation with synthetic data. Contoso Industrial and Fabrikam Logistics are fictional sample names. The agent count, watchlist, contacts, and deal counts are measured facts from the live system; the time-saved figure is an estimate, with its method shown above.</div>
+
+  <div class="foot"><b>Independent write-up by Riddhi Bhargava.</b> A side project built for a JV advisory firm. Not affiliated with Manzama, Seamless AI, Microsoft, or any named company.</div>
 
   <a class="backlink bottom" href="../index.html#builder">← Back to portfolio</a>
 </div>
